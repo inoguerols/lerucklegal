@@ -6,3 +6,7 @@ node_modules/
 .DS_Store
 npm-debug.log*
 .vercel
+
+# Informes/entregables internos (confidencial) — no versionar en repo público.
+# Anclado a la raíz: los PDF de /public (p. ej. lead magnets) sí se versionan.
+/*.pdf
