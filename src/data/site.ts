@@ -132,11 +132,11 @@ export type Lawyer = {
 // TODO: sustituir por el equipo real (nombres, fotos, nº de colegiado, bios).
 export const team: Lawyer[] = [
   {
-    slug: "socio-director",
-    name: "TODO: Nombre del socio/a director/a",
-    role: "Socio/a director/a",
+    slug: "belen-de-santaolalla",
+    name: "Belén de Santaolalla de la Puerta",
+    role: "TODO: cargo (p. ej. Abogada — Derecho tributario)",
     colegiado: "ICAM nº TODO",
-    photo: "/equipo/placeholder.svg",
+    photo: "/equipo/placeholder.svg", // TODO: /equipo/belen.jpg
     bio: "TODO: Biografía profesional — formación, trayectoria, asuntos representativos en derecho tributario, publicaciones e idiomas.",
     areas: ["inspecciones-fiscales", "contencioso-administrativo"],
     email: "info@lerucklegal.com",
