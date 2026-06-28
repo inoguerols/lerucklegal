@@ -1,0 +1,30 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../data/site";
+---
+<Base title={`Política de cookies — ${site.name}`} description="Información sobre el uso de cookies conforme a la guía de la AEPD.">
+  <section class="container-prose py-16 md:py-20 max-w-3xl">
+    <h1 class="font-serif text-4xl text-navy-900">Política de cookies</h1>
+    <div class="mt-8 space-y-6 text-navy-800 leading-relaxed [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:text-navy-900 [&_h2]:mt-8">
+      <p class="text-sm bg-cream border border-sage-200 rounded-lg p-4">
+        <strong>Pendiente de revisión.</strong> Ajustar según las cookies que finalmente use el sitio.
+        Conforme a la Guía de Cookies de la AEPD (2024).
+      </p>
+
+      <h2>¿Qué son las cookies?</h2>
+      <p>Una cookie es un pequeño archivo que se almacena en tu dispositivo al visitar una web. Permiten, entre otras cosas, recordar tus preferencias o medir el uso del sitio.</p>
+
+      <h2>Cookies que utilizamos</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>Técnicas / necesarias:</strong> imprescindibles para el funcionamiento del sitio (por ejemplo, recordar tu elección sobre cookies). No requieren consentimiento.</li>
+        <li><strong>De medición (opcionales):</strong> nos ayudan a entender el uso del sitio de forma agregada. Solo se activan si las aceptas. <em>(TODO: detallar el proveedor de analítica si se utiliza; por defecto el sitio emplea analítica sin cookies.)</em></li>
+      </ul>
+
+      <h2>Gestión del consentimiento</h2>
+      <p>Al acceder al sitio puedes <strong>aceptar</strong>, <strong>rechazar</strong> o <strong>configurar</strong> las cookies no esenciales. Las cookies de medición no se activan antes de tu consentimiento. Puedes cambiar tu elección en cualquier momento borrando los datos de tu navegador.</p>
+
+      <h2>Cómo desactivarlas</h2>
+      <p>Puedes bloquear o eliminar las cookies desde la configuración de tu navegador (Chrome, Firefox, Safari, Edge).</p>
+    </div>
+  </section>
+</Base>

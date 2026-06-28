@@ -1,0 +1,36 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../data/site";
+---
+<Base title={`Política de privacidad — ${site.name}`} description="Política de privacidad conforme al RGPD y la LOPDGDD.">
+  <section class="container-prose py-16 md:py-20 max-w-3xl">
+    <h1 class="font-serif text-4xl text-navy-900">Política de privacidad</h1>
+    <div class="mt-8 space-y-6 text-navy-800 leading-relaxed [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:text-navy-900 [&_h2]:mt-8">
+      <p class="text-sm bg-cream border border-sage-200 rounded-lg p-4">
+        <strong>Pendiente de revisión.</strong> Plantilla conforme al RGPD (UE 2016/679) y la LOPDGDD (LO 3/2018).
+        Completar los datos <code>TODO</code> y validar con un letrado antes de publicar.
+      </p>
+
+      <h2>1. Responsable del tratamiento</h2>
+      <p>{site.legal.titular} (NIF {site.legal.nif}), con domicilio en {site.address.street}, {site.address.postalCode} {site.address.city}. Email: {site.email}.</p>
+
+      <h2>2. Finalidad</h2>
+      <p>Tratamos los datos que nos facilitas a través del formulario de contacto, email, teléfono o WhatsApp con la finalidad de atender tu consulta, gestionar la relación profesional y, en su caso, prestarte nuestros servicios.</p>
+
+      <h2>3. Legitimación</h2>
+      <p>La base jurídica es tu consentimiento (art. 6.1.a RGPD) al remitirnos la consulta y, en su caso, la ejecución de un contrato o la aplicación de medidas precontractuales (art. 6.1.b) y el cumplimiento de obligaciones legales (art. 6.1.c).</p>
+
+      <h2>4. Conservación</h2>
+      <p>Conservaremos tus datos mientras dure la relación y, posteriormente, durante los plazos legalmente exigibles (entre otros, obligaciones fiscales y de prevención del blanqueo de capitales).</p>
+
+      <h2>5. Destinatarios</h2>
+      <p>No se cederán datos a terceros salvo obligación legal. Podrán acceder proveedores tecnológicos (alojamiento, gestión del despacho) que actúan como encargados del tratamiento con las debidas garantías.</p>
+
+      <h2>6. Transferencias internacionales</h2>
+      <p>No se prevén transferencias internacionales de datos. En caso de producirse, se informará y se adoptarán las garantías exigidas por el RGPD.</p>
+
+      <h2>7. Tus derechos</h2>
+      <p>Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a {site.email}, adjuntando copia de un documento identificativo. Tienes derecho a reclamar ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" class="text-sage-600 underline" target="_blank" rel="noopener">aepd.es</a>).</p>
+    </div>
+  </section>
+</Base>

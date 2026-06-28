@@ -1,0 +1,41 @@
+---
+import { site, nav } from "../data/site";
+const year = 2026;
+---
+<footer class="bg-navy-900 text-sage-100 mt-20">
+  <div class="container-prose py-14 grid gap-10 md:grid-cols-3">
+    <div>
+      <p class="font-serif text-2xl text-white">{site.name}</p>
+      <p class="mt-2 text-sage-200 text-sm">{site.tagline}</p>
+      <p class="mt-4 text-sage-200 text-sm">Derecho tributario · {site.city}</p>
+    </div>
+
+    <div>
+      <p class="text-white font-semibold mb-3">Navegación</p>
+      <ul class="space-y-2 text-sm">
+        {nav.map((item) => (
+          <li><a href={item.href} class="text-sage-200 hover:text-white transition">{item.label}</a></li>
+        ))}
+        <li><a href={site.clientPortalUrl} target="_blank" rel="noopener" class="text-sage-200 hover:text-white transition">Acceso clientes</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="text-white font-semibold mb-3">Contacto</p>
+      <ul class="space-y-2 text-sm text-sage-200">
+        <li><a href={`tel:${site.phoneHref}`} class="hover:text-white">{site.phone}</a></li>
+        <li><a href={`mailto:${site.email}`} class="hover:text-white">{site.email}</a></li>
+        <li>{site.hours}</li>
+      </ul>
+      <p class="text-white font-semibold mt-6 mb-3">Información legal</p>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/aviso-legal" class="text-sage-200 hover:text-white transition">Aviso legal</a></li>
+        <li><a href="/privacidad" class="text-sage-200 hover:text-white transition">Política de privacidad</a></li>
+        <li><a href="/cookies" class="text-sage-200 hover:text-white transition">Política de cookies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <p class="container-prose py-5 text-xs text-sage-200">© {year} {site.name}. Todos los derechos reservados. · Colegiados en el {site.legal.colegio}.</p>
+  </div>
+</footer>

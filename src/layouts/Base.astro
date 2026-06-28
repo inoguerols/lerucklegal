@@ -1,0 +1,69 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CookieBanner from "../components/CookieBanner.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import JsonLd from "../components/JsonLd.astro";
+import { site } from "../data/site";
+
+const {
+  title = `${site.name} — Abogados especialistas en derecho tributario en Madrid`,
+  description = site.description,
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, site.url).href;
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  name: site.name,
+  description: site.description,
+  url: site.url,
+  telephone: site.phone,
+  email: site.email,
+  areaServed: "ES",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: site.address.city,
+    addressRegion: site.address.region,
+    addressCountry: site.address.country,
+  },
+  knowsAbout: [
+    "Derecho tributario",
+    "Inspecciones fiscales",
+    "Litigios contencioso-administrativos",
+    "Planificación fiscal",
+  ],
+};
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content={site.name} />
+    <JsonLd schema={orgSchema} />
+  </head>
+  <body class="min-h-screen flex flex-col bg-white text-navy-900">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-navy-900 focus:text-white focus:px-4 focus:py-2 focus:rounded">Saltar al contenido</a>
+    <Header />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppButton />
+    <CookieBanner />
+  </body>
+</html>

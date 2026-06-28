@@ -1,0 +1,37 @@
+---
+import Base from "../../layouts/Base.astro";
+import JsonLd from "../../components/JsonLd.astro";
+import { getCollection, render } from "astro:content";
+import { site } from "../../data/site";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("actualidad", ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+const fmt = (d) => d.toLocaleDateString("es-ES", { year: "numeric", month: "long", day: "numeric" });
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date.toISOString(),
+  author: { "@type": "Person", name: post.data.author },
+  publisher: { "@type": "Organization", name: site.name },
+};
+---
+<Base title={`${post.data.title} — ${site.name}`} description={post.data.description}>
+  <article class="container-prose py-16 md:py-20 max-w-3xl">
+    <a href="/actualidad" class="text-sage-600 text-sm font-medium hover:text-navy-900">← Actualidad</a>
+    <p class="mt-6 text-sm text-sage-600 font-medium">{fmt(post.data.date)} · Por {post.data.author}</p>
+    <h1 class="font-serif text-3xl md:text-4xl text-navy-900 mt-2">{post.data.title}</h1>
+    <div class="mt-8 text-navy-800 leading-relaxed space-y-4 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:text-navy-900 [&_h2]:mt-8 [&_ul]:list-disc [&_ul]:pl-6 [&_a]:text-sage-600 [&_a]:underline">
+      <Content />
+    </div>
+    <div class="mt-12 p-6 bg-cream rounded-2xl border border-sage-200">
+      <p class="text-navy-800">¿Te afecta esto? <a href="/contacto" class="text-sage-600 font-semibold underline">Consúltanos tu caso</a>.</p>
+    </div>
+  </article>
+  <JsonLd schema={schema} />
+</Base>

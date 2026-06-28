@@ -1,0 +1,55 @@
+---
+import Base from "../../layouts/Base.astro";
+import JsonLd from "../../components/JsonLd.astro";
+import { site, areas } from "../../data/site";
+
+export function getStaticPaths() {
+  return areas.map((area) => ({ params: { slug: area.slug }, props: { area } }));
+}
+const { area } = Astro.props;
+const title = `${area.title} — ${site.name}`;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: area.title,
+  description: area.summary,
+  provider: { "@type": "LegalService", name: site.name, url: site.url },
+  areaServed: "ES",
+};
+---
+<Base title={title} description={area.short}>
+  <section class="bg-navy-900 text-white">
+    <div class="container-prose py-20 max-w-3xl">
+      <a href="/areas" class="text-sage-200 text-sm hover:text-white">← Áreas de práctica</a>
+      <h1 class="font-serif text-4xl md:text-5xl mt-4">{area.title}</h1>
+      <p class="mt-5 text-lg text-sage-100">{area.summary}</p>
+    </div>
+  </section>
+
+  <section class="container-prose py-16 md:py-20 max-w-3xl">
+    <h2 class="font-serif text-2xl text-navy-900">Cómo te ayudamos</h2>
+    <ul class="mt-6 space-y-3">
+      {area.bullets.map((b) => (
+        <li class="flex gap-3 text-navy-800">
+          <span class="mt-1 text-sage-600" aria-hidden="true">▪</span>
+          <span>{b}</span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-12 bg-cream rounded-2xl p-7 border border-sage-200">
+      <h3 class="font-serif text-xl text-navy-900">Nuestro método</h3>
+      <ol class="mt-4 grid gap-4 sm:grid-cols-2 text-sm text-navy-800">
+        <li><span class="font-semibold text-navy-900">1. Análisis inicial</span><br/>Estudiamos el expediente y los plazos.</li>
+        <li><span class="font-semibold text-navy-900">2. Estrategia personalizada</span><br/>Definimos la mejor vía para tu caso.</li>
+        <li><span class="font-semibold text-navy-900">3. Ejecución coordinada</span><br/>Actuamos en equipo en cada trámite.</li>
+        <li><span class="font-semibold text-navy-900">4. Seguimiento continuo</span><br/>Te informamos en cada paso.</li>
+      </ol>
+    </div>
+
+    <div class="mt-10">
+      <a href="/contacto" class="bg-navy-900 text-white font-semibold px-7 py-3 rounded-full hover:bg-navy-800 transition">Consúltanos sobre {area.title.toLowerCase()}</a>
+    </div>
+  </section>
+  <JsonLd schema={schema} />
+</Base>

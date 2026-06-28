@@ -1,0 +1,41 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../data/site";
+---
+<Base title={`Aviso legal — ${site.name}`} description="Aviso legal e información del titular conforme a la LSSI-CE.">
+  <section class="container-prose py-16 md:py-20 max-w-3xl">
+    <h1 class="font-serif text-4xl text-navy-900">Aviso legal</h1>
+    <div class="mt-8 space-y-6 text-navy-800 leading-relaxed [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:text-navy-900 [&_h2]:mt-8">
+      <p class="text-sm bg-cream border border-sage-200 rounded-lg p-4">
+        <strong>Pendiente de revisión.</strong> Plantilla conforme al art. 10 de la LSSI-CE.
+        Un letrado del despacho debe completar los datos marcados <code>TODO</code> y validar el texto antes de publicar.
+      </p>
+
+      <h2>1. Información del titular</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>Titular:</strong> {site.legal.titular}</li>
+        <li><strong>NIF/CIF:</strong> {site.legal.nif}</li>
+        <li><strong>Domicilio:</strong> {site.address.street}, {site.address.postalCode} {site.address.city}</li>
+        <li><strong>Email:</strong> {site.email}</li>
+        <li><strong>Teléfono:</strong> {site.phone}</li>
+        <li><strong>Colegio profesional:</strong> {site.legal.colegio}. Los letrados del despacho están colegiados en dicho colegio (números de colegiado indicados en cada perfil de <a href="/equipo" class="text-sage-600 underline">Equipo</a>).</li>
+        <li><strong>Título profesional:</strong> Licenciados/Graduados en Derecho (España). Profesión regulada conforme a la normativa española.</li>
+      </ul>
+
+      <h2>2. Objeto</h2>
+      <p>El presente sitio web tiene por objeto ofrecer información sobre los servicios de asesoramiento y defensa jurídica en materia tributaria prestados por {site.name}.</p>
+
+      <h2>3. Condiciones de uso</h2>
+      <p>El acceso y la navegación por este sitio implican la aceptación de las presentes condiciones. El usuario se compromete a hacer un uso adecuado de los contenidos y a no emplearlos para actividades ilícitas.</p>
+
+      <h2>4. Propiedad intelectual e industrial</h2>
+      <p>Los contenidos, marcas y elementos de este sitio son titularidad de {site.name} o de terceros que han autorizado su uso. Queda prohibida su reproducción sin autorización.</p>
+
+      <h2>5. Responsabilidad</h2>
+      <p>La información de este sitio tiene carácter general y divulgativo y no constituye asesoramiento jurídico. {site.name} no se responsabiliza de las decisiones tomadas a partir de la información publicada sin consulta profesional previa.</p>
+
+      <h2>6. Legislación aplicable</h2>
+      <p>Las presentes condiciones se rigen por la legislación española. Para cualquier controversia, las partes se someten a los juzgados y tribunales que correspondan conforme a derecho.</p>
+    </div>
+  </section>
+</Base>

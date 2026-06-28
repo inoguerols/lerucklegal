@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@import "@fontsource/playfair-display/400.css";
+@import "@fontsource/playfair-display/600.css";
+@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+
+/* Brand tokens — conserva la marca actual (salvia + marino), pero con contraste AA.
+   Salvia clara (#9CAF88) SOLO para fondos/acentos; nunca como texto sobre blanco. */
+@theme {
+  --color-navy-950: #0f1b2d;
+  --color-navy-900: #16233a;
+  --color-navy-800: #1f3050;
+  --color-navy-700: #2b4368;
+  --color-sage-600: #5f7049; /* salvia oscura: AA sobre blanco, para texto/enlaces */
+  --color-sage-500: #7d9266;
+  --color-sage-400: #9caf88; /* salvia de marca: fondos, acentos, botones */
+  --color-sage-200: #cdd8be;
+  --color-sage-100: #e7edde;
+  --color-cream: #f7f6f1;
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-navy-900);
+  background: #ffffff;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Foco visible para accesibilidad (WCAG 2.1 AA) */
+:focus-visible {
+  outline: 3px solid var(--color-sage-600);
+  outline-offset: 2px;
+}
+
+.container-prose {
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}

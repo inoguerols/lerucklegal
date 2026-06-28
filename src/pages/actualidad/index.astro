@@ -1,0 +1,30 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+import { site } from "../../data/site";
+const posts = (await getCollection("actualidad", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const title = `Actualidad — ${site.name}`;
+const fmt = (d) => d.toLocaleDateString("es-ES", { year: "numeric", month: "long", day: "numeric" });
+---
+<Base title={title} description="Análisis y novedades en derecho tributario: inspecciones, recursos, sentencias y planificación fiscal.">
+  <section class="bg-navy-900 text-white">
+    <div class="container-prose py-20 max-w-3xl">
+      <p class="text-sage-200 uppercase tracking-wide text-sm font-medium">Actualidad</p>
+      <h1 class="font-serif text-4xl md:text-5xl mt-3">Análisis y novedades fiscales</h1>
+    </div>
+  </section>
+  <section class="container-prose py-16 md:py-20">
+    <div class="grid gap-8 md:grid-cols-2">
+      {posts.map((p) => (
+        <a href={`/actualidad/${p.id}`} class="block bg-white rounded-2xl border border-sage-200 p-7 hover:border-sage-400 hover:shadow-md transition">
+          <p class="text-sm text-sage-600 font-medium">{fmt(p.data.date)}</p>
+          <h2 class="font-serif text-xl text-navy-900 mt-2">{p.data.title}</h2>
+          <p class="mt-2 text-navy-800">{p.data.description}</p>
+          <p class="mt-4 text-sm text-navy-800">Por {p.data.author}</p>
+        </a>
+      ))}
+    </div>
+    {posts.length === 0 && <p class="text-navy-800">Próximamente publicaremos análisis y novedades.</p>}
+  </section>
+</Base>

@@ -1,0 +1,53 @@
+---
+import Base from "../layouts/Base.astro";
+import { site, stats } from "../data/site";
+const title = `El despacho — ${site.name}`;
+---
+<Base title={title} description="Despacho boutique de derecho tributario en Madrid. Liderazgo, visión y experiencia al servicio del contribuyente.">
+  <section class="bg-navy-900 text-white">
+    <div class="container-prose py-20 md:py-24 max-w-3xl">
+      <p class="text-sage-200 uppercase tracking-wide text-sm font-medium">El despacho</p>
+      <h1 class="font-serif text-4xl md:text-5xl mt-3">Liderazgo, visión y experiencia al servicio del contribuyente</h1>
+      <p class="mt-6 text-lg text-sage-100">Más de 15 años defendiendo a personas y empresas frente a la Administración tributaria.</p>
+    </div>
+  </section>
+
+  <section class="container-prose py-16 md:py-20 max-w-3xl">
+    <h2 class="font-serif text-3xl text-navy-900">Excelencia en derecho tributario</h2>
+    <p class="mt-5 text-lg text-navy-800 leading-relaxed">
+      Nacimos con una idea clara: combinar la excelencia técnica con unos valores firmes —trabajo en
+      equipo, honestidad y eficiencia—. Esa es la melé, el <em>ruck</em>, que da nombre al despacho:
+      avanzar juntos, con orden y determinación, en defensa de los derechos de quien confía en nosotros.
+    </p>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      <div class="bg-cream rounded-2xl p-6 border border-sage-200">
+        <h3 class="font-serif text-xl text-navy-900">Especialización exclusiva</h3>
+        <p class="mt-2 text-navy-800 text-sm">Solo derecho tributario. Toda nuestra experiencia, enfocada en la fiscalidad.</p>
+      </div>
+      <div class="bg-cream rounded-2xl p-6 border border-sage-200">
+        <h3 class="font-serif text-xl text-navy-900">Estrategia de equipo</h3>
+        <p class="mt-2 text-navy-800 text-sm">Cada caso se aborda de forma coordinada, con varias miradas sobre el mismo expediente.</p>
+      </div>
+      <div class="bg-cream rounded-2xl p-6 border border-sage-200">
+        <h3 class="font-serif text-xl text-navy-900">Compromiso total</h3>
+        <p class="mt-2 text-navy-800 text-sm">Dedicación plena a cada asunto, con comunicación clara en todo el procedimiento.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cream border-y border-sage-200">
+    <div class="container-prose py-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      {stats.map((s) => (
+        <div>
+          <p class="font-serif text-3xl md:text-4xl font-bold text-navy-900">{s.value}</p>
+          <p class="text-sm text-navy-800 mt-1">{s.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="container-prose py-16 text-center">
+    <a href="/contacto" class="bg-navy-900 text-white font-semibold px-7 py-3 rounded-full hover:bg-navy-800 transition">Solicita una consulta</a>
+  </section>
+</Base>

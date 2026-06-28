@@ -1,0 +1,84 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../data/site";
+const title = `Contacto — ${site.name}`;
+const waHref = `https://wa.me/${site.whatsapp}`;
+const mapsHref = `https://www.google.com/maps/search/?api=1&query=${site.address.mapsQuery}`;
+---
+<Base title={title} description="Contacta con Le Ruck Legal, abogados tributaristas en Madrid. Primera consulta confidencial y sin compromiso.">
+  <section class="bg-navy-900 text-white">
+    <div class="container-prose py-20 max-w-3xl">
+      <p class="text-sage-200 uppercase tracking-wide text-sm font-medium">Contacto</p>
+      <h1 class="font-serif text-4xl md:text-5xl mt-3">Cuéntanos tu caso</h1>
+      <p class="mt-5 text-lg text-sage-100">Primera consulta confidencial y sin compromiso. Te respondemos en menos de 24 horas laborables.</p>
+    </div>
+  </section>
+
+  <section class="container-prose py-16 md:py-20 grid gap-12 md:grid-cols-2">
+    <!-- FORMULARIO. TODO: sustituir action por el endpoint de Formspree o el formulario embebido
+         de MN Program (nmprogram) para que el lead entre directo en su CRM. -->
+    <div>
+      <h2 class="font-serif text-2xl text-navy-900">Escríbenos</h2>
+      <form action="https://formspree.io/f/TODO" method="POST" class="mt-6 space-y-4">
+        <div>
+          <label for="nombre" class="block text-sm font-medium text-navy-900">Nombre y apellidos</label>
+          <input id="nombre" name="nombre" type="text" required class="mt-1 w-full rounded-lg border border-navy-900/20 px-3 py-2 focus:border-sage-600" />
+        </div>
+        <div>
+          <label for="contacto" class="block text-sm font-medium text-navy-900">Email o teléfono</label>
+          <input id="contacto" name="contacto" type="text" required class="mt-1 w-full rounded-lg border border-navy-900/20 px-3 py-2 focus:border-sage-600" />
+        </div>
+        <div>
+          <label for="asunto" class="block text-sm font-medium text-navy-900">Tipo de asunto</label>
+          <select id="asunto" name="asunto" class="mt-1 w-full rounded-lg border border-navy-900/20 px-3 py-2 bg-white focus:border-sage-600">
+            <option>Inspección fiscal</option>
+            <option>Recurso administrativo</option>
+            <option>Litigio contencioso-administrativo</option>
+            <option>Planificación fiscal</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div>
+          <label for="mensaje" class="block text-sm font-medium text-navy-900">Describe brevemente tu caso</label>
+          <textarea id="mensaje" name="mensaje" rows="4" required class="mt-1 w-full rounded-lg border border-navy-900/20 px-3 py-2 focus:border-sage-600"></textarea>
+        </div>
+        <label class="flex items-start gap-2 text-sm text-navy-800">
+          <input type="checkbox" name="consentimiento" required class="mt-1" />
+          <span>He leído y acepto la <a href="/privacidad" class="text-sage-600 underline">Política de privacidad</a> y el tratamiento de mis datos para gestionar mi consulta.</span>
+        </label>
+        <button type="submit" class="bg-navy-900 text-white font-semibold px-7 py-3 rounded-full hover:bg-navy-800 transition">Enviar consulta</button>
+      </form>
+    </div>
+
+    <div>
+      <h2 class="font-serif text-2xl text-navy-900">Otras vías</h2>
+      <ul class="mt-6 space-y-5">
+        <li>
+          <p class="text-sm text-navy-800 font-semibold">WhatsApp</p>
+          <a href={waHref} target="_blank" rel="noopener" class="text-sage-600 font-medium hover:text-navy-900">{site.phone}</a>
+        </li>
+        <li>
+          <p class="text-sm text-navy-800 font-semibold">Teléfono</p>
+          <a href={`tel:${site.phoneHref}`} class="text-sage-600 font-medium hover:text-navy-900">{site.phone}</a>
+        </li>
+        <li>
+          <p class="text-sm text-navy-800 font-semibold">Email</p>
+          <a href={`mailto:${site.email}`} class="text-sage-600 font-medium hover:text-navy-900">{site.email}</a>
+        </li>
+        <li>
+          <p class="text-sm text-navy-800 font-semibold">Horario</p>
+          <p class="text-navy-800">{site.hours}</p>
+        </li>
+        <li>
+          <p class="text-sm text-navy-800 font-semibold">Dirección</p>
+          <p class="text-navy-800">{site.address.street}, {site.address.postalCode} {site.address.city}</p>
+          <a href={mapsHref} target="_blank" rel="noopener" class="text-sage-600 font-medium hover:text-navy-900">Ver en Google Maps →</a>
+        </li>
+        <li class="pt-2 border-t border-sage-200">
+          <p class="text-sm text-navy-800 font-semibold">¿Ya eres cliente?</p>
+          <a href={site.clientPortalUrl} target="_blank" rel="noopener" class="text-sage-600 font-medium hover:text-navy-900">Acceder al portal de clientes →</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</Base>

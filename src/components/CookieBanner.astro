@@ -1,0 +1,32 @@
+---
+// Banner conforme al criterio AEPD (mayo 2024): "Aceptar" y "Rechazar" con igual prominencia,
+// opción de configurar, y ninguna cookie no esencial antes del consentimiento.
+// Este sitio usa analítica sin cookies por defecto; el banner es informativo y deja registro de la elección.
+---
+<div id="cookie-banner" hidden class="fixed inset-x-0 bottom-0 z-50 bg-white border-t border-navy-900/15 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+  <div class="container-prose py-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+    <p class="text-sm text-navy-800 max-w-2xl">
+      Usamos cookies técnicas necesarias para el funcionamiento del sitio y, con tu permiso,
+      cookies de medición. Puedes aceptarlas, rechazarlas o configurarlas. Más información en la
+      <a href="/cookies" class="text-sage-600 underline font-medium">Política de cookies</a>.
+    </p>
+    <div class="flex items-center gap-2 shrink-0">
+      <a href="/cookies" class="text-sm font-medium px-4 py-2 rounded-full border border-navy-900/30 text-navy-900 hover:bg-navy-50">Configurar</a>
+      <button data-consent="reject" class="text-sm font-semibold px-4 py-2 rounded-full border border-navy-900/30 text-navy-900 hover:bg-navy-100">Rechazar</button>
+      <button data-consent="accept" class="text-sm font-semibold px-4 py-2 rounded-full bg-navy-900 text-white hover:bg-navy-800">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const KEY = "lrl-cookie-consent";
+  const banner = document.getElementById("cookie-banner");
+  if (banner && !localStorage.getItem(KEY)) banner.removeAttribute("hidden");
+  banner?.querySelectorAll("[data-consent]").forEach((b) => {
+    b.addEventListener("click", () => {
+      localStorage.setItem(KEY, b.getAttribute("data-consent"));
+      banner.setAttribute("hidden", "");
+      // Si en el futuro se añade analítica con cookies, cargarla SOLO aquí cuando sea "accept".
+    });
+  });
+</script>

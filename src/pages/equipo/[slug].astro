@@ -1,0 +1,47 @@
+---
+import Base from "../../layouts/Base.astro";
+import JsonLd from "../../components/JsonLd.astro";
+import { site, team, areas } from "../../data/site";
+
+export function getStaticPaths() {
+  return team.map((m) => ({ params: { slug: m.slug }, props: { lawyer: m } }));
+}
+const { lawyer } = Astro.props;
+const areaTitle = (slug) => areas.find((a) => a.slug === slug)?.title ?? slug;
+const title = `${lawyer.name} — ${site.name}`;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Attorney",
+  name: lawyer.name,
+  jobTitle: lawyer.role,
+  worksFor: { "@type": "LegalService", name: site.name, url: site.url },
+  memberOf: { "@type": "Organization", name: site.legal.colegio },
+  knowsAbout: lawyer.areas.map(areaTitle),
+};
+---
+<Base title={title} description={`${lawyer.name}, ${lawyer.role}. ${lawyer.colegiado}.`}>
+  <section class="container-prose py-16 md:py-20">
+    <a href="/equipo" class="text-sage-600 text-sm font-medium hover:text-navy-900">← Equipo</a>
+    <div class="mt-6 grid gap-10 md:grid-cols-[280px_1fr] md:items-start">
+      <img src={lawyer.photo} alt={`Foto de ${lawyer.name}`} width="560" height="560" class="w-full max-w-xs aspect-square object-cover rounded-2xl bg-sage-100 border border-sage-200" />
+      <div>
+        <h1 class="font-serif text-3xl md:text-4xl text-navy-900">{lawyer.name}</h1>
+        <p class="text-sage-600 font-semibold mt-2">{lawyer.role}</p>
+        <p class="text-navy-800 mt-1">{lawyer.colegiado}</p>
+        <p class="mt-6 text-lg text-navy-800 leading-relaxed">{lawyer.bio}</p>
+        <div class="mt-6">
+          <p class="font-semibold text-navy-900">Áreas</p>
+          <ul class="mt-2 flex flex-wrap gap-2">
+            {lawyer.areas.map((s) => (
+              <li><a href={`/areas/${s}`} class="text-sm px-3 py-1 rounded-full bg-sage-100 text-navy-900 hover:bg-sage-200">{areaTitle(s)}</a></li>
+            ))}
+          </ul>
+        </div>
+        {lawyer.email && (
+          <a href={`mailto:${lawyer.email}`} class="inline-block mt-8 bg-navy-900 text-white font-semibold px-6 py-3 rounded-full hover:bg-navy-800 transition">Contactar</a>
+        )}
+      </div>
+    </div>
+  </section>
+  <JsonLd schema={schema} />
+</Base>
