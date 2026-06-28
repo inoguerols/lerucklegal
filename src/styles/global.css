@@ -50,3 +50,30 @@ h1, h2, h3, h4, .font-serif {
   margin-inline: auto;
   padding-inline: 1.25rem;
 }
+
+/* --- Movimiento sutil (reveal al hacer scroll) — solo si el usuario no pide menos movimiento --- */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  [data-reveal-delay="1"] { transition-delay: 0.08s; }
+  [data-reveal-delay="2"] { transition-delay: 0.16s; }
+  [data-reveal-delay="3"] { transition-delay: 0.24s; }
+}
+
+/* Tarjetas: elevación suave al pasar el ratón */
+.card-lift { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+.card-lift:hover { transform: translateY(-4px); }
+
+/* Foto de equipo: zoom contenido al pasar el ratón */
+.photo-zoom { overflow: hidden; }
+.photo-zoom img { transition: transform 0.5s ease; }
+@media (prefers-reduced-motion: no-preference) {
+  .photo-zoom:hover img { transform: scale(1.05); }
+}
