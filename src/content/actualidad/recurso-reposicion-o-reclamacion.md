@@ -1,7 +1,7 @@
 ---
 title: "Recurso de reposición o reclamación económico-administrativa: ¿cuál elegir?"
 description: "Dos vías para impugnar una liquidación o sanción tributaria. Diferencias, plazos y estrategia."
-author: "TODO: Nombre del letrado/a"
+author: "Le Ruck Legal"
 date: 2026-06-01
 ---
 

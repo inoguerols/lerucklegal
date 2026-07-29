@@ -6,14 +6,10 @@ import { site } from "../data/site";
   <section class="container-prose py-16 md:py-20 max-w-3xl">
     <h1 class="font-serif text-4xl text-navy-900">Aviso legal</h1>
     <div class="mt-8 space-y-6 text-navy-800 leading-relaxed [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:text-navy-900 [&_h2]:mt-8">
-      <p class="text-sm bg-cream border border-sage-200 rounded-lg p-4">
-        <strong>Pendiente de revisión.</strong> Plantilla conforme al art. 10 de la LSSI-CE.
-        Un letrado del despacho debe completar los datos marcados <code>TODO</code> y validar el texto antes de publicar.
-      </p>
-
       <h2>1. Información del titular</h2>
       <ul class="list-disc pl-6 space-y-1">
         <li><strong>Titular:</strong> {site.legal.titular}</li>
+        <li><strong>Nombre comercial:</strong> «{site.name}» es la marca comercial con la que {site.legal.titular} presta sus servicios y desarrolla su actividad en este sitio web.</li>
         <li><strong>NIF/CIF:</strong> {site.legal.nif}</li>
         <li><strong>Domicilio:</strong> {site.address.street}, {site.address.postalCode} {site.address.city}</li>
         <li><strong>Email:</strong> {site.email}</li>
@@ -23,13 +19,13 @@ import { site } from "../data/site";
       </ul>
 
       <h2>2. Objeto</h2>
-      <p>El presente sitio web tiene por objeto ofrecer información sobre los servicios de asesoramiento y defensa jurídica en materia tributaria prestados por {site.name}.</p>
+      <p>El presente sitio web tiene por objeto ofrecer información sobre los servicios de asesoramiento y defensa jurídica prestados por {site.name}, en materia fiscal y tributaria y en materia civil, de sucesiones y de planificación patrimonial, así como facilitar el contacto con el despacho.</p>
 
       <h2>3. Condiciones de uso</h2>
       <p>El acceso y la navegación por este sitio implican la aceptación de las presentes condiciones. El usuario se compromete a hacer un uso adecuado de los contenidos y a no emplearlos para actividades ilícitas.</p>
 
       <h2>4. Propiedad intelectual e industrial</h2>
-      <p>Los contenidos, marcas y elementos de este sitio son titularidad de {site.name} o de terceros que han autorizado su uso. Queda prohibida su reproducción sin autorización.</p>
+      <p>Los contenidos, signos distintivos y demás elementos de este sitio, incluida la marca «{site.name}», son titularidad de {site.legal.titular} o de terceros que han autorizado su uso. Queda prohibida su reproducción sin autorización.</p>
 
       <h2>5. Responsabilidad</h2>
       <p>La información de este sitio tiene carácter general y divulgativo y no constituye asesoramiento jurídico. {site.name} no se responsabiliza de las decisiones tomadas a partir de la información publicada sin consulta profesional previa.</p>

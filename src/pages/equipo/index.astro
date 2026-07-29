@@ -3,16 +3,16 @@ import Base from "../../layouts/Base.astro";
 import { site, team } from "../../data/site";
 const title = `Equipo — ${site.name}`;
 ---
-<Base title={title} description="Abogados colegiados especializados en derecho tributario en Madrid.">
+<Base title={title} description="Abogados colegiados en el ICAM, especializados en fiscalidad, sucesiones y patrimonio.">
   <section class="bg-navy-900 text-white">
     <div class="container-prose py-20 max-w-3xl">
       <p data-reveal class="text-sage-200 uppercase tracking-wide text-sm font-medium">Equipo</p>
       <h1 data-reveal data-reveal-delay="1" class="font-serif text-4xl md:text-5xl mt-3">Abogados con nombre y apellidos</h1>
-      <p data-reveal data-reveal-delay="2" class="mt-5 text-lg text-sage-100">Colegiados en el {site.legal.colegio} y especializados en fiscalidad.</p>
+      <p data-reveal data-reveal-delay="2" class="mt-5 text-lg text-sage-100">Colegiados en el {site.legal.colegio}, especializados en fiscalidad, sucesiones y patrimonio.</p>
     </div>
   </section>
   <section class="container-prose py-16 md:py-20">
-    <div class="grid gap-8 sm:grid-cols-2">
+    <div class={team.length === 1 ? "grid gap-8 max-w-sm mx-auto" : "grid gap-8 sm:grid-cols-2"}>
       {team.map((m, i) => (
         <a href={`/equipo/${m.slug}`} data-reveal data-reveal-delay={String((i % 2) + 1)} class="card-lift group block bg-white rounded-2xl border border-sage-200 hover:shadow-lg hover:border-sage-400">
           <div class="photo-zoom rounded-t-2xl">

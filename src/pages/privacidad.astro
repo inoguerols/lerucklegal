@@ -6,30 +6,41 @@ import { site } from "../data/site";
   <section class="container-prose py-16 md:py-20 max-w-3xl">
     <h1 class="font-serif text-4xl text-navy-900">Política de privacidad</h1>
     <div class="mt-8 space-y-6 text-navy-800 leading-relaxed [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:text-navy-900 [&_h2]:mt-8">
-      <p class="text-sm bg-cream border border-sage-200 rounded-lg p-4">
-        <strong>Pendiente de revisión.</strong> Plantilla conforme al RGPD (UE 2016/679) y la LOPDGDD (LO 3/2018).
-        Completar los datos <code>TODO</code> y validar con un letrado antes de publicar.
-      </p>
-
       <h2>1. Responsable del tratamiento</h2>
       <p>{site.legal.titular} (NIF {site.legal.nif}), con domicilio en {site.address.street}, {site.address.postalCode} {site.address.city}. Email: {site.email}.</p>
 
       <h2>2. Finalidad</h2>
       <p>Tratamos los datos que nos facilitas a través del formulario de contacto, email, teléfono o WhatsApp con la finalidad de atender tu consulta, gestionar la relación profesional y, en su caso, prestarte nuestros servicios.</p>
+      <p>El formulario de contacto de este sitio web no crea ningún perfil ni área privada: remite tu consulta por correo electrónico al buzón del despacho ({site.email}), donde se atiende y, si da lugar a un encargo profesional, se incorpora al expediente.</p>
 
       <h2>3. Legitimación</h2>
       <p>La base jurídica es tu consentimiento (art. 6.1.a RGPD) al remitirnos la consulta y, en su caso, la ejecución de un contrato o la aplicación de medidas precontractuales (art. 6.1.b) y el cumplimiento de obligaciones legales (art. 6.1.c).</p>
 
-      <h2>4. Conservación</h2>
-      <p>Conservaremos tus datos mientras dure la relación y, posteriormente, durante los plazos legalmente exigibles (entre otros, obligaciones fiscales y de prevención del blanqueo de capitales).</p>
+      <h2>4. Plazos de conservación</h2>
+      <p>Conservamos tus datos mientras dure la relación profesional y, después, bloqueados durante los plazos que nos exige la normativa. A título orientativo:</p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>Consultas que no dan lugar a un encargo:</strong> hasta un año desde el último contacto, salvo que nos pidas antes su supresión.</li>
+        <li><strong>Expedientes de clientes:</strong> mientras esté vigente el asunto y, tras su finalización, durante el plazo de prescripción de las acciones que puedan derivarse de la relación profesional (cinco años, art. 1964 del Código Civil).</li>
+        <li><strong>Facturación y documentación fiscal y contable:</strong> cuatro años a efectos tributarios (art. 66 de la Ley General Tributaria) y seis años a efectos contables (art. 30 del Código de Comercio).</li>
+        <li><strong>Documentación de diligencia debida en prevención del blanqueo de capitales,</strong> cuando resulte aplicable: diez años (art. 25 de la Ley 10/2010).</li>
+      </ul>
 
-      <h2>5. Destinatarios</h2>
-      <p>No se cederán datos a terceros salvo obligación legal. Podrán acceder proveedores tecnológicos (alojamiento, gestión del despacho) que actúan como encargados del tratamiento con las debidas garantías.</p>
+      <h2>5. Destinatarios y encargados del tratamiento</h2>
+      <p>No cedemos tus datos a terceros salvo obligación legal o cuando sea necesario para la defensa de tus intereses en el asunto encomendado (por ejemplo, ante juzgados, Administración, notarías o registros). Todo el personal del despacho está sujeto al secreto profesional.</p>
+      <p>Prestan servicios como encargados del tratamiento, con contrato conforme al art. 28 del RGPD:</p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>MN Program</strong> (proveedor español de software de gestión para despachos profesionales): plataforma en la que gestionamos expedientes, agenda, facturación y comunicaciones con clientes.</li>
+        <li><strong>Vercel Inc.</strong>: alojamiento y distribución de este sitio web, incluidos los registros técnicos de acceso al servidor.</li>
+        <li>Nuestros proveedores de <strong>correo electrónico y de entrega del formulario de contacto</strong>, por los que circula la consulta hasta llegar al buzón del despacho.</li>
+      </ul>
 
       <h2>6. Transferencias internacionales</h2>
-      <p>No se prevén transferencias internacionales de datos. En caso de producirse, se informará y se adoptarán las garantías exigidas por el RGPD.</p>
+      <p>El alojamiento del sitio web está contratado con Vercel Inc., compañía estadounidense, por lo que determinados datos técnicos y las comunicaciones que envías desde la web pueden ser tratados fuera del Espacio Económico Europeo. Esas transferencias se amparan en las cláusulas contractuales tipo aprobadas por la Comisión Europea y en la decisión de adecuación del Marco de Privacidad de Datos UE-EE. UU. (<em>EU-U.S. Data Privacy Framework</em>) para los proveedores adheridos a él. La gestión de expedientes con MN Program se realiza dentro de la Unión Europea.</p>
 
-      <h2>7. Tus derechos</h2>
+      <h2>7. Decisiones automatizadas y elaboración de perfiles</h2>
+      <p>No tomamos decisiones automatizadas ni elaboramos perfiles con tus datos: tu consulta y tu expediente los valoran y los tratan siempre personas del despacho.</p>
+
+      <h2>8. Tus derechos</h2>
       <p>Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a {site.email}, adjuntando copia de un documento identificativo. Tienes derecho a reclamar ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" class="text-sage-600 underline" target="_blank" rel="noopener">aepd.es</a>).</p>
     </div>
   </section>
