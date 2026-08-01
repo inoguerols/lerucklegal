@@ -8,17 +8,19 @@
 @import "@fontsource/inter/600.css";
 
 /* Brand tokens — conserva la marca actual (salvia + marino), pero con contraste AA.
-   Salvia clara (#9CAF88) SOLO para fondos/acentos; nunca como texto sobre blanco. */
+   Rampa realineada 2026-07 al verde real del logo (#AFB49E, menos saturado que el
+   verde provisional anterior). Salvia clara SOLO para fondos/acentos; nunca como
+   texto sobre blanco. Ratios verificados con scratchpad/contrast.py (WCAG 2.1 AA). */
 @theme {
   --color-navy-950: #0f1b2d;
   --color-navy-900: #16233a;
   --color-navy-800: #1f3050;
   --color-navy-700: #2b4368;
-  --color-sage-600: #5f7049; /* salvia oscura: AA sobre blanco, para texto/enlaces */
-  --color-sage-500: #7d9266;
-  --color-sage-400: #9caf88; /* salvia de marca: fondos, acentos, botones */
-  --color-sage-200: #cdd8be;
-  --color-sage-100: #e7edde;
+  --color-sage-600: #646a4d; /* salvia oscura: 5.66:1 sobre blanco, para texto/enlaces */
+  --color-sage-500: #878e6b;
+  --color-sage-400: #afb49e; /* salvia de marca (logo real): fondos, acentos, botones */
+  --color-sage-200: #dadcd3;
+  --color-sage-100: #eeefeb;
   --color-cream: #f7f6f1;
 
   --font-serif: "Playfair Display", Georgia, serif;

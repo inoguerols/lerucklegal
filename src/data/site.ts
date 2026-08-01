@@ -1,39 +1,39 @@
-// Fuente única de contenido del sitio. Sustituir los TODO por datos reales del despacho
-// antes de publicar (los tiene el despacho). Sin estos datos no se hace público el DNS.
+// Fuente única de contenido del sitio. Datos de identificación conforme al art. 10 de la LSSI-CE
+// facilitados por el despacho (jul-2026). La marca comercial es "Le Ruck Legal"; el titular
+// societario es La Hermida Estudio Jurídico, S.L.P., y solo aparece donde la ley lo exige.
 
 export const site = {
   name: "Le Ruck Legal",
   shortName: "LRL",
   tagline: "Trabajo en equipo, honestidad y eficiencia.",
   description:
-    "Despacho boutique especializado en derecho tributario en Madrid: defensa frente a inspecciones de Hacienda, recursos, litigios contencioso-administrativos y planificación fiscal.",
+    "Despacho boutique en Madrid especializado en asesoramiento tributario y litigación, y en derecho civil, sucesiones y planificación patrimonial. Asesoramos a empresas, grupos familiares y particulares.",
   url: "https://lerucklegal.com",
   city: "Madrid",
-  // --- Contacto (verificar/actualizar) ---
-  phone: "+34 605 65 17 20",
-  phoneHref: "+34605651720",
-  whatsapp: "34605651720", // wa.me/<número>
+  // --- Contacto ---
+  phone: "+34 686 805 223",
+  phoneHref: "+34686805223",
+  whatsapp: "34686805223", // wa.me/<número>
   email: "info@lerucklegal.com",
-  hours: "Lunes a Viernes, 9:00–18:00",
-  // TODO: dirección real del despacho para Aviso Legal, mapa y schema
+  hours: "Lunes a viernes en el despacho · WhatsApp 24/7",
   address: {
-    street: "TODO: Calle y número",
-    postalCode: "TODO: CP",
-    city: "Madrid",
+    street: "Av. Pablo VI, 7, portal 4, 3º izq.",
+    postalCode: "28224",
+    city: "Pozuelo de Alarcón",
     region: "Comunidad de Madrid",
     country: "ES",
-    mapsQuery: "Le+Ruck+Legal+Madrid",
+    mapsQuery: "Avenida+Pablo+VI+7+28224+Pozuelo+de+Alarcón+Madrid",
   },
-  // --- Identificación legal obligatoria (LSSI art. 10) — TODO datos fiscales reales ---
+  // --- Identificación legal obligatoria (LSSI art. 10) ---
   legal: {
-    titular: "TODO: Denominación / titular del despacho",
-    nif: "TODO: NIF/CIF",
+    titular: "La Hermida Estudio Jurídico, S.L.P.",
+    nif: "B26914176",
     colegio: "Ilustre Colegio de la Abogacía de Madrid (ICAM)",
   },
-  // --- Portal de clientes: enlace al portal REAL de MN Program (nmprogram) ---
+  // --- Portal de clientes: MN Program, el software de gestión del despacho ---
   clientPortalUrl: "https://www.mnprogramweb.net/",
   social: {
-    linkedin: "", // TODO opcional
+    linkedin: "",
   },
 } as const;
 
@@ -46,17 +46,36 @@ export const nav = [
   { label: "Contacto", href: "/contacto" },
 ];
 
-// Cifras del despacho — REFORMULADAS para no sugerir garantía de resultado
-// (Código Deontológico de la Abogacía). Sustituir por datos verificables.
+// Banda de confianza. Deliberadamente SIN cifras de experiencia o resultados: el art. 6 del
+// Código Deontológico (RD 135/2021) prohíbe la publicidad que induzca a error sobre la
+// experiencia del abogado. Todo lo de aquí es verificable o es un compromiso del despacho.
 export const stats = [
-  { value: "+15", label: "años de experiencia en fiscalidad" },
-  { value: "+500", label: "expedientes tributarios gestionados" },
-  { value: "100%", label: "dedicación: solo derecho tributario" },
-  { value: "24/7", label: "atención por WhatsApp" },
+  { value: "ICAM", label: "Colegiados en el Ilustre Colegio de la Abogacía de Madrid" },
+  { value: "24 h", label: "Respuesta a tu consulta en días laborables" },
+  { value: "1ª consulta", label: "Confidencial y sin compromiso" },
+  { value: "Toda España", label: "Sede en Pozuelo de Alarcón, presencial y online" },
 ];
+
+// Categorías de primer nivel. Las rutas de área siguen siendo planas (/areas/[slug]): la
+// categoría solo agrupa en el render y sirve de ancla (#fiscal, #civil) en /areas.
+export const categories = [
+  {
+    slug: "fiscal",
+    title: "Fiscal y tributario",
+    intro:
+      "Defensa frente a Hacienda en todas las fases —comprobación, inspección, vía administrativa y judicial— y el cumplimiento y la planificación fiscal del día a día.",
+  },
+  {
+    slug: "civil",
+    title: "Civil, sucesiones y patrimonio",
+    intro:
+      "Herencias, donaciones y organización jurídica del patrimonio familiar: contratos, escrituras y trámites ante notaría, registros y Administración.",
+  },
+] as const;
 
 export type Area = {
   slug: string;
+  category: (typeof categories)[number]["slug"];
   title: string;
   short: string;
   summary: string;
@@ -66,6 +85,7 @@ export type Area = {
 export const areas: Area[] = [
   {
     slug: "inspecciones-fiscales",
+    category: "fiscal",
     title: "Inspecciones fiscales",
     short: "Defensa durante todo el procedimiento de inspección de Hacienda.",
     summary:
@@ -79,6 +99,7 @@ export const areas: Area[] = [
   },
   {
     slug: "recursos-administrativos",
+    category: "fiscal",
     title: "Recursos administrativos",
     short: "Impugnación de liquidaciones y sanciones tributarias.",
     summary:
@@ -92,6 +113,7 @@ export const areas: Area[] = [
   },
   {
     slug: "contencioso-administrativo",
+    category: "fiscal",
     title: "Litigios contencioso-administrativos",
     short: "Representación ante los tribunales frente a resoluciones tributarias.",
     summary:
@@ -104,16 +126,73 @@ export const areas: Area[] = [
     ],
   },
   {
-    slug: "planificacion-fiscal",
-    title: "Planificación fiscal",
-    short: "Estructuración fiscal eficiente y conforme a la norma.",
+    slug: "impuestos-no-residentes",
+    category: "fiscal",
+    title: "Impuestos de no residentes",
+    short: "Fiscalidad de quienes no residen en España pero tributan aquí.",
     summary:
-      "Asesoramos en la organización fiscal de personas y empresas para optimizar la carga tributaria con seguridad jurídica, revisando operaciones antes de ejecutarlas.",
+      "Asesoramos a personas y sociedades no residentes con obligaciones fiscales en España: rentas inmobiliarias, transmisiones, retenciones y devoluciones ante la Agencia Tributaria.",
     bullets: [
+      "Impuesto sobre la Renta de no Residentes (IRNR) y modelo 210",
+      "Retención del 3 % en la compraventa de inmuebles y su devolución",
+      "Tributación de rentas inmobiliarias y alquileres",
+      "Certificados de residencia fiscal y convenios de doble imposición",
+    ],
+  },
+  {
+    slug: "planificacion-fiscal",
+    category: "fiscal",
+    title: "Planificación y cumplimiento fiscal",
+    short: "Estructuración fiscal eficiente y cumplimiento de las obligaciones periódicas.",
+    summary:
+      "Asesoramos en la organización fiscal de personas y empresas para optimizar la carga tributaria con seguridad jurídica, y nos ocupamos de que las obligaciones formales se presenten bien y a tiempo.",
+    bullets: [
+      "Liquidación y presentación de impuestos",
+      "Cumplimiento de obligaciones formales y modelos periódicos",
       "Estructura societaria y patrimonial",
-      "Optimización de la carga tributaria",
-      "Revisión fiscal de operaciones",
-      "Cumplimiento (compliance) tributario",
+      "Revisión fiscal de operaciones antes de ejecutarlas",
+    ],
+  },
+  {
+    slug: "sucesiones-donaciones",
+    category: "civil",
+    title: "Sucesiones, herencias y donaciones",
+    short: "Tramitación integral de herencias y donaciones, con su fiscalidad.",
+    summary:
+      "Acompañamos a las familias en todo el proceso sucesorio, desde la declaración de herederos hasta la adjudicación y la liquidación de impuestos, evitando conflictos y sorpresas fiscales.",
+    bullets: [
+      "Declaración de herederos y aceptación de herencia",
+      "Cuaderno particional y adjudicación de bienes",
+      "Donaciones en vida y sus efectos fiscales",
+      "Impuesto sobre Sucesiones y Donaciones y plusvalía municipal",
+    ],
+  },
+  {
+    slug: "planificacion-sucesoria",
+    category: "civil",
+    title: "Planificación hereditaria y patrimonial",
+    short: "Ordenar el patrimonio familiar antes de que surja el conflicto.",
+    summary:
+      "Diseñamos la transmisión del patrimonio familiar con antelación —testamentos, pactos y estructuras— para que llegue a quien debe, con el menor coste fiscal y sin litigios entre herederos.",
+    bullets: [
+      "Testamentos y disposiciones de última voluntad",
+      "Organización patrimonial de personas físicas y familias",
+      "Protocolo familiar y previsión del relevo generacional",
+      "Análisis fiscal anticipado de la sucesión",
+    ],
+  },
+  {
+    slug: "contratos-y-escrituras",
+    category: "civil",
+    title: "Contratos, escrituras y trámites",
+    short: "Redacción de contratos y tramitación ante notaría, registros y Administración.",
+    summary:
+      "Redactamos y revisamos los documentos que sostienen una operación —contratos, escrituras, instancias— y nos ocupamos de su presentación y registro ante los organismos públicos.",
+    bullets: [
+      "Redacción y revisión de contratos",
+      "Tramitación de escrituras públicas e instancias privadas",
+      "Presentación y registro ante organismos públicos",
+      "Coordinación con notarías, registros y ayuntamientos",
     ],
   },
 ];
@@ -123,32 +202,34 @@ export type Lawyer = {
   name: string;
   role: string;
   colegiado: string; // nº de colegiado ICAM — obligatorio mostrarlo
-  photo: string; // ruta en /public — TODO foto real
-  bio: string;
+  photo: string; // ruta en /public
+  bio: string[]; // un párrafo por elemento
+  languages?: string;
   areas: string[];
   email?: string;
 };
 
-// TODO: sustituir por el equipo real (nombres, fotos, nº de colegiado, bios).
+// El resto del equipo se añade cuando el despacho envíe fichas y números de colegiado. Publicar
+// una ficha con datos por rellenar es peor que no publicarla.
 export const team: Lawyer[] = [
   {
-    slug: "belen-de-santaolalla",
-    name: "Belén de Santaolalla de la Puerta",
-    role: "TODO: cargo (p. ej. Abogada — Derecho tributario)",
-    colegiado: "ICAM nº TODO",
-    photo: "/equipo/placeholder.svg", // TODO: /equipo/belen.jpg
-    bio: "TODO: Biografía profesional — formación, trayectoria, asuntos representativos en derecho tributario, publicaciones e idiomas.",
-    areas: ["inspecciones-fiscales", "contencioso-administrativo"],
-    email: "info@lerucklegal.com",
-  },
-  {
-    slug: "abogado-fiscal",
-    name: "TODO: Nombre del/de la abogado/a",
-    role: "Abogado/a — Derecho tributario",
-    colegiado: "ICAM nº TODO",
-    photo: "/equipo/placeholder.svg",
-    bio: "TODO: Biografía profesional — formación, trayectoria y áreas de especialización.",
-    areas: ["recursos-administrativos", "planificacion-fiscal"],
+    slug: "belen-de-santa-olalla",
+    name: "Belén de Santa Olalla de la Puerta",
+    role: "Socia — Derecho civil, sucesiones, donaciones y planificación patrimonial",
+    colegiado: "ICAM nº 144.627",
+    photo: "/equipo/placeholder.svg", // pendiente: /equipo/belen.jpg
+    bio: [
+      "Belén de Santa Olalla de la Puerta es abogada especializada en derecho civil, sucesiones, donaciones y planificación patrimonial. Su experiencia se centra en el asesoramiento integral a personas físicas y familias en materia hereditaria, organización patrimonial, tramitación de escrituras públicas, redacción contractual y liquidación de impuestos vinculados a operaciones sucesorias y patrimoniales.",
+      "Cuenta además con experiencia en derecho inmobiliario, gestión de activos, transmisiones de inmuebles, tributación de clientes no residentes, due diligence y coordinación con notarías, registros, ayuntamientos y otros organismos oficiales. Ha desarrollado parte de su trayectoria en Pons-Novit Legal, Haya Real Estate, Banco Santander y Martínez-Echevarría Abogados.",
+      "Su perfil combina una sólida formación jurídica con especialización fiscal: Grado en Derecho por la Universidad de Granada, Máster Universitario en Práctica de la Abogacía y Curso Superior de Tributación, ambos por el CEF.",
+    ],
+    languages: "Español e inglés",
+    areas: [
+      "sucesiones-donaciones",
+      "planificacion-sucesoria",
+      "contratos-y-escrituras",
+      "impuestos-no-residentes",
+    ],
     email: "info@lerucklegal.com",
   },
 ];
@@ -163,8 +244,12 @@ export const faqs = [
     a: "Sí. Existen distintas vías (recurso de reposición, reclamación económico-administrativa y, en su caso, contencioso-administrativo). Analizamos plazos y la estrategia más favorable en cada caso.",
   },
   {
+    q: "¿Qué plazo tengo para liquidar el Impuesto sobre Sucesiones?",
+    a: "Seis meses desde el fallecimiento. Puede solicitarse una prórroga de otros seis, pero hay que pedirla dentro de los cinco primeros meses. Pasado el plazo se acumulan recargos e intereses, así que conviene no dejarlo correr.",
+  },
+  {
     q: "¿Trabajáis solo en Madrid?",
-    a: "Nuestra sede está en Madrid, pero atendemos asuntos tributarios en toda España, con reuniones presenciales o por videoconferencia.",
+    a: "Nuestra sede está en Pozuelo de Alarcón (Madrid), pero atendemos asuntos en toda España, con reuniones presenciales o por videoconferencia.",
   },
   {
     q: "¿Cómo es la primera consulta?",

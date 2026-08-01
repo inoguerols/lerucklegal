@@ -17,6 +17,9 @@ const schema = {
   worksFor: { "@type": "LegalService", name: site.name, url: site.url },
   memberOf: { "@type": "Organization", name: site.legal.colegio },
   knowsAbout: lawyer.areas.map(areaTitle),
+  url: new URL(`/equipo/${lawyer.slug}`, site.url).href,
+  email: lawyer.email,
+  knowsLanguage: lawyer.languages,
 };
 ---
 <Base title={title} description={`${lawyer.name}, ${lawyer.role}. ${lawyer.colegiado}.`}>
@@ -28,7 +31,12 @@ const schema = {
         <h1 class="font-serif text-3xl md:text-4xl text-navy-900">{lawyer.name}</h1>
         <p class="text-sage-600 font-semibold mt-2">{lawyer.role}</p>
         <p class="text-navy-800 mt-1">{lawyer.colegiado}</p>
-        <p class="mt-6 text-lg text-navy-800 leading-relaxed">{lawyer.bio}</p>
+        <div class="mt-6 space-y-4 text-lg text-navy-800 leading-relaxed">
+          {lawyer.bio.map((p) => <p>{p}</p>)}
+        </div>
+        {lawyer.languages && (
+          <p class="mt-6 text-navy-800"><span class="font-semibold text-navy-900">Idiomas:</span> {lawyer.languages}</p>
+        )}
         <div class="mt-6">
           <p class="font-semibold text-navy-900">Áreas</p>
           <ul class="mt-2 flex flex-wrap gap-2">

@@ -1,11 +1,11 @@
 ---
 import Base from "../layouts/Base.astro";
-import { site } from "../data/site";
+import { site, areas, categories } from "../data/site";
 const title = `Contacto — ${site.name}`;
 const waHref = `https://wa.me/${site.whatsapp}`;
 const mapsHref = `https://www.google.com/maps/search/?api=1&query=${site.address.mapsQuery}`;
 ---
-<Base title={title} description="Contacta con Le Ruck Legal, abogados tributaristas en Madrid. Primera consulta confidencial y sin compromiso.">
+<Base title={title} description="Contacta con Le Ruck Legal, abogados en Madrid especializados en fiscal y tributario, y en civil, sucesiones y patrimonio. Primera consulta confidencial y sin compromiso.">
   <section class="bg-navy-900 text-white">
     <div class="container-prose py-20 max-w-3xl">
       <p class="text-sage-200 uppercase tracking-wide text-sm font-medium">Contacto</p>
@@ -15,11 +15,11 @@ const mapsHref = `https://www.google.com/maps/search/?api=1&query=${site.address
   </section>
 
   <section class="container-prose py-16 md:py-20 grid gap-12 md:grid-cols-2">
-    <!-- FORMULARIO. TODO: sustituir action por el endpoint de Formspree o el formulario embebido
-         de MN Program (nmprogram) para que el lead entre directo en su CRM. -->
     <div>
       <h2 class="font-serif text-2xl text-navy-900">Escríbenos</h2>
-      <form action="https://formspree.io/f/TODO" method="POST" class="mt-6 space-y-4">
+      <!-- ponytail: provisional — sustituir por el formulario embebido de MN Program cuando el
+           despacho envíe el código; mailto no registra el consentimiento en servidor -->
+      <form action={`mailto:${site.email}`} method="POST" enctype="text/plain" class="mt-6 space-y-4">
         <div>
           <label for="nombre" class="block text-sm font-medium text-navy-900">Nombre y apellidos</label>
           <input id="nombre" name="nombre" type="text" required class="mt-1 w-full rounded-lg border border-navy-900/20 px-3 py-2 focus:border-sage-600" />
@@ -31,10 +31,13 @@ const mapsHref = `https://www.google.com/maps/search/?api=1&query=${site.address
         <div>
           <label for="asunto" class="block text-sm font-medium text-navy-900">Tipo de asunto</label>
           <select id="asunto" name="asunto" class="mt-1 w-full rounded-lg border border-navy-900/20 px-3 py-2 bg-white focus:border-sage-600">
-            <option>Inspección fiscal</option>
-            <option>Recurso administrativo</option>
-            <option>Litigio contencioso-administrativo</option>
-            <option>Planificación fiscal</option>
+            {categories.map((cat) => (
+              <optgroup label={cat.title}>
+                {areas.filter((a) => a.category === cat.slug).map((a) => (
+                  <option>{a.title}</option>
+                ))}
+              </optgroup>
+            ))}
             <option>Otro</option>
           </select>
         </div>
@@ -47,6 +50,9 @@ const mapsHref = `https://www.google.com/maps/search/?api=1&query=${site.address
           <span>He leído y acepto la <a href="/privacidad" class="text-sage-600 underline">Política de privacidad</a> y el tratamiento de mis datos para gestionar mi consulta.</span>
         </label>
         <button type="submit" class="bg-navy-900 text-white font-semibold px-7 py-3 rounded-full hover:bg-navy-800 transition">Enviar consulta</button>
+        <p class="text-sm text-navy-800/70">
+          ¿El enlace no se abre? Escríbenos directamente a <a href={`mailto:${site.email}`} class="text-sage-600 underline">{site.email}</a> o por WhatsApp.
+        </p>
       </form>
     </div>
 
