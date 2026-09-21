@@ -37,7 +37,7 @@ BASE_URL=https://www.lerucklegal.com node checks/browser.mjs
 
 `PLAYWRIGHT_MODULE` permite indicar una instalación externa de Playwright.
 Sin `BASE_URL`, el check arranca la preview local del build. `SCREENSHOT_DIR`
-habilita capturas en un directorio existente. Cubre 15 rutas a 375, 768, 1024 y
+habilita capturas en un directorio existente. Cubre 15 rutas a 320, 375, 768, 1024 y
 1440 px, imágenes, guías, menú, contacto, datos estructurados, ausencia de cookies,
 enlaces, redirecciones antiguas y contenido sin JavaScript.
 Los casos de formulario en el navegador interceptan la petición: comprueban éxito,
@@ -86,6 +86,11 @@ fallos, límite de frecuencia y conservación del mensaje sin enviar correo real
 - Equipo: Belén destacada con foto; Juan y Alfonso mencionados en un nivel visual
   secundario sin placeholders. Juan tiene biografía; de Alfonso solo se publica
   la información confirmada. Fotografías adicionales son opcionales.
+- Portada: salvia de marca con texto marino, énfasis en herencias, donaciones y
+  patrimonio, junto al retrato en B/N suave. Las fotografías interiores conservan
+  el color. Las áreas se compactan en móvil sin ocultar contenido.
+- WhatsApp: enlace de 44px de alto en la cabecera móvil, sin botón flotante que
+  tape contenido por debajo de 768px. En tablet y escritorio conserva el flotante.
 - Horario confirmado: 9:00–19:00, sin inventar días de apertura.
 
 Las guías sobre herencias, donaciones y no residentes proceden de los textos

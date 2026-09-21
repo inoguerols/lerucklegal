@@ -28,7 +28,7 @@ try {
   page.on('response', (response) => {
     if (response.status() >= 400 && !(mockingContact && response.url().endsWith('/api/contact'))) errors.push(`${response.status()} ${response.url()}`);
   });
-  for (const width of [375, 768, 1024, 1440]) {
+  for (const width of [320, 375, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     for (const route of ['/', '/equipo/', '/equipo/belen-de-santaolalla/', '/equipo/juan-jose-blanco-rial/', '/contacto/', '/despacho/', '/actualidad/', '/areas/', '/areas/planificacion-fiscal/', '/aviso-legal/', '/privacidad/', '/cookies/', ...guides.map((slug) => `/actualidad/${slug}/`)]) {
       const response = await page.goto(base + route);
@@ -71,7 +71,23 @@ try {
       }
     }
     await page.goto(base);
+    await page.evaluate(() => document.fonts.ready);
+    assert((await page.locator('#hero-title').innerText()).includes('Herencias, patrimonio'));
+    assert((await page.locator('.hero-copy').innerText()).includes('donaciones'));
+    assert.equal(await page.locator('.hero-message').evaluate((el) => getComputedStyle(el).backgroundColor), 'rgb(175, 180, 158)');
+    assert.equal(await page.locator('.hero-copy').evaluate((el) => getComputedStyle(el).color), 'rgb(22, 35, 58)');
+    assert.equal(await page.locator('.hero-copy .site-button').evaluate((el) => getComputedStyle(el).backgroundColor), 'rgb(22, 35, 58)');
+    assert.equal(await page.locator('.hero-copy .site-button').evaluate((el) => getComputedStyle(el).color), 'rgb(255, 255, 255)');
+    const mobileWhatsApp = page.locator('header a[aria-label="Contactar por WhatsApp"]');
+    const floatingWhatsApp = page.locator('body > a[aria-label="Contactar por WhatsApp"]');
+    assert.equal(await mobileWhatsApp.isVisible(), width < 768);
+    assert.equal(await floatingWhatsApp.isVisible(), width >= 768);
+    if (width < 768) {
+      assert((await mobileWhatsApp.boundingBox()).height >= 44, 'Mobile WhatsApp must have a usable touch target');
+      assert(await page.locator('.practice-tile').evaluateAll((tiles) => tiles.every((tile) => tile.getBoundingClientRect().height < 285)), 'Keep mobile practice areas compact');
+    }
     assert.equal(await page.locator('.hero-portrait img').getAttribute('src'), '/equipo/belen-despacho.webp');
+    assert.equal(await page.locator('.hero-portrait img').evaluate((el) => getComputedStyle(el).filter), 'grayscale(1) contrast(0.96)');
     assert.equal(await page.locator('.news-grid article').count(), 3);
     for (const slug of guides) assert(await page.locator(`.news-grid a[href="/actualidad/${slug}"]`).first().isVisible());
     const photos = await page.locator('.hero-portrait > img, .practice-tile > img').evaluateAll((images) => images.map((img) => img.src));
