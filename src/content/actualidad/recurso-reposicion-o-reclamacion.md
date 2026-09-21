@@ -3,6 +3,7 @@ title: "Recurso de reposición o reclamación económico-administrativa: ¿cuál
 description: "Dos vías para impugnar una liquidación o sanción tributaria. Diferencias, plazos y estrategia."
 author: "TODO: Nombre del letrado/a"
 date: 2026-06-01
+draft: true
 ---
 
 Cuando Hacienda notifica una liquidación o una sanción con la que no estás de acuerdo, existen distintas vías para impugnarla. Elegir bien desde el principio ahorra tiempo y mejora las posibilidades de éxito.

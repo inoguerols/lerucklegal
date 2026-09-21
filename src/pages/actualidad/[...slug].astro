@@ -10,6 +10,8 @@ export async function getStaticPaths() {
 }
 const { post } = Astro.props;
 const { Content } = await render(post);
+const related = (await getCollection("actualidad", ({ data }) => !data.draft))
+  .filter((entry) => entry.id !== post.id && entry.data.area === post.data.area);
 const fmt = (d) => d.toLocaleDateString("es-ES", { year: "numeric", month: "long", day: "numeric" });
 const schema = {
   "@context": "https://schema.org",
@@ -17,21 +19,29 @@ const schema = {
   headline: post.data.title,
   description: post.data.description,
   datePublished: post.data.date.toISOString(),
-  author: { "@type": "Person", name: post.data.author },
+  author: { "@type": post.data.author === site.name ? "Organization" : "Person", name: post.data.author },
   publisher: { "@type": "Organization", name: site.name },
 };
 ---
 <Base title={`${post.data.title} — ${site.name}`} description={post.data.description}>
-  <article class="container-prose py-16 md:py-20 max-w-3xl">
-    <a href="/actualidad" class="text-sage-600 text-sm font-medium hover:text-navy-900">← Actualidad</a>
+  <article class="container-prose guide-article py-16 md:py-20">
+    <a href="/actualidad" class="text-link">← Guías prácticas</a>
     <p class="mt-6 text-sm text-sage-600 font-medium">{fmt(post.data.date)} · Por {post.data.author}</p>
     <h1 class="font-serif text-3xl md:text-4xl text-navy-900 mt-2">{post.data.title}</h1>
-    <div class="mt-8 text-navy-800 leading-relaxed space-y-4 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:text-navy-900 [&_h2]:mt-8 [&_ul]:list-disc [&_ul]:pl-6 [&_a]:text-sage-600 [&_a]:underline">
+    <div class="legal-copy guide-copy">
       <Content />
     </div>
+    <p class="mt-8 text-sm text-sage-600">Información general de carácter divulgativo. Cada caso requiere un análisis jurídico y fiscal individual.</p>
+    {post.data.area && <a class="text-link mt-4" href={`/areas/${post.data.area}`}>Ver servicios del Área fiscal <span aria-hidden="true">↗</span></a>}
     <div class="mt-12 p-6 bg-cream rounded-2xl border border-sage-200">
       <p class="text-navy-800">¿Te afecta esto? <a href="/contacto" class="text-sage-600 font-semibold underline">Consúltanos tu caso</a>.</p>
     </div>
+    {related.length > 0 && <section class="mt-12" aria-labelledby="related-title">
+      <h2 id="related-title" class="font-serif text-2xl">También puede interesarte</h2>
+      <ul class="mt-4 space-y-3">
+        {related.map((entry) => <li><a class="text-link" href={`/actualidad/${entry.id}`}>{entry.data.title}</a></li>)}
+      </ul>
+    </section>}
   </article>
   <JsonLd schema={schema} />
 </Base>

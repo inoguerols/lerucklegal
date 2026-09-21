@@ -2,40 +2,70 @@
 import Base from "../layouts/Base.astro";
 import { site } from "../data/site";
 ---
-<Base title={`Aviso legal — ${site.name}`} description="Aviso legal e información del titular conforme a la LSSI-CE.">
-  <section class="container-prose py-16 md:py-20 max-w-3xl">
+<Base title={`Aviso legal — ${site.name}`} description="Identificación del titular, condiciones de uso y responsabilidad del sitio web de Le Ruck Legal.">
+  <section class="container-prose py-16 md:py-20">
     <h1 class="font-serif text-4xl text-navy-900">Aviso legal</h1>
-    <div class="mt-8 space-y-6 text-navy-800 leading-relaxed [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:text-navy-900 [&_h2]:mt-8">
-      <p class="text-sm bg-cream border border-sage-200 rounded-lg p-4">
-        <strong>Pendiente de revisión.</strong> Plantilla conforme al art. 10 de la LSSI-CE.
-        Un letrado del despacho debe completar los datos marcados <code>TODO</code> y validar el texto antes de publicar.
-      </p>
+    <div class="legal-copy">
 
-      <h2>1. Información del titular</h2>
-      <ul class="list-disc pl-6 space-y-1">
-        <li><strong>Titular:</strong> {site.legal.titular}</li>
-        <li><strong>NIF/CIF:</strong> {site.legal.nif}</li>
-        <li><strong>Domicilio:</strong> {site.address.street}, {site.address.postalCode} {site.address.city}</li>
-        <li><strong>Email:</strong> {site.email}</li>
-        <li><strong>Teléfono:</strong> {site.phone}</li>
-        <li><strong>Colegio profesional:</strong> {site.legal.colegio}. Los letrados del despacho están colegiados en dicho colegio (números de colegiado indicados en cada perfil de <a href="/equipo" class="text-sage-600 underline">Equipo</a>).</li>
-        <li><strong>Título profesional:</strong> Licenciados/Graduados en Derecho (España). Profesión regulada conforme a la normativa española.</li>
+      <h2>1. Datos identificativos del prestador de servicios de la sociedad de la información</h2>
+      <p>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se exponen los datos identificativos del presente sitio web, puesto a disposición de los usuarios por el siguiente titular:</p>
+      <ul>
+        <li><strong>Denominación social:</strong> {site.legal.titular} (en adelante, también, «LA HERMIDA» o el «Despacho»).</li>
+        <li><strong>Marca comercial:</strong> LE RUCK LEGAL.</li>
+        <li><strong>CIF:</strong> {site.legal.nif}.</li>
+        <li><strong>Domicilio social:</strong> {site.address.street}, CP {site.address.postalCode}, {site.address.city} ({site.address.region}).</li>
+        <li><strong>Datos registrales:</strong> {site.legal.registro}</li>
+        <li><strong>CNAE:</strong> 6910, actividades jurídicas.</li>
+        <li><strong>Teléfono:</strong> <a href={`tel:${site.phoneHref}`}>{site.phone}</a>.</li>
+        <li><strong>Correo electrónico:</strong> <a href={`mailto:${site.email}`}>{site.email}</a>.</li>
+        <li><strong>Sitio web:</strong> <a href={site.url}>{site.url}</a>.</li>
+        <li><strong>Objeto social:</strong> el ejercicio y desarrollo de la actividad profesional propia de un despacho de asesoramiento fiscal, tributario, contable y jurídico, tanto para el sector privado como para el sector público.</li>
       </ul>
+      <p><strong>Socios e integrantes:</strong> D. Juan José Blanco Rial, Dña. Belén de Santa Olalla de la Puerta y D. Alfonso Mª Montero Sanz. Los perfiles profesionales publicados se recogen en la página de <a href="/equipo">Equipo</a>.</p>
+      <p>El Registro de Actividades de Tratamiento del Despacho se encuentra a disposición de la Agencia Española de Protección de Datos y demás autoridades de control competentes.</p>
+      <p>{site.legal.titular} presta servicios profesionales de asesoramiento fiscal, tributario y jurídico bajo la marca comercial LE RUCK LEGAL, con el domicilio social indicado anteriormente.</p>
+      <p>El acceso al presente sitio web y/o su utilización en cualquier forma implican la aceptación plena de lo dispuesto en este Aviso Legal. El Despacho se reserva el derecho de modificarlo en cualquier momento, por lo que será responsabilidad del Usuario su lectura en cada acceso. Si el Usuario no estuviera de acuerdo con cualquiera de las condiciones aquí dispuestas, deberá abstenerse de utilizar este sitio web.</p>
+      <p>A través del sitio web, el Despacho facilita a los Usuarios, interesados y Clientes el acceso a contenidos e información sobre los servicios fiscales, tributarios y jurídicos que presta, así como a novedades normativas y jurisprudenciales propias de su actividad. El acceso es libre y gratuito. Actualmente, el contacto se realiza por correo electrónico, teléfono o mediante un enlace externo a WhatsApp; no se ofrecen formularios, reserva online ni área privada de clientes en esta web.</p>
 
-      <h2>2. Objeto</h2>
-      <p>El presente sitio web tiene por objeto ofrecer información sobre los servicios de asesoramiento y defensa jurídica en materia tributaria prestados por {site.name}.</p>
+      <h2>2. Propiedad intelectual e industrial</h2>
+      <p>El código fuente, los diseños gráficos, los logotipos, las imágenes, las fotografías, los textos y, en general, los contenidos de este sitio web están protegidos por la legislación española sobre propiedad intelectual e industrial. Sus derechos corresponden al Despacho o a sus respectivos titulares y se utilizan conforme a las licencias o autorizaciones aplicables.</p>
+      <p>No se permite su reproducción, distribución, comunicación pública, transformación o descompilación, total o parcial, sin la autorización que corresponda. El Usuario podrá utilizar el material únicamente para su uso personal y privado, quedando prohibido cualquier uso comercial o ilícito, salvo los usos permitidos por la normativa o por la licencia aplicable.</p>
+      <p>LA HERMIDA velará por el cumplimiento de las presentes condiciones y por la correcta utilización de los contenidos, ejercitando las acciones civiles y penales que le correspondan en caso de infracción de estos derechos. Queda prohibido suprimir, eludir o manipular el copyright y los datos identificativos de los derechos de sus titulares, así como cualquier dispositivo técnico de protección o mecanismo de información incorporado a la web.</p>
 
-      <h2>3. Condiciones de uso</h2>
-      <p>El acceso y la navegación por este sitio implican la aceptación de las presentes condiciones. El usuario se compromete a hacer un uso adecuado de los contenidos y a no emplearlos para actividades ilícitas.</p>
+      <h2>3. Protección de datos de carácter personal</h2>
+      <p>LA HERMIDA, como responsable del tratamiento de los datos personales del Usuario, informa de que serán tratados conforme al Reglamento (UE) 2016/679, de 27 de abril de 2016, General de Protección de Datos (RGPD), y a la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD). El detalle completo se recoge en la <a href="/privacidad">Política de Privacidad</a>. El interesado que considere vulnerado su derecho a la protección de datos podrá presentar una reclamación ante la <a href="https://www.aepd.es">Agencia Española de Protección de Datos</a>.</p>
+      <p>En atención a la estructura societaria del Despacho, constituido como sociedad limitada profesional con personalidad jurídica propia, el responsable único del tratamiento de los datos personales recabados a través de este sitio web y de la actividad del Despacho es {site.legal.titular}. Los socios y administradores identificados en el apartado 1 actúan, a estos efectos, como profesionales integrados en dicha sociedad y no como responsables independientes ni corresponsables del tratamiento en el sentido del artículo 26 RGPD. Su acceso a los datos personales queda sujeto al deber de confidencialidad profesional y a las políticas internas de seguridad y asignación de accesos.</p>
+      <p>Puede contactar con el responsable en {site.address.street}, {site.address.postalCode}, {site.address.city} ({site.address.region}), por correo electrónico a <a href={`mailto:${site.email}`}>{site.email}</a> o por teléfono en <a href={`tel:${site.phoneHref}`}>{site.phone}</a>.</p>
+      <p>Los datos facilitados por el Usuario con motivo de su relación con el Despacho se incorporarán, según su finalidad, al Registro de Actividades de Tratamiento (artículo 30 RGPD), que se encuentra a disposición de la autoridad de control.</p>
 
-      <h2>4. Propiedad intelectual e industrial</h2>
-      <p>Los contenidos, marcas y elementos de este sitio son titularidad de {site.name} o de terceros que han autorizado su uso. Queda prohibida su reproducción sin autorización.</p>
+      <h2>4. Cookies</h2>
+      <p>La versión actual del sitio no instala cookies de analítica, publicidad o personalización, ni integra Google Analytics. Por ello no presenta un panel de consentimiento para cookies no esenciales. La información sobre el funcionamiento actual y sobre cómo gestionar los datos del navegador está disponible en la <a href="/cookies">Información sobre Uso de Cookies</a>.</p>
+      <p>Si en el futuro se incorporan tecnologías no esenciales, se informará de sus finalidades y duración y se solicitará consentimiento previo, informado, granular y revocable antes de activarlas. La navegación continuada no se considerará aceptación.</p>
 
-      <h2>5. Responsabilidad</h2>
-      <p>La información de este sitio tiene carácter general y divulgativo y no constituye asesoramiento jurídico. {site.name} no se responsabiliza de las decisiones tomadas a partir de la información publicada sin consulta profesional previa.</p>
+      <h2>5. Resolución de litigios en línea y reclamaciones de consumo</h2>
+      <p>La Comisión Europea suprimió, con efectos de 20 de julio de 2025, en virtud del Reglamento (UE) 2024/3228, la plataforma de resolución de litigios en línea (ODR) que anteriormente se ponía a disposición de los consumidores en la Unión Europea. En consecuencia, las referencias a dicha plataforma quedan sin efecto.</p>
+      <p>Los Usuarios que ostenten la condición legal de consumidores y no queden satisfechos con la atención prestada por el Despacho podrán acudir, en su caso, a las entidades de resolución alternativa de litigios de consumo acreditadas conforme a la Ley 7/2017, de 2 de noviembre, y a las Juntas Arbitrales de Consumo, así como a la Red de Centros Europeos del Consumidor (European Consumer Centres Network, ECC-Net) para reclamaciones transfronterizas, sin perjuicio de su derecho a acudir a la vía judicial ordinaria.</p>
 
-      <h2>6. Legislación aplicable</h2>
-      <p>Las presentes condiciones se rigen por la legislación española. Para cualquier controversia, las partes se someten a los juzgados y tribunales que correspondan conforme a derecho.</p>
+      <h2>6. Enlaces</h2>
+      <p>El presente sitio web puede incluir enlaces a páginas web de terceros. LA HERMIDA no se hace responsable del contenido de dichas páginas ni de los eventuales daños o perjuicios derivados del acceso o uso de las mismas, al no encontrarse bajo su control, sin perjuicio de las responsabilidades legalmente exigibles. Los enlaces a WhatsApp abren un servicio externo sujeto a sus propias condiciones y política de privacidad.</p>
+
+      <h2>7. Comunicaciones comerciales</h2>
+      <p>LA HERMIDA se compromete a identificar como tales las comunicaciones comerciales que remita, de conformidad con la LSSI-CE. No tendrá tal consideración la información remitida a Clientes con la finalidad de mantener la relación contractual existente y de informar sobre el desarrollo de los servicios contratados.</p>
+
+      <h2>8. Exclusión de responsabilidad</h2>
+      <p>LA HERMIDA no garantiza la ausencia de errores en el acceso al sitio web ni en su contenido, ni que este se encuentre permanentemente actualizado. El Despacho no será responsable de los daños y perjuicios que pudieran derivarse del uso de la información contenida en el sitio web, salvo en los casos en que ello resulte imperativamente exigido por la normativa aplicable.</p>
+      <p>LA HERMIDA no se hace responsable de los actos u omisiones de terceros, de los contenidos accesibles a través de enlaces ni del uso ilegítimo que terceros pudieran hacer de marcas, nombres comerciales o contenidos ajenos que aparezcan en la web, sin perjuicio de las responsabilidades legalmente exigibles. El Usuario es responsable del uso que realice de los contenidos, servicios y enlaces.</p>
+      <p>Corresponde a los progenitores o tutores de los menores de edad ejercer un control adecuado sobre su actividad en el sitio web, cuyos contenidos están dirigidos a un público mayor de edad.</p>
+
+      <h2>9. Duración, modificación y suspensión</h2>
+      <p>La prestación del servicio del sitio web tiene, en principio, una duración indefinida. LA HERMIDA podrá dar por terminada, suspender o interrumpir unilateralmente la prestación del servicio en cualquier momento, así como modificar sin previo aviso los contenidos, configuración y presentación del sitio web.</p>
+
+      <h2>10. Seguridad en la red</h2>
+      <p>El Usuario se compromete a hacer un uso adecuado de este sitio web, absteniéndose de introducir virus, troyanos o cualquier otro elemento que pueda causar daños en los sistemas del Despacho o de terceros, así como de intentar acceder de forma no autorizada a este sitio web o a los servidores en los que se aloja. En caso de detectarse un ataque o intento de acceso no autorizado, LA HERMIDA pondrá los hechos en conocimiento de las autoridades competentes.</p>
+
+      <h2>11. Ley aplicable y jurisdicción</h2>
+      <p>El uso de este sitio web y las relaciones que del mismo puedan derivarse se rigen por la legislación española. Para la resolución de cualquier controversia relativa a su validez, interpretación o cumplimiento, las partes se someten a los Juzgados y Tribunales de Pozuelo de Alarcón (Madrid), con renuncia expresa a cualquier otro fuero que pudiera corresponderles, salvo que la normativa de consumo aplicable disponga de forma imperativa un fuero distinto en favor del consumidor.</p>
+      <p class="text-sm">Última actualización: 21 de septiembre de 2026.</p>
     </div>
   </section>
 </Base>

@@ -3,6 +3,7 @@ title: "Qué hacer (y qué no) cuando recibes una inspección de Hacienda"
 description: "Los primeros pasos ante el inicio de un procedimiento inspector marcan toda la defensa. Guía práctica."
 author: "TODO: Nombre del letrado/a"
 date: 2026-06-15
+draft: true
 ---
 
 Recibir una comunicación de inicio de actuaciones de la Agencia Tributaria genera, comprensiblemente, inquietud. Pero la forma de afrontar los primeros días condiciona el resultado de todo el procedimiento.

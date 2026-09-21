@@ -2,29 +2,51 @@
 import Base from "../layouts/Base.astro";
 import { site } from "../data/site";
 ---
-<Base title={`Política de cookies — ${site.name}`} description="Información sobre el uso de cookies conforme a la guía de la AEPD.">
-  <section class="container-prose py-16 md:py-20 max-w-3xl">
-    <h1 class="font-serif text-4xl text-navy-900">Política de cookies</h1>
-    <div class="mt-8 space-y-6 text-navy-800 leading-relaxed [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:text-navy-900 [&_h2]:mt-8">
-      <p class="text-sm bg-cream border border-sage-200 rounded-lg p-4">
-        <strong>Pendiente de revisión.</strong> Ajustar según las cookies que finalmente use el sitio.
-        Conforme a la Guía de Cookies de la AEPD (2024).
-      </p>
+<Base title={`Información sobre uso de cookies — ${site.name}`} description="Información sobre cookies y almacenamiento local en la versión actual del sitio web de Le Ruck Legal.">
+  <section class="container-prose py-16 md:py-20">
+    <h1 class="font-serif text-4xl text-navy-900">Información sobre uso de cookies</h1>
+    <div class="legal-copy">
 
-      <h2>¿Qué son las cookies?</h2>
-      <p>Una cookie es un pequeño archivo que se almacena en tu dispositivo al visitar una web. Permiten, entre otras cosas, recordar tus preferencias o medir el uso del sitio.</p>
+      <h2>1. Marco normativo</h2>
+      <p>De conformidad con el artículo 22.2 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), el Reglamento (UE) 2016/679 (RGPD) y las orientaciones de la Agencia Española de Protección de Datos sobre cookies, {site.legal.titular}, que opera bajo la marca LE RUCK LEGAL, informa sobre el uso de estas tecnologías en el sitio web.</p>
+      <p>Una cookie es un fichero que se descarga en el ordenador, teléfono o tableta al acceder a determinadas páginas y permite almacenar y recuperar información sobre la navegación. Otras tecnologías, como el almacenamiento local del navegador, también pueden guardar información en el dispositivo.</p>
 
-      <h2>Cookies que utilizamos</h2>
-      <ul class="list-disc pl-6 space-y-1">
-        <li><strong>Técnicas / necesarias:</strong> imprescindibles para el funcionamiento del sitio (por ejemplo, recordar tu elección sobre cookies). No requieren consentimiento.</li>
-        <li><strong>De medición (opcionales):</strong> nos ayudan a entender el uso del sitio de forma agregada. Solo se activan si las aceptas. <em>(TODO: detallar el proveedor de analítica si se utiliza; por defecto el sitio emplea analítica sin cookies.)</em></li>
+      <h2>2. Tipos de cookies</h2>
+      <p>Las cookies pueden clasificarse según quién las gestiona, cuánto tiempo se conservan y su finalidad:</p>
+      <ul>
+        <li><strong>Propias o de terceros:</strong> según sean gestionadas por el titular del sitio o por otro prestador.</li>
+        <li><strong>De sesión o persistentes:</strong> según se eliminen al finalizar la sesión o permanezcan durante un plazo definido.</li>
+        <li><strong>Técnicas o necesarias:</strong> las imprescindibles para un servicio solicitado por el Usuario.</li>
+        <li><strong>De preferencias:</strong> permiten recordar características de la experiencia de uso.</li>
+        <li><strong>De análisis:</strong> permiten medir y analizar estadísticamente la navegación.</li>
+        <li><strong>Publicitarias:</strong> permiten gestionar publicidad y, en su caso, elaborar perfiles de intereses.</li>
       </ul>
+      <p>Esta clasificación es informativa: no implica que se utilicen todas esas categorías en esta web.</p>
 
-      <h2>Gestión del consentimiento</h2>
-      <p>Al acceder al sitio puedes <strong>aceptar</strong>, <strong>rechazar</strong> o <strong>configurar</strong> las cookies no esenciales. Las cookies de medición no se activan antes de tu consentimiento. Puedes cambiar tu elección en cualquier momento borrando los datos de tu navegador.</p>
+      <h2>3. Consentimiento y configuración</h2>
+      <p>La versión actual de esta web no incorpora cookies no esenciales, analítica ni publicidad. Por ello no solicita consentimiento mediante un banner ni ofrece un panel para categorías que no están activas.</p>
+      <p>Si se incorporan tecnologías no esenciales, antes de su activación se actualizará esta información y se habilitará un mecanismo para aceptar, rechazar o configurar el consentimiento con igual accesibilidad y visibilidad, sin opciones premarcadas. La navegación continuada no se considerará aceptación. El consentimiento podrá retirarse con la misma facilidad con la que se otorgue y se revisará su vigencia conforme a las orientaciones aplicables.</p>
 
-      <h2>Cómo desactivarlas</h2>
-      <p>Puedes bloquear o eliminar las cookies desde la configuración de tu navegador (Chrome, Firefox, Safari, Edge).</p>
+      <h2>4. Tecnologías utilizadas en esta versión</h2>
+      <p>En la navegación ordinaria comprobada, la aplicación no instala cookies ni carga servicios de terceros de forma automática. No integra Google Analytics, cookies <code>_ga</code>, sesiones <code>JSESSIONID</code> o <code>PHPSESSID</code>, ni formularios o un área privada que las requieran.</p>
+      <p>Una versión anterior de la web guardaba la elección del banner en el almacenamiento local del navegador con la clave <code>lrl-cookie-consent</code>. Ese dato no era una cookie, no se enviaba al servidor y ya no se utiliza. Esta versión intenta eliminarlo al cargar la página; también puede borrarse desde la configuración del navegador.</p>
+      <p>Los enlaces a WhatsApp y a otras páginas externas no cargan esos servicios hasta que el Usuario decide abrirlos. Al acceder a ellos se aplican las políticas de los respectivos proveedores.</p>
+      <p>El alojamiento puede aplicar medidas de seguridad frente a tráfico anómalo. Si se detectan tecnologías adicionales en el servicio real o se modifica la configuración del sitio, se deberá revisar este inventario y actualizar la información y, cuando corresponda, el mecanismo de consentimiento antes de activarlas.</p>
+
+      <h2>5. Cómo modificar o eliminar los datos desde el navegador</h2>
+      <p>El Usuario puede consultar, bloquear o eliminar cookies y otros datos de sitios web desde la configuración de su navegador:</p>
+      <ul>
+        <li><a href="https://support.google.com/chrome/answer/95647?hl=es">Google Chrome: eliminar y gestionar cookies</a>.</li>
+        <li><a href="https://support.mozilla.org/es/kb/Borrar%20cookies">Mozilla Firefox: borrar cookies y datos de sitios</a>.</li>
+        <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac">Safari: gestionar cookies y datos de sitios web</a>.</li>
+        <li><a href="https://support.microsoft.com/es-es/microsoft-edge">Microsoft Edge: ayuda y configuración de privacidad</a>.</li>
+      </ul>
+      <p>La mayoría de los navegadores permiten gestionar la información de cada sitio por separado. El bloqueo o borrado de datos de servicios externos puede afectar a las funciones de esos servicios.</p>
+
+      <h2>6. Derecho de información y contacto</h2>
+      <p>El interesado puede solicitar información sobre el tratamiento de sus datos y ejercer sus derechos en los términos de la <a href="/privacidad">Política de Privacidad</a>.</p>
+      <p>Para dudas o para comunicar tecnologías no descritas en esta página, puede dirigirse a {site.legal.titular}, en {site.address.street}, {site.address.postalCode}, {site.address.city} ({site.address.region}), por correo electrónico a <a href={`mailto:${site.email}`}>{site.email}</a> o por teléfono a <a href={`tel:${site.phoneHref}`}>{site.phone}</a>.</p>
+      <p class="text-sm">Última actualización: 21 de septiembre de 2026.</p>
     </div>
   </section>
 </Base>

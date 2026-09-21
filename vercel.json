@@ -1,0 +1,18 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build && npm test && npm audit --audit-level=high",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": ".*\\.vercel\\.app" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    }
+  ],
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/despacho.html", "destination": "/despacho/", "permanent": true },
+    { "source": "/practica.html", "destination": "/areas/", "permanent": true },
+    { "source": "/contacto.html", "destination": "/contacto/", "permanent": true },
+    { "source": "/acceso-clientes.html", "destination": "/contacto/", "permanent": true }
+  ]
+}

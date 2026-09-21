@@ -1,4 +1,5 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
 const actualidad = defineCollection({
@@ -8,6 +9,7 @@ const actualidad = defineCollection({
     description: z.string(),
     author: z.string(),
     date: z.coerce.date(),
+    area: z.string().optional(),
     draft: z.boolean().optional().default(false),
   }),
 });

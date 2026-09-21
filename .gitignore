@@ -10,3 +10,4 @@ npm-debug.log*
 # Informes/entregables internos (confidencial) — no versionar en repo público.
 # Anclado a la raíz: los PDF de /public (p. ej. lead magnets) sí se versionan.
 /*.pdf
+.env*

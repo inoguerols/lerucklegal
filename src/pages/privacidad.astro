@@ -2,35 +2,114 @@
 import Base from "../layouts/Base.astro";
 import { site } from "../data/site";
 ---
-<Base title={`Política de privacidad — ${site.name}`} description="Política de privacidad conforme al RGPD y la LOPDGDD.">
-  <section class="container-prose py-16 md:py-20 max-w-3xl">
+<Base title={`Política de privacidad — ${site.name}`} description="Responsable, finalidades, bases jurídicas, conservación y ejercicio de derechos sobre los datos personales tratados por Le Ruck Legal.">
+  <section class="container-prose py-16 md:py-20">
     <h1 class="font-serif text-4xl text-navy-900">Política de privacidad</h1>
-    <div class="mt-8 space-y-6 text-navy-800 leading-relaxed [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:text-navy-900 [&_h2]:mt-8">
-      <p class="text-sm bg-cream border border-sage-200 rounded-lg p-4">
-        <strong>Pendiente de revisión.</strong> Plantilla conforme al RGPD (UE 2016/679) y la LOPDGDD (LO 3/2018).
-        Completar los datos <code>TODO</code> y validar con un letrado antes de publicar.
-      </p>
+    <div class="legal-copy">
+      <p>{site.legal.titular} (en adelante, también, «LA HERMIDA» o el «Despacho»), titular del sitio web que opera bajo la marca LE RUCK LEGAL, informa a los Usuarios de su política de protección de datos de carácter personal para que puedan determinar libre y voluntariamente si desean facilitar al Despacho los datos que se les puedan requerir u obtenerse de ellos con ocasión de la visita a la web o de su relación con el Despacho.</p>
+      <p>LA HERMIDA se reserva el derecho a modificar la presente Política para adaptarla a novedades legislativas, jurisprudenciales o de la industria, anunciando en esta página los cambios introducidos con razonable antelación a su puesta en práctica.</p>
 
       <h2>1. Responsable del tratamiento</h2>
-      <p>{site.legal.titular} (NIF {site.legal.nif}), con domicilio en {site.address.street}, {site.address.postalCode} {site.address.city}. Email: {site.email}.</p>
+      <ul>
+        <li><strong>Denominación social:</strong> {site.legal.titular}.</li>
+        <li><strong>Marca comercial:</strong> LE RUCK LEGAL.</li>
+        <li><strong>CIF:</strong> {site.legal.nif}.</li>
+        <li><strong>Domicilio:</strong> {site.address.street}, CP {site.address.postalCode}, {site.address.city} ({site.address.region}).</li>
+        <li><strong>Correo electrónico:</strong> <a href={`mailto:${site.email}`}>{site.email}</a>.</li>
+        <li><strong>Teléfono:</strong> <a href={`tel:${site.phoneHref}`}>{site.phone}</a>.</li>
+      </ul>
+      <p><strong>Responsable único del tratamiento y régimen de acceso interno.</strong> {site.legal.titular}, como sociedad profesional dotada de personalidad jurídica propia, titular del dominio web, del CIF y de la relación contractual con los Usuarios y Clientes, es la única responsable de los tratamientos derivados de la actividad del Despacho y de este sitio web.</p>
+      <p>Los socios e integrantes identificados en el <a href="/aviso-legal">Aviso Legal</a> ejercen su actividad dentro de dicha estructura societaria. Su acceso a los datos se realiza como administradores o profesionales integrados en el responsable del tratamiento, y no como responsables independientes ni corresponsables en el sentido del artículo 26 RGPD. Dicho acceso está sujeto al deber de confidencialidad profesional y a las políticas internas de seguridad y asignación de accesos por razón de necesidad de conocer, de manera que cada profesional accede únicamente a los expedientes y datos de los asuntos que tiene encomendados o para los que esté autorizado.</p>
+      <p>Los datos se tratarán de conformidad con el Reglamento (UE) 2016/679, de 27 de abril de 2016 (RGPD), y la Ley Orgánica 3/2018, de 5 de diciembre (LOPDGDD). Si considera vulnerado su derecho a la protección de datos, puede reclamar ante la <a href="https://www.aepd.es">Agencia Española de Protección de Datos</a>.</p>
+      <p>El Despacho ha designado una persona de contacto en materia de protección de datos. Puede dirigirse a ella a través de los datos de contacto anteriores, indicando en el asunto «Protección de Datos».</p>
 
-      <h2>2. Finalidad</h2>
-      <p>Tratamos los datos que nos facilitas a través del formulario de contacto, email, teléfono o WhatsApp con la finalidad de atender tu consulta, gestionar la relación profesional y, en su caso, prestarte nuestros servicios.</p>
+      <h2>2. Datos e información tratados</h2>
+      <p>Datos identificativos y de contacto, como nombre, apellidos, domicilio, teléfono y correo electrónico; hojas de encargo y expedientes fiscales, tributarios, contables y jurídicos; documentación aportada por el Cliente para la prestación de los servicios, como declaraciones tributarias, documentación contable y mercantil o notificaciones de la Administración; agenda de contactos; datos de colaboradores y miembros del Despacho, procuradores, graduados sociales, notarios y otros profesionales; y otros datos cuyo tratamiento esté amparado por una base jurídica aplicable.</p>
 
-      <h2>3. Legitimación</h2>
-      <p>La base jurídica es tu consentimiento (art. 6.1.a RGPD) al remitirnos la consulta y, en su caso, la ejecución de un contrato o la aplicación de medidas precontractuales (art. 6.1.b) y el cumplimiento de obligaciones legales (art. 6.1.c).</p>
+      <h2>3. Finalidades del tratamiento</h2>
+      <p>Los datos se tratan para el mantenimiento de la relación contractual, la llevanza de los asuntos fiscales, tributarios, contables y jurídicos encomendados, la representación y defensa ante la Administración Tributaria, la Seguridad Social y otros organismos públicos cuando proceda, y la gestión de la relación con Clientes, usuarios e interesados. Cuando resulte aplicable a la actividad del Despacho, también podrán tratarse para la organización de charlas y eventos y para procesos de selección de personal. En particular:</p>
+      <ul>
+        <li>Atender y tramitar consultas, solicitudes o peticiones formuladas por correo electrónico, teléfono o WhatsApp.</li>
+        <li>Gestionar el encargo profesional, incluida la presentación de declaraciones y comunicaciones ante la AEAT, la Seguridad Social u otros organismos cuando el Cliente lo haya solicitado expresamente.</li>
+        <li>Remitir comunicaciones comerciales sobre los servicios del Despacho por medios electrónicos cuando exista base legitimadora para ello, como el consentimiento del interesado o la relación previa Despacho-Cliente en los términos de la LSSI.</li>
+        <li>Gestionar suscripciones a boletines informativos si el interesado las solicita a través de los canales del Despacho y existe una base jurídica aplicable.</li>
+      </ul>
+      <p>Esta web no dispone actualmente de formularios de contacto o suscripción, reserva online ni área privada de clientes. El enlace de WhatsApp abre un servicio externo: la comunicación a través de ese canal también está sujeta a las <a href="https://www.whatsapp.com/legal/privacy-policy-eea">condiciones de privacidad de WhatsApp</a>.</p>
 
-      <h2>4. Conservación</h2>
-      <p>Conservaremos tus datos mientras dure la relación y, posteriormente, durante los plazos legalmente exigibles (entre otros, obligaciones fiscales y de prevención del blanqueo de capitales).</p>
+      <h2>4. Datos técnicos durante la visita al sitio web</h2>
+      <p>El sitio web se aloja en Vercel. Para entregar las páginas y proteger el servicio, la infraestructura de alojamiento procesa datos técnicos de las peticiones, que pueden incluir la dirección IP, el navegador, la fecha de acceso y el recurso solicitado. Estos datos se distinguen de los que el Usuario facilita voluntariamente al contactar con el Despacho.</p>
+      <p>No se integra Google Analytics ni otro sistema de medición de audiencia en esta versión de la web. No se crean cuentas de usuario ni sesiones de acceso a un área privada.</p>
+      <p>La conservación de estos registros depende de su categoría y finalidad. Los periodos de disponibilidad en las herramientas de consulta de Vercel varían según el servicio y su configuración y no equivalen necesariamente al plazo de conservación de los registros internos del proveedor.</p>
+      <p>Para los datos generados por el servicio que trata como responsable, Vercel declara conservarlos durante el periodo mínimo necesario para las finalidades recogidas en su <a href="https://vercel.com/legal/privacy-policy#how-we-retain-info">política de privacidad</a>, incluidas la prestación y mejora del servicio, la seguridad, el cumplimiento de obligaciones legales y contractuales y la resolución de controversias. Cuando desaparece la necesidad legítima, prevé su eliminación o anonimización; cuando la eliminación no sea posible, por ejemplo en copias de seguridad, prevé su almacenamiento seguro. Estos criterios no establecen un plazo único de eliminación para todas las categorías de registros.</p>
 
-      <h2>5. Destinatarios</h2>
-      <p>No se cederán datos a terceros salvo obligación legal. Podrán acceder proveedores tecnológicos (alojamiento, gestión del despacho) que actúan como encargados del tratamiento con las debidas garantías.</p>
+      <h2>5. Conservación de los datos</h2>
+      <p>Los datos se conservarán durante el tiempo necesario para la finalidad del tratamiento y el cumplimiento de las obligaciones aplicables. Cuando ya no sean necesarios, se suprimirán mediante medidas de seguridad adecuadas, sin perjuicio de los periodos de bloqueo legalmente exigibles. El documento del Despacho establece, según corresponda:</p>
+      <ul>
+        <li><strong>Datos de Clientes:</strong> el plazo de prescripción de las obligaciones tributarias, con carácter general cuatro años conforme al artículo 66 y siguientes de la Ley General Tributaria, y seis años para libros de contabilidad y facturas conforme al artículo 30 del Código de Comercio, sin perjuicio de otros plazos exigibles.</li>
+        <li><strong>Suscripciones a boletines:</strong> desde la prestación del consentimiento hasta su revocación.</li>
+        <li><strong>Documentación laboral o de Seguridad Social:</strong> cuatro años en los supuestos del artículo 21 del Real Decreto Legislativo 5/2000, de 4 de agosto.</li>
+        <li><strong>Currículos:</strong> hasta un máximo de dos años para futuros procesos de selección, salvo oposición del candidato.</li>
+      </ul>
 
-      <h2>6. Transferencias internacionales</h2>
-      <p>No se prevén transferencias internacionales de datos. En caso de producirse, se informará y se adoptarán las garantías exigidas por el RGPD.</p>
+      <h2>6. Comunicación de datos</h2>
+      <p>Los datos personales podrán ser comunicados, cuando resulte necesario y exista una base jurídica aplicable, a:</p>
+      <ul>
+        <li>Prestadores de servicios tecnológicos, incluidos Vercel para el alojamiento web y Hostinger para el correo electrónico. La conservación de mensajes y expedientes es independiente de la de los registros técnicos del alojamiento.</li>
+        <li>Prestadores de servicios profesionales colaboradores: gestores administrativos, procuradores, graduados sociales, notarios, registradores u otros profesionales cuya intervención resulte necesaria para prestar el servicio.</li>
+        <li>La Agencia Estatal de Administración Tributaria, la Tesorería General de la Seguridad Social y otros organismos y Administraciones Públicas, para tramitar el encargo profesional o cumplir una obligación legal.</li>
+        <li>Juzgados, Tribunales, reguladores y otras autoridades administrativas, para cumplir una obligación legal o defender derechos e intereses legítimos.</li>
+        <li>Cualquier tercero que adquiriera todo o parte sustancial de los activos y del negocio del Despacho, con las garantías y requisitos legalmente aplicables.</li>
+      </ul>
+      <p>No se cederán datos a terceros ajenos a los indicados sin una base jurídica que lo permita. Cuando los proveedores actúen como encargados del tratamiento, su acceso se sujetará a los contratos y garantías exigidos por el RGPD.</p>
 
-      <h2>7. Tus derechos</h2>
-      <p>Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a {site.email}, adjuntando copia de un documento identificativo. Tienes derecho a reclamar ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" class="text-sage-600 underline" target="_blank" rel="noopener">aepd.es</a>).</p>
+      <h2>7. Transferencias internacionales de datos</h2>
+      <p>Determinados proveedores tecnológicos utilizados para alojamiento, correo electrónico, comunicaciones o gestión documental pueden estar radicados, o disponer de servidores o soporte técnico, fuera del Espacio Económico Europeo, en particular en Estados Unidos. El uso de Vercel o de canales externos como WhatsApp requiere valorar las condiciones y garantías aplicables a cada servicio.</p>
+      <p>Cuando dichas transferencias resulten necesarias, el Despacho se compromete a que se realicen amparadas en las garantías previstas en el capítulo V del RGPD:</p>
+      <ul>
+        <li>Decisiones de adecuación de la Comisión Europea, conforme al artículo 45 RGPD, incluido el Marco de Privacidad de Datos UE-EE. UU. cuando la decisión esté vigente y el proveedor y servicio concreto estén cubiertos por la certificación correspondiente.</li>
+        <li>Cláusulas Contractuales Tipo de la Decisión de Ejecución (UE) 2021/914, complementadas cuando sea necesario con una evaluación de impacto de la transferencia y medidas técnicas y organizativas adicionales.</li>
+        <li>Otras garantías admitidas por el artículo 46 RGPD que resulten aplicables.</li>
+      </ul>
+      <p>Vercel publica un <a href="https://vercel.com/legal/dpa">acuerdo de tratamiento de datos</a> aplicable a sus planes Pro y Enterprise, con mecanismos de transferencia que incluyen cláusulas contractuales tipo según el supuesto correspondiente, y declara en su <a href="https://vercel.com/legal/privacy-policy#data-privacy-framework">política de privacidad</a> su adhesión al Marco de Privacidad de Datos UE-EE. UU. Para los datos generados por el servicio que trata como responsable, se aplica su propia política de privacidad. El interesado puede solicitar información sobre las garantías aplicadas a una transferencia concreta y una copia de las mismas a través de los datos del apartado 1.</p>
+
+      <h2>8. Base jurídica del tratamiento</h2>
+      <p>Según la finalidad y las circunstancias, las bases de legitimación son:</p>
+      <ul>
+        <li>La ejecución de un contrato o la aplicación de medidas precontractuales, como la preparación de la hoja de encargo profesional.</li>
+        <li>La satisfacción de intereses legítimos del Despacho o de terceros, siempre que no prevalezcan los intereses o derechos del interesado.</li>
+        <li>El cumplimiento de obligaciones legales, en particular las tributarias, contables, de prevención del blanqueo de capitales y de defensa de consumidores y usuarios.</li>
+        <li>El consentimiento del interesado, cuando sea necesario para la finalidad concreta.</li>
+      </ul>
+      <p>Las comunicaciones comerciales electrónicas se sujetan además a los requisitos de la LSSI-CE. La existencia de una relación previa permite únicamente los supuestos previstos en dicha norma, con posibilidad de oposición. La visita a la web no implica consentimiento para comunicaciones comerciales ni para tecnologías no esenciales.</p>
+
+      <h2>9. Derechos de los interesados</h2>
+      <p>El interesado puede ejercer, en los términos legalmente previstos, los siguientes derechos:</p>
+      <ul>
+        <li><strong>Acceso:</strong> obtener confirmación de si se tratan sus datos y, en su caso, una copia.</li>
+        <li><strong>Rectificación:</strong> corregir datos inexactos o completar los incompletos.</li>
+        <li><strong>Supresión:</strong> obtener la eliminación de datos cuando concurra alguno de los supuestos previstos, como que ya no sean necesarios, se retire el consentimiento o el tratamiento sea ilícito.</li>
+        <li><strong>Limitación:</strong> restringir el tratamiento en los supuestos del artículo 18 RGPD.</li>
+        <li><strong>Portabilidad:</strong> recibir los datos en un formato estructurado, de uso común y lectura mecánica y transmitirlos a otro responsable cuando el tratamiento se base en consentimiento o contrato y se efectúe por medios automatizados.</li>
+        <li><strong>Oposición:</strong> oponerse al tratamiento por motivos relacionados con su situación particular y, en especial, a la mercadotecnia directa.</li>
+        <li><strong>Decisiones automatizadas:</strong> no ser objeto de decisiones individuales exclusivamente automatizadas, incluida la elaboración de perfiles, que produzcan efectos jurídicos o le afecten significativamente, salvo las excepciones legales.</li>
+      </ul>
+      <p>Cuando el tratamiento se base en el consentimiento, puede revocarlo en cualquier momento con la misma facilidad con la que lo prestó, sin afectar a la licitud del tratamiento previo a su retirada.</p>
+      <p>Puede presentar una reclamación ante la <a href="https://www.aepd.es">Agencia Española de Protección de Datos</a>, en particular si considera que no ha obtenido satisfacción en el ejercicio de sus derechos.</p>
+      <p>Para ejercerlos, escriba a <a href={`mailto:${site.email}`}>{site.email}</a>, indicando «Protección de Datos» en el asunto, o a {site.address.street}, {site.address.postalCode}, {site.address.city} ({site.address.region}). Solo se solicitará documentación identificativa adicional cuando sea necesaria para una correcta identificación.</p>
+
+      <h2>10. Carácter obligatorio o facultativo de la información facilitada</h2>
+      <p>Esta web no utiliza formularios de recogida de datos. Al contactar por los canales disponibles, facilite únicamente la información necesaria para atender la consulta. El Despacho indicará qué información resulta imprescindible para tramitar un encargo y cuál es voluntaria. El Usuario garantiza que los datos facilitados son veraces y se compromete a comunicar sus modificaciones.</p>
+
+      <h2>11. Medidas de seguridad</h2>
+      <p>De conformidad con el RGPD y la LOPDGDD, y en particular con los principios del artículo 5 RGPD, el Despacho debe mantener medidas técnicas y organizativas apropiadas para garantizar la confidencialidad, integridad, disponibilidad y resiliencia de los sistemas y servicios de tratamiento, restaurar la disponibilidad y el acceso a los datos en caso de incidente, verificar periódicamente la eficacia de dichas medidas y, cuando proceda, seudonimizar y cifrar los datos. El Usuario debe ser consciente de que ninguna medida de seguridad en Internet es absolutamente inexpugnable.</p>
+      <p>Los servicios ofrecidos a través de la web están dirigidos a mayores de edad. Si con motivo de una actividad promocional o evento se recabaran datos de menores, el Despacho aplicará los requisitos de información y consentimiento que correspondan, incluida la intervención de sus progenitores o tutores cuando sea exigible.</p>
+
+      <h2>12. Redes sociales</h2>
+      <p>Si el Despacho dispone de perfiles corporativos en redes sociales, actuará como responsable del tratamiento de los datos de sus seguidores en los términos y con el alcance que la red permita y conforme a la política de privacidad aplicable. El Despacho no extraerá datos de las redes sociales salvo consentimiento expreso del usuario u otra base jurídica que lo permita. Esta web no integra widgets sociales ni cargas automáticas de esos servicios.</p>
+
+      <h2>13. Contacto</h2>
+      <p>Para dudas, aclaraciones, reclamaciones o ejercicio de derechos, puede dirigirse a {site.legal.titular} en {site.address.street}, {site.address.postalCode}, {site.address.city} ({site.address.region}); a <a href={`mailto:${site.email}`}>{site.email}</a>, con el asunto «Protección de Datos»; o al teléfono <a href={`tel:${site.phoneHref}`}>{site.phone}</a>.</p>
+      <p class="text-sm">Última actualización: 21 de septiembre de 2026.</p>
     </div>
   </section>
 </Base>

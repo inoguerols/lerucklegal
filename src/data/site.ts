@@ -6,32 +6,31 @@ export const site = {
   shortName: "LRL",
   tagline: "Trabajo en equipo, honestidad y eficiencia.",
   description:
-    "Despacho boutique especializado en derecho tributario en Madrid: defensa frente a inspecciones de Hacienda, recursos, litigios contencioso-administrativos y planificación fiscal.",
-  url: "https://lerucklegal.com",
+    "Despacho en Madrid: sucesiones y donaciones, planificación hereditaria y patrimonial, liquidación de impuestos y defensa en procedimientos tributarios.",
+  url: "https://www.lerucklegal.com",
   city: "Madrid",
   // --- Contacto (verificar/actualizar) ---
-  phone: "+34 605 65 17 20",
-  phoneHref: "+34605651720",
-  whatsapp: "34605651720", // wa.me/<número>
+  // Teléfono, WhatsApp y horario confirmados; días de atención pendientes.
+  phone: "+34 686 80 52 23",
+  phoneHref: "+34686805223",
+  whatsapp: "34686805223",
   email: "info@lerucklegal.com",
-  hours: "Lunes a Viernes, 9:00–18:00",
-  // TODO: dirección real del despacho para Aviso Legal, mapa y schema
+  hours: "9:00–19:00",
+  // Domicilio social confirmado por Ignacio; no se presenta como local de visitas.
   address: {
-    street: "TODO: Calle y número",
-    postalCode: "TODO: CP",
-    city: "Madrid",
+    street: "Avda. Pablo VI, nº 7, portal 4, 3º Izq.",
+    postalCode: "28224",
+    city: "Pozuelo de Alarcón",
     region: "Comunidad de Madrid",
     country: "ES",
     mapsQuery: "Le+Ruck+Legal+Madrid",
   },
-  // --- Identificación legal obligatoria (LSSI art. 10) — TODO datos fiscales reales ---
+  // Identificación legal confirmada con el despacho y los documentos facilitados.
   legal: {
-    titular: "TODO: Denominación / titular del despacho",
-    nif: "TODO: NIF/CIF",
-    colegio: "Ilustre Colegio de la Abogacía de Madrid (ICAM)",
+    titular: "LA HERMIDA ESTUDIO JURIDICO SLP",
+    nif: "B26914176",
+    registro: "Registro Mercantil de Madrid, sección 8, hoja M-885738, inscripción 1ª. Fecha de constitución: 21 de mayo de 2026.",
   },
-  // --- Portal de clientes: enlace al portal REAL de MN Program (nmprogram) ---
-  clientPortalUrl: "https://www.mnprogramweb.net/",
   social: {
     linkedin: "", // TODO opcional
   },
@@ -42,17 +41,8 @@ export const nav = [
   { label: "Despacho", href: "/despacho" },
   { label: "Áreas", href: "/areas" },
   { label: "Equipo", href: "/equipo" },
-  { label: "Actualidad", href: "/actualidad" },
+  { label: "Guías", href: "/actualidad" },
   { label: "Contacto", href: "/contacto" },
-];
-
-// Cifras del despacho — REFORMULADAS para no sugerir garantía de resultado
-// (Código Deontológico de la Abogacía). Sustituir por datos verificables.
-export const stats = [
-  { value: "+15", label: "años de experiencia en fiscalidad" },
-  { value: "+500", label: "expedientes tributarios gestionados" },
-  { value: "100%", label: "dedicación: solo derecho tributario" },
-  { value: "24/7", label: "atención por WhatsApp" },
 ];
 
 export type Area = {
@@ -64,6 +54,22 @@ export type Area = {
 };
 
 export const areas: Area[] = [
+  {
+    // Conserva la URL publicada de planificación fiscal.
+    slug: "planificacion-fiscal",
+    title: "Área fiscal",
+    short: "Sucesiones, donaciones y planificación familiar y patrimonial. Liquidación de impuestos y tramitación ante organismos públicos.",
+    summary:
+      "Asesoramiento integral en sucesiones y donaciones, planificación hereditaria y patrimonial, liquidación de impuestos y cumplimiento de las obligaciones fiscales, también para no residentes. Constitución de sociedades mercantiles y tramitación de documentos, contratos y su presentación y registro ante organismos públicos.",
+    bullets: [
+      "Procedimientos en materia de derecho civil: sucesiones y donaciones, asesoramiento integral y planificación hereditaria y patrimonial.",
+      "Liquidación de impuestos y cumplimentación de las obligaciones fiscales.",
+      "Liquidación de impuestos de no residentes.",
+      "Tramitación de escrituras públicas e instancias privadas y redacción de contratos.",
+      "Presentación y registro ante los organismos públicos.",
+      "Constitución de sociedades mercantiles.",
+    ],
+  },
   {
     slug: "inspecciones-fiscales",
     title: "Inspecciones fiscales",
@@ -103,52 +109,47 @@ export const areas: Area[] = [
       "Recurso de casación",
     ],
   },
-  {
-    slug: "planificacion-fiscal",
-    title: "Planificación fiscal",
-    short: "Estructuración fiscal eficiente y conforme a la norma.",
-    summary:
-      "Asesoramos en la organización fiscal de personas y empresas para optimizar la carga tributaria con seguridad jurídica, revisando operaciones antes de ejecutarlas.",
-    bullets: [
-      "Estructura societaria y patrimonial",
-      "Optimización de la carga tributaria",
-      "Revisión fiscal de operaciones",
-      "Cumplimiento (compliance) tributario",
-    ],
-  },
 ];
 
 export type Lawyer = {
   slug: string;
   name: string;
   role: string;
-  colegiado: string; // nº de colegiado ICAM — obligatorio mostrarlo
-  photo: string; // ruta en /public — TODO foto real
+  colegio: string;
+  colegiado: string;
+  photo?: string;
   bio: string;
+  education?: string;
+  languages?: string;
+  clients?: string;
   areas: string[];
   email?: string;
 };
 
-// TODO: sustituir por el equipo real (nombres, fotos, nº de colegiado, bios).
+// Datos profesionales facilitados por el despacho. Sin foto, no se muestra imagen.
 export const team: Lawyer[] = [
   {
     slug: "belen-de-santaolalla",
-    name: "Belén de Santaolalla de la Puerta",
-    role: "TODO: cargo (p. ej. Abogada — Derecho tributario)",
-    colegiado: "ICAM nº TODO",
-    photo: "/equipo/placeholder.svg", // TODO: /equipo/belen.jpg
-    bio: "TODO: Biografía profesional — formación, trayectoria, asuntos representativos en derecho tributario, publicaciones e idiomas.",
-    areas: ["inspecciones-fiscales", "contencioso-administrativo"],
+    name: "Belén de Santa Olalla de la Puerta",
+    role: "Socia / Abogada especialista en Derecho Civil, Sucesiones, Donaciones y Planificación Patrimonial",
+    colegio: "Ilustre Colegio de la Abogacía de Madrid",
+    colegiado: "Colegiada en el Ilustre Colegio de la Abogacía de Madrid, número 144.627",
+    photo: "/equipo/belen-retrato.webp",
+    bio: "Belén de Santa Olalla de la Puerta es abogada especializada en derecho civil, sucesiones, donaciones y planificación patrimonial. Su experiencia se centra en el asesoramiento integral a personas físicas y familias en materia hereditaria, organización patrimonial, tramitación de escrituras públicas, redacción contractual y liquidación de impuestos y obligaciones fiscales.\n\nHa desarrollado su carrera en despachos, entidades financieras y el sector inmobiliario, con experiencia en Pons-Novit Legal, Haya Real Estate, Banco Santander y Martínez-Echevarría abogados. Cuenta además con experiencia en gestión de activos, transmisiones inmobiliarias, fiscalidad de no residentes, due diligence y coordinación con notarías, registros, ayuntamientos y otros organismos oficiales.",
+    education: "Graduada en Derecho por la Universidad de Granada; Máster Universitario en Práctica de la Abogacía por CEF; Prueba de Aptitud Profesional para el ejercicio de la abogacía; Curso Superior de Tributación por CEF.",
+    languages: "Español e inglés.",
+    clients: "Principalmente personas físicas, familias y patrimonios privados que requieren asesoramiento en sucesiones, donaciones, planificación hereditaria y organización patrimonial. También cuenta con experiencia en operaciones inmobiliarias para clientes extranjeros y sociedades, tributación de no residentes, recuperación de impuestos (tax reclaim) y coordinación con registros, notarías y administraciones.",
+    areas: ["planificacion-fiscal"],
     email: "info@lerucklegal.com",
   },
   {
-    slug: "abogado-fiscal",
-    name: "TODO: Nombre del/de la abogado/a",
-    role: "Abogado/a — Derecho tributario",
-    colegiado: "ICAM nº TODO",
-    photo: "/equipo/placeholder.svg",
-    bio: "TODO: Biografía profesional — formación, trayectoria y áreas de especialización.",
-    areas: ["recursos-administrativos", "planificacion-fiscal"],
+    slug: "juan-jose-blanco-rial",
+    name: "Juan José Blanco Rial",
+    role: "Socio / Especialista en Derecho Financiero y Procedimiento Tributario",
+    colegio: "Ilustre Colegio de Abogados de Pontevedra",
+    colegiado: "Colegiado en el Ilustre Colegio de Abogados de Pontevedra (ICAPo), número 3894",
+    bio: "Juan José Blanco Rial es socio de Le Ruck Legal y especialista en derecho financiero, con un enfoque particular en procedimiento tributario. Posee amplia experiencia en comprobaciones de valores y en asuntos relacionados con impuestos a nivel nacional, autonómico y local, prestando asesoramiento tanto a empresas como a contribuyentes individuales en procesos de inspección, recursos y procedimientos sancionadores.\n\nAsesora habitualmente en planificación y defensa tributaria en operaciones financieras complejas, reestructuraciones y compraventas, así como en el tratamiento fiscal de instrumentos de deuda y activos financieros. Su práctica integra el conocimiento técnico tributario con la visión del mercado financiero, buscando soluciones eficaces y estrategias de mitigación de riesgo fiscal.\n\nHa intervenido en procedimientos tributarios ante las distintas administraciones y colabora con asesores fiscales y equipos jurídicos multidisciplinares para ofrecer un servicio integral. En Le Ruck Legal lidera el área de procedimiento tributario dentro de la práctica de derecho financiero.",
+    areas: ["inspecciones-fiscales", "recursos-administrativos"],
     email: "info@lerucklegal.com",
   },
 ];
