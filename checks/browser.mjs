@@ -18,6 +18,7 @@ try {
   browser = await chromium.launch({ channel: 'chrome' });
   const errors = [];
   const externalRequests = [];
+  let mockingContact = false;
   const page = await browser.newPage();
   await page.addInitScript(() => localStorage.setItem('lrl-cookie-consent', 'accept'));
   page.on('pageerror', (error) => errors.push(error.message));
@@ -25,7 +26,7 @@ try {
     if (new URL(request.url()).origin !== new URL(base).origin) externalRequests.push(request.url());
   });
   page.on('response', (response) => {
-    if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`);
+    if (response.status() >= 400 && !(mockingContact && response.url().endsWith('/api/contact'))) errors.push(`${response.status()} ${response.url()}`);
   });
   for (const width of [375, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
@@ -64,7 +65,7 @@ try {
       })));
       const broken = await page.locator('img').evaluateAll((images) => images.filter((img) => !img.complete || !img.naturalWidth).map((img) => img.src));
       assert.deepEqual(broken, [], `Broken images: ${route}`);
-      if (process.env.SCREENSHOT_DIR && [375, 1440].includes(width) && ['/equipo/', '/equipo/belen-de-santaolalla/', '/actualidad/', '/actualidad/herencia-primeros-pasos/'].includes(route)) {
+      if (process.env.SCREENSHOT_DIR && [375, 1440].includes(width) && ['/contacto/', '/equipo/', '/equipo/belen-de-santaolalla/', '/actualidad/', '/actualidad/herencia-primeros-pasos/'].includes(route)) {
         await page.evaluate(() => scrollTo(0, 0));
         await page.screenshot({ path: `${process.env.SCREENSHOT_DIR}/leruck-${route.split('/').filter(Boolean).join('-')}-${width}.png`, fullPage: true });
       }
@@ -127,8 +128,40 @@ try {
   const person = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) => scripts.map((script) => JSON.parse(script.textContent)).find((schema) => schema['@type'] === 'Person'));
   assert.equal(person.memberOf.name, 'Ilustre Colegio de Abogados de Pontevedra');
   await page.goto(base + '/contacto/');
-  assert.equal(await page.locator('form').count(), 0, 'Do not display a nonfunctional form');
+  assert.equal(await page.locator('form[action="/api/contact"][method="POST"]').count(), 1);
   assert(await page.locator('main a[href="mailto:info@lerucklegal.com"]').isVisible());
+  assert.equal(await page.locator('input[type="file"]').count(), 0);
+  assert.equal(await page.locator('#contact-privacy').isChecked(), false);
+  mockingContact = true;
+  let formStatus = 502;
+  let submissions = 0;
+  await page.route('**/api/contact', async (route) => {
+    submissions++;
+    assert(await page.locator('#contact-message').isDisabled(), 'Do not allow edits that would be lost during submission');
+    const body = route.request().postDataJSON();
+    assert.equal(body.email, 'prueba@example.com');
+    assert.equal(body.privacy, 'read');
+    assert.equal(body.website, '');
+    await route.fulfill({ status: formStatus, contentType: 'application/json', body: JSON.stringify({ ok: formStatus === 200, message: formStatus === 200 ? 'Consulta enviada.' : 'No se ha podido confirmar el envío.' }) });
+  });
+  await page.locator('#contact-name').fill('Prueba de interfaz');
+  await page.locator('#contact-email').fill('prueba@example.com');
+  await page.locator('#contact-topic').selectOption('Herencias y sucesiones');
+  await page.locator('#contact-message').fill('Prueba automatizada que no debe enviar correos.');
+  await page.locator('#contact-privacy').check();
+  await page.getByRole('button', { name: 'Enviar consulta', exact: true }).click();
+  await page.locator('#contact-status[data-state="error"]').waitFor();
+  assert((await page.locator('#contact-message').inputValue()).includes('Prueba automatizada'));
+  formStatus = 429;
+  await page.getByRole('button', { name: 'Enviar consulta', exact: true }).click();
+  await page.waitForFunction(() => document.querySelector('#contact-status').textContent.includes('Espera un minuto'));
+  formStatus = 200;
+  await page.getByRole('button', { name: 'Enviar consulta', exact: true }).click();
+  await page.locator('#contact-status[data-state="success"]').waitFor();
+  assert.equal(await page.locator('#contact-message').inputValue(), '');
+  assert.equal(submissions, 3, 'One request per submit');
+  await page.unroute('**/api/contact');
+  mockingContact = false;
   for (const [route, headingCount] of [['/aviso-legal/', 11], ['/privacidad/', 13], ['/cookies/', 6]]) {
     await page.goto(base + route);
     const legal = await page.locator('main').innerText();

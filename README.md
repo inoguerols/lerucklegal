@@ -1,15 +1,15 @@
 # Le Ruck Legal
 
 Web de **LE RUCK LEGAL**, marca de **LA HERMIDA ESTUDIO JURIDICO SLP**.
-Astro 7 + Tailwind 4, salida estática, desplegada en Vercel.
+Astro 7 + Tailwind 4, páginas estáticas y una función de contacto, desplegada en Vercel.
 
 - Web principal: https://www.lerucklegal.com
 - Proyecto Vercel: `inoguerols-projects/lerucklegal`, conectado a `main`.
 - Dominio sin `www`: redirección permanente al principal.
 - DNS y correo: Hostinger. No cambiar MX, SPF, DKIM, DMARC ni autoconfiguración
   del correo al modificar el alojamiento web.
-- Sin formulario, MN Program, analítica de audiencia ni cookies no esenciales.
-  Contacto por email, teléfono y enlace externo a WhatsApp.
+- Formulario de contacto por SMTP de Hostinger, email, teléfono y WhatsApp.
+  Sin MN Program, analítica de audiencia ni cookies no esenciales.
 
 ## Desarrollo y comprobaciones
 
@@ -25,6 +25,7 @@ npm audit --audit-level=high
 
 `npm test` comprueba el HTML generado: indexación, canonical, imágenes, JSON-LD,
 sitemap, ausencia de textos de revisión y regla de exclusión de las URLs de prueba.
+También ejecuta `checks/contact.mjs` con SMTP simulado, sin enviar correos reales.
 Vercel y GitHub ejecutan build, comprobaciones y auditoría de dependencias.
 El antiguo workflow de GitHub Pages se ha sustituido por CI sin despliegue.
 
@@ -39,6 +40,30 @@ Sin `BASE_URL`, el check arranca la preview local del build. `SCREENSHOT_DIR`
 habilita capturas en un directorio existente. Cubre 15 rutas a 375, 768, 1024 y
 1440 px, imágenes, guías, menú, contacto, datos estructurados, ausencia de cookies,
 enlaces, redirecciones antiguas y contenido sin JavaScript.
+Los casos de formulario en el navegador interceptan la petición: comprueban éxito,
+fallos, límite de frecuencia y conservación del mensaje sin enviar correo real.
+
+## Formulario de contacto
+
+- `api/contact.js`: función Node de Vercel, separada de las páginas estáticas.
+- Emisor: `contact@lerucklegal.com`; destinatario fijo: `info@lerucklegal.com`.
+  El email del visitante se utiliza solo como Reply-To, nunca como destinatario.
+- SMTP: `smtp.hostinger.com`, puerto 465, TLS. Variables de entorno sensibles en
+  Vercel Production: `CONTACT_SMTP_USER` y `CONTACT_SMTP_PASSWORD`.
+  No guardar valores reales en Git, pruebas, comandos documentados ni logs.
+- Las previews sin esas variables responden 503, sin simular un envío exitoso.
+- Valida origen, formato y tamaño (32 KiB, suficiente para la codificación del
+  formulario nativo), campos, email y lectura de privacidad. Mensaje máximo de
+  3000 caracteres. Sin adjuntos ni HTML, sin copia en base de datos de la web.
+- Solo informa de éxito cuando SMTP acepta al destinatario. No garantiza lectura
+  o llegada a la bandeja principal. En errores conserva el texto en el navegador;
+  sin JavaScript ofrece una copia escapada recuperable en la respuesta no cacheable.
+- No registra mensajes ni direcciones en logs. Protección adicional mediante
+  campo trampa y regla de firewall Vercel, activa en el proyecto: POST a rutas que
+  empiezan por `/api/contact`, cinco peticiones por minuto y dirección IP.
+  El límite es de plataforma, no un contador en memoria de la función.
+- Al mover el proyecto, recrear y verificar la regla de firewall y las variables.
+  `vercel dev` sirve páginas y API localmente; `astro preview` solo las páginas.
 
 ## Publicación e indexación
 

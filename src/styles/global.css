@@ -121,6 +121,20 @@ h1, h2, h3, h4, .font-serif {
 .guide-copy { font-size: 1.0625rem; }
 .guide-copy h3 { margin-block: 1.75rem .75rem; font-size: 1.3rem; line-height: 1.4; }
 .guide-copy strong { font-weight: 600; }
+.contact-form { display: flex; flex-direction: column; gap: 1.4rem; }
+.contact-form label { display: block; font-size: .875rem; font-weight: 500; }
+.contact-form input:not([type="checkbox"]), .contact-form textarea, .contact-form select { display: block; width: 100%; margin-top: .45rem; padding: .75rem; border: 1px solid var(--color-sage-500); border-radius: 4px; background: white; color: var(--color-navy-900); font: inherit; }
+.contact-form textarea { resize: vertical; min-height: 10rem; }
+.contact-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.contact-form .contact-privacy { display: flex; align-items: flex-start; gap: .75rem; min-height: 44px; }
+.contact-privacy input { width: 1.15rem; height: 1.15rem; margin-top: .2rem; flex-shrink: 0; accent-color: var(--color-navy-900); }
+.contact-trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.contact-form button { align-self: flex-start; }
+.contact-form button:disabled { cursor: wait; opacity: .65; }
+.contact-status { font-weight: 500; overflow-wrap: anywhere; }
+.contact-status:empty { display: none; }
+.contact-status[data-state="error"] { color: #9b2525; }
+.contact-status[data-state="success"] { color: var(--color-sage-600); }
 @media (max-width: 1023px) {
   .practice-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .firm-section { gap: 2rem; }
@@ -142,6 +156,7 @@ h1, h2, h3, h4, .font-serif {
   .news-grid { gap: 1rem; }
   .news-grid article, .team-note-copy { padding: 1.5rem; }
   .guide-intro { gap: 2rem; }
+  .contact-fields { grid-template-columns: 1fr; }
   .section-heading { padding-block: 2.5rem 2rem; }
   .contact-strip > div { align-items: flex-start; flex-direction: column; }
 }

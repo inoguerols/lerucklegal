@@ -18,6 +18,10 @@ for (const page of pages) {
   for (const [, json] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(json);
 }
 const sitemap = await readFile('dist/sitemap-0.xml', 'utf8');
+const contact = await readFile('dist/contacto/index.html', 'utf8');
+assert(contact.includes('action="/api/contact"') && contact.includes('method="POST"'), 'Contact must submit to the server');
+assert(contact.includes('name="privacy"') && contact.includes('name="website"'), 'Privacy acknowledgement and honeypot required');
+assert(!contact.includes('type="file"'), 'No attachments on this form');
 assert(!/inspeccion-hacienda-que-hacer|recurso-reposicion-o-reclamacion|404/.test(sitemap), 'Draft or error route in sitemap');
 for (const slug of ['herencia-primeros-pasos', 'donacion-antes-de-donar', 'herencia-espana-no-residentes']) assert(sitemap.includes(slug));
 const config = JSON.parse(await readFile('vercel.json', 'utf8'));

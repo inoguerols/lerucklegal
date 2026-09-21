@@ -1,6 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build && npm test && npm audit --audit-level=high",
+  "functions": {
+    "api/contact.js": { "maxDuration": 30 }
+  },
   "headers": [
     {
       "source": "/(.*)",
