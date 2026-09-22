@@ -41,6 +41,12 @@ try {
       assert(!/Versión (de|para) revisión|pendiente de validación/i.test(await page.locator('body').innerText()), 'No review notices in production');
       assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), `https://www.lerucklegal.com${route}`);
       assert(!(await page.locator('main').innerText()).includes('TODO'), `Unfinished content: ${route}`);
+      if (width < 768) {
+        assert(await page.locator('.mobile-flat-list > *, .mobile-plain-panel').evaluateAll((elements) => elements.every((element) => {
+          const style = getComputedStyle(element);
+          return style.borderRadius === '0px' && style.borderLeftWidth === '0px' && style.backgroundColor === 'rgba(0, 0, 0, 0)';
+        })), `Avoid boxed mobile content: ${route}`);
+      }
       assert.equal(await page.locator('img[src*="placeholder"]').count(), 0, `No placeholder portraits: ${route}`);
       assert.equal(await page.locator('a[href*="mnprogram"], a[href*="nmprogram"]').count(), 0, 'MN Program is outside the launch scope');
       assert(!/Acceso clientes|Acceder al portal de clientes/.test(await page.content()), `Unexpected client portal: ${route}`);
@@ -65,7 +71,7 @@ try {
       })));
       const broken = await page.locator('img').evaluateAll((images) => images.filter((img) => !img.complete || !img.naturalWidth).map((img) => img.src));
       assert.deepEqual(broken, [], `Broken images: ${route}`);
-      if (process.env.SCREENSHOT_DIR && [375, 1440].includes(width) && ['/contacto/', '/equipo/', '/equipo/belen-de-santaolalla/', '/actualidad/', '/actualidad/herencia-primeros-pasos/'].includes(route)) {
+      if (process.env.SCREENSHOT_DIR && [375, 1440].includes(width) && ['/contacto/', '/despacho/', '/areas/', '/areas/planificacion-fiscal/', '/equipo/', '/equipo/belen-de-santaolalla/', '/actualidad/', '/actualidad/herencia-primeros-pasos/'].includes(route)) {
         await page.evaluate(() => scrollTo(0, 0));
         await page.screenshot({ path: `${process.env.SCREENSHOT_DIR}/leruck-${route.split('/').filter(Boolean).join('-')}-${width}.png`, fullPage: true });
       }
@@ -85,6 +91,14 @@ try {
     if (width < 768) {
       assert((await mobileWhatsApp.boundingBox()).height >= 44, 'Mobile WhatsApp must have a usable touch target');
       assert(await page.locator('.practice-tile').evaluateAll((tiles) => tiles.every((tile) => tile.getBoundingClientRect().height < 285)), 'Keep mobile practice areas compact');
+      assert(await page.locator('.practice-tile').evaluateAll((tiles) => tiles.every((tile) => {
+        const overlay = getComputedStyle(tile, '::after');
+        const photo = tile.querySelector('img').getBoundingClientRect();
+        const text = tile.querySelector('.practice-copy').getBoundingClientRect();
+        return overlay.content === 'none' && overlay.backgroundImage === 'none' && text.right <= photo.left;
+      })), 'Mobile services must separate text and images without gradient overlays');
+    } else {
+      assert(await page.locator('.practice-tile').first().evaluate((tile) => getComputedStyle(tile, '::after').backgroundImage.includes('linear-gradient')), 'Preserve the desktop service presentation');
     }
     assert.equal(await page.locator('.hero-portrait img').getAttribute('src'), '/equipo/belen-despacho.webp');
     assert.equal(await page.locator('.hero-portrait img').evaluate((el) => getComputedStyle(el).filter), 'grayscale(1) contrast(0.96)');

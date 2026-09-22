@@ -151,13 +151,27 @@ h1, h2, h3, h4, .font-serif {
   .brand-lockup span { font-size: .875rem; }
   .contact-bar > div { justify-content: space-between; gap: .5rem; font-size: .65rem; }
   .practice-grid, .firm-section, .news-grid, .faq-section, .guide-intro { grid-template-columns: 1fr; }
-  .practice-tile { min-height: 210px; }
-  .practice-copy { padding: 1.35rem 1.25rem; }
+  .practice-grid { gap: 0; margin-inline: 1.25rem; }
+  .practice-tile { display: grid; grid-template-columns: minmax(0, 1fr) 88px; gap: 1rem; align-items: start; min-height: 0; padding-block: 1.25rem; background: transparent; color: var(--color-navy-900); border-bottom: 1px solid var(--color-sage-200); }
+  .practice-tile:last-child { border-bottom: 0; }
+  .practice-tile > img { position: static; grid-column: 2; grid-row: 1; width: 88px; height: 108px; z-index: auto; }
+  .practice-tile::after { content: none; background: none; }
+  .practice-copy { grid-column: 1; grid-row: 1; min-width: 0; padding: 0; }
   .practice-copy h3 { font-size: 1.3rem; }
   .practice-copy p { margin-block: .65rem; }
+  .practice-link { color: var(--color-sage-600); }
+  .mobile-flat-list { gap: 0; }
+  .mobile-flat-list > :is(a, div, article) { padding: 1.5rem 0; background: transparent; border: 0; border-bottom: 1px solid var(--color-sage-200); border-radius: 0; }
+  .mobile-flat-list > :not(:focus-visible) { box-shadow: none; }
+  .mobile-flat-list > :last-child { border-bottom: 0; }
+  .mobile-plain-panel { padding: 0; background: transparent; border: 0; border-radius: 0; }
+  .mobile-plain-panel .team-note-copy { padding: 0; }
+  .mobile-interior-heading, .mobile-editorial-section { padding-block: 3rem; }
+  .mobile-compact-cta { padding-block: 1.5rem 3rem; }
+  .mobile-contact-link { display: inline-block; max-width: 100%; padding: .85rem 1.25rem; border-radius: 0; }
   .firm-section, .faq-section { padding-block: 3rem; gap: 2rem; }
-  .news-grid { gap: 1rem; }
-  .news-grid article, .team-note-copy { padding: 1.5rem; }
+  .news-grid article { padding: 1.5rem 0; }
+  .team-note-copy { padding: 1.5rem; }
   .guide-intro { gap: 2rem; }
   .contact-fields { grid-template-columns: 1fr; }
   .section-heading { padding-block: 2.5rem 2rem; }

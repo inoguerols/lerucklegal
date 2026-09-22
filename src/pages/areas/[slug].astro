@@ -21,14 +21,14 @@ const schema = {
 ---
 <Base title={title} description={area.short}>
   <section class="bg-navy-900 text-white">
-    <div class="container-prose py-20 max-w-3xl">
+    <div class="container-prose mobile-interior-heading py-20 max-w-3xl">
       <a href="/areas" class="text-sage-200 text-sm hover:text-white">← Áreas de práctica</a>
       <h1 class="font-serif text-4xl md:text-5xl mt-4">{area.title}</h1>
       <p class="mt-5 text-lg text-sage-100">{area.summary}</p>
     </div>
   </section>
 
-  <section class="container-prose py-16 md:py-20 max-w-3xl">
+  <section class="container-prose mobile-editorial-section py-16 md:py-20 max-w-3xl">
     <h2 class="font-serif text-2xl text-navy-900">Cómo te ayudamos</h2>
     <ul class="mt-6 space-y-3">
       {area.bullets.map((b) => (
@@ -39,7 +39,7 @@ const schema = {
       ))}
     </ul>
 
-    <div class="mt-12 bg-cream rounded-2xl p-7 border border-sage-200">
+    <div class="mobile-plain-panel mt-12 bg-cream rounded-2xl p-7 border border-sage-200">
       <h3 class="font-serif text-xl text-navy-900">Nuestro método</h3>
       <ol class="mt-4 grid gap-4 sm:grid-cols-2 text-sm text-navy-800">
         <li><span class="font-semibold text-navy-900">1. Análisis inicial</span><br/>Estudiamos el expediente y los plazos.</li>
@@ -50,7 +50,7 @@ const schema = {
     </div>
 
     <div class="mt-10">
-      <a href="/contacto" class="bg-navy-900 text-white font-semibold px-7 py-3 rounded-full hover:bg-navy-800 transition">Consúltanos sobre {area.title.toLowerCase()}</a>
+      <a href="/contacto" class="mobile-contact-link bg-navy-900 text-white font-semibold px-7 py-3 rounded-full hover:bg-navy-800 transition">Consúltanos sobre {area.title.toLowerCase()}</a>
     </div>
     {guides.length > 0 && <section class="mt-12" aria-labelledby="guides-title">
       <h2 id="guides-title" class="font-serif text-2xl text-navy-900">Guías para dar el siguiente paso</h2>

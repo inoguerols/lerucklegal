@@ -18,8 +18,8 @@ const fmt = (d) => d.toLocaleDateString("es-ES", { year: "numeric", month: "long
       <img src="/equipo/belen-lectura.webp" alt="Belén de Santa Olalla de la Puerta trabajando" width="1100" height="783" class="w-full h-auto" />
     </div>
   </section>
-  <section class="container-prose py-16 md:py-20">
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+  <section class="container-prose mobile-editorial-section py-16 md:py-20">
+    <div class="mobile-flat-list grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {posts.map((p) => (
         <a href={`/actualidad/${p.id}`} class="block bg-white border border-sage-200 p-7 hover:border-sage-500 transition">
           <p class="text-sm text-sage-600 font-medium">{fmt(p.data.date)}</p>

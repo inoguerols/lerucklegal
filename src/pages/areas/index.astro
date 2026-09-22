@@ -5,13 +5,13 @@ const title = `Áreas de práctica — ${site.name}`;
 ---
 <Base title={title} description="Área fiscal: sucesiones, donaciones, planificación patrimonial y liquidación de impuestos. Defensa en inspecciones, recursos y litigios tributarios.">
   <section class="bg-navy-900 text-white">
-    <div class="container-prose py-20 max-w-3xl">
+    <div class="container-prose mobile-interior-heading py-20 max-w-3xl">
       <p class="text-sage-200 uppercase tracking-wide text-sm font-medium">Áreas de práctica</p>
       <h1 class="font-serif text-4xl md:text-5xl mt-3">Especialización completa en fiscalidad y litigios tributarios</h1>
     </div>
   </section>
-  <section class="container-prose py-16 md:py-20">
-    <div class="grid gap-6 md:grid-cols-2">
+  <section class="container-prose mobile-editorial-section py-16 md:py-20">
+    <div class="mobile-flat-list grid gap-6 md:grid-cols-2">
       {areas.map((a) => (
         <a href={`/areas/${a.slug}`} class="block bg-white rounded-2xl p-7 border border-sage-200 hover:border-sage-400 hover:shadow-md transition">
           <h2 class="font-serif text-2xl text-navy-900">{a.title}</h2>

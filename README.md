@@ -88,7 +88,9 @@ fallos, límite de frecuencia y conservación del mensaje sin enviar correo real
   la información confirmada. Fotografías adicionales son opcionales.
 - Portada: salvia de marca con texto marino, énfasis en herencias, donaciones y
   patrimonio, junto al retrato en B/N suave. Las fotografías interiores conservan
-  el color. Las áreas se compactan en móvil sin ocultar contenido.
+  el color. En móvil, las áreas son filas claras con miniaturas separadas del texto,
+  sin degradados. Guías, valores del despacho y listas de áreas eliminan las cajas
+  decorativas, conservando información y enlaces. Estos ajustes no cambian escritorio.
 - WhatsApp: enlace de 44px de alto en la cabecera móvil, sin botón flotante que
   tape contenido por debajo de 768px. En tablet y escritorio conserva el flotante.
 - Horario confirmado: 9:00–19:00, sin inventar días de apertura.

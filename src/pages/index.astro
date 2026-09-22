@@ -63,7 +63,7 @@ const faqSchema = {
       <p>Acompañamos cada asunto tributario desde el asesoramiento hasta la defensa ante la Administración y los tribunales.</p>
       <a href="/despacho" class="text-link">Conocer el despacho <span aria-hidden="true">↗</span></a>
     </div>
-    <aside class="team-note">
+    <aside class="team-note mobile-plain-panel">
       <div class="team-note-copy">
         <h3>El equipo, a tu lado</h3>
         <p>Conoce a las personas detrás de Le Ruck Legal.</p>
@@ -78,7 +78,7 @@ const faqSchema = {
         <h2 id="news-title">Antes de tomar una decisión</h2>
         <p>Guías prácticas sobre herencias, donaciones y fiscalidad de no residentes.</p>
       </div>
-      <div class="news-grid">
+      <div class="news-grid mobile-flat-list">
         {posts.map((post) => (
           <article>
             <h3><a href={`/actualidad/${post.id}`}>{post.data.title}</a></h3>
