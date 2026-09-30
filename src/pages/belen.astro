@@ -1,0 +1,121 @@
+---
+import '../styles/global.css';
+import { site, team } from '../data/site';
+
+const belen = team.find(person => person.slug === 'belen-de-santaolalla')!;
+const email = belen.email ?? site.email;
+const canonical = new URL('/belen', site.url).href;
+const title = `Belén de Santa Olalla · Abogada | ${site.name}`;
+const description = 'Derecho civil, sucesiones y planificación patrimonial. Contacta con Belén y guarda su tarjeta en tu móvil.';
+const image = new URL('/tarjeta-belen.png', site.url).href;
+const imageAlt = `${belen.name}, abogada y socia de ${site.name}. Derecho civil, sucesiones y patrimonio.`;
+const whatsapp = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent('Hola, me gustaría contactar con Belén para una consulta.')}`;
+const share = `https://wa.me/?text=${encodeURIComponent(`${belen.name} · ${site.name}\n${canonical}`)}`;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:secure_url" content={image} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+  </head>
+  <body>
+    <main>
+      <article class="card" aria-labelledby="name">
+        <header class="brand">
+          <a href="/" aria-label={`${site.name} — inicio`}>
+            <img src="/logo-monograma.png" alt="" width="23" height="46" />
+            <span>LE RUCK LEGAL<small>ABOGADOS</small></span>
+          </a>
+        </header>
+        <div class="details">
+          <div class="portrait"><img src="/equipo/belen-retrato.webp" alt={`Retrato de ${belen.name}`} width="112" height="112" /></div>
+          <p class="eyebrow">ABOGADA · SOCIA</p>
+          <h1 id="name">Belén de Santa Olalla<span>de la Puerta</span></h1>
+          <p class="membership">{belen.colegiado}</p>
+          <div class="specialties">
+            <p>Derecho civil y sucesiones</p>
+            <p>Donaciones y planificación patrimonial</p>
+          </div>
+          <a class="button primary" href="/belen.vcf" download="Belen-de-Santa-Olalla.vcf">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 16v5h14v-5" /></svg>
+            Guardar contacto
+          </a>
+          <div class="contact-actions">
+            <a class="button" href={whatsapp}>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.5 7.8L3 21l1.7-4.5A9 9 0 1 1 21 11.5Z" /></svg>
+              WhatsApp
+            </a>
+            <a class="button" href={`tel:${site.phoneHref}`}>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 3 3 5-3 2a14 14 0 0 0 7 7l2-3 5 3-1 4C10 22 2 14 3 4Z" /></svg>
+              Llamar
+            </a>
+          </div>
+          <a class="email" href={`mailto:${email}`}>{email}<span aria-hidden="true">↗</span></a>
+          <p class="office">Contacto del despacho · {site.phone}</p>
+          <a class="profile" href={`/equipo/${belen.slug}`}>Conoce mi trayectoria <span aria-hidden="true">→</span></a>
+        </div>
+        <footer class="card-footer">
+          <a href={share}>Compartir por WhatsApp <span aria-hidden="true">↗</span></a>
+          <a href="/tarjeta-belen.png" download="Tarjeta-Belen-Le-Ruck-Legal.png">Descargar tarjeta <span aria-hidden="true">↓</span></a>
+        </footer>
+      </article>
+      <p class="signature">{site.tagline}</p>
+      <nav aria-label="Información legal"><a href="/">Le Ruck Legal</a><span aria-hidden="true">·</span><a href="/privacidad">Privacidad</a></nav>
+    </main>
+  </body>
+</html>
+
+<style>
+  body { margin: 0; background: #eeefeb; }
+  main { width: min(100%, 510px); margin: 0 auto; padding: 36px 16px 24px; }
+  .card { overflow: hidden; background: #fdfcf8; border: 1px solid #dadcd3; border-radius: 18px; box-shadow: 0 16px 48px #16233a0b; }
+  .brand { background: #16233a; padding: 25px; border-bottom: 4px solid #afb49e; }
+  .brand a { display: flex; align-items: center; justify-content: center; gap: 19px; color: #f7f6f1; }
+  .brand span { font-family: var(--font-serif); font-size: 22px; letter-spacing: 2px; }
+  .brand small { display: block; margin-top: 4px; font-family: var(--font-sans); font-size: 9px; letter-spacing: 5px; text-align: center; color: #dadcd3; }
+  .details { padding: 30px 28px 23px; text-align: center; }
+  .portrait { width: 112px; height: 112px; margin: -5px auto 20px; border-radius: 50%; overflow: hidden; border: 3px solid #dadcd3; }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 24%; transform: scale(1.7); transform-origin: center 25%; }
+  .eyebrow { margin: 0 0 13px; color: #646a4d; font-size: 10px; letter-spacing: 2.4px; font-weight: 600; }
+  h1 { font-size: clamp(25px, 6.4vw, 33px); line-height: 1.25; letter-spacing: -0.7px; }
+  h1 span { display: block; }
+  .membership { margin-top: 12px; font-size: 11px; color: #646a4d; }
+  .specialties { margin: 23px 0; padding: 18px 0; border-block: 1px solid #dadcd3; font-size: 13px; line-height: 1.9; }
+  .button { min-height: 49px; display: flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid #dadcd3; border-radius: 8px; font-size: 13px; font-weight: 600; }
+  .button:hover { background: #eeefeb; }
+  .primary { background: #16233a; color: white; border-color: #16233a; }
+  .primary:hover { background: #2b4368; }
+  svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .contact-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .email { min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 7px; font-size: 14px; }
+  .email:hover, .profile:hover, footer a:hover, nav a:hover { text-decoration: underline; }
+  .office { font-size: 10px; color: #646a4d; }
+  .profile { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; margin-top: 13px; font-size: 12px; }
+  .card-footer { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 22px; padding: 7px 16px; border-top: 1px solid #dadcd3; background: #eeefeb; }
+  .card-footer a { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; font-size: 11px; }
+  .signature { margin-top: 22px; text-align: center; font-size: 10px; color: #646a4d; }
+  nav { display: flex; align-items: center; justify-content: center; gap: 13px; font-size: 10px; color: #646a4d; }
+  nav a { display: inline-flex; align-items: center; min-height: 44px; }
+  @media (max-width: 360px) { main { padding: 16px 10px; } .details { padding-inline: 19px; } }
+</style>

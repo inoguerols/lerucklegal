@@ -78,6 +78,14 @@ fallos, límite de frecuencia y conservación del mensaje sin enviar correo real
 
 ## Contenido
 
+La tarjeta digital de Belén está en `/belen`, con fotografía, botones de contacto,
+descarga de vCard en `/belen.vcf` e imagen Open Graph en `/tarjeta-belen.png`.
+Utiliza los datos de contacto del despacho de `src/data/site.ts`.
+Si cambian el contacto o la foto, regenerar la imagen con
+`node scripts/render-belen-card.mjs` (Node 24). `npm test` comprueba también la
+tarjeta y su imagen. El formato real de la vista previa de WhatsApp debe verificarse
+compartiendo la URL pública; las simulaciones locales no forman parte del despliegue.
+
 - `src/data/site.ts`: datos del despacho y profesionales, servicios y FAQ.
 - `src/content/actualidad/`: guías Markdown. `draft: true` excluye un texto de
   páginas, listados y sitemap. Los dos artículos iniciales sin autor aprobado
