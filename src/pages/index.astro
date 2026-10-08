@@ -1,8 +1,9 @@
 ---
 import Base from "../layouts/Base.astro";
 import JsonLd from "../components/JsonLd.astro";
+import TeamCard from "../components/TeamCard.astro";
 import { getCollection } from "astro:content";
-import { site, areas, faqs } from "../data/site";
+import { site, areas, faqs, team } from "../data/site";
 
 const posts = (await getCollection("actualidad", ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3);
@@ -63,13 +64,17 @@ const faqSchema = {
       <p>Acompañamos cada asunto tributario desde el asesoramiento hasta la defensa ante la Administración y los tribunales.</p>
       <a href="/despacho" class="text-link">Conocer el despacho <span aria-hidden="true">↗</span></a>
     </div>
-    <aside class="team-note mobile-plain-panel">
-      <div class="team-note-copy">
-        <h3>El equipo, a tu lado</h3>
-        <p>Conoce a las personas detrás de Le Ruck Legal.</p>
-        <a href="/equipo" class="text-link">Conocer el equipo <span aria-hidden="true">↗</span></a>
-      </div>
-    </aside>
+
+  </section>
+
+  <section class="container-prose pb-16 md:pb-20" aria-labelledby="team-title">
+    <div class="section-heading">
+      <h2 id="team-title">Tres socios, un compromiso común</h2>
+      <p>Conoce a las personas detrás de Le Ruck Legal.</p>
+    </div>
+    <div class="grid gap-10 md:grid-cols-3">
+      {team.map((lawyer) => <TeamCard lawyer={lawyer} />)}
+    </div>
   </section>
 
   <section class="news-section" aria-labelledby="news-title">
@@ -111,3 +116,7 @@ const faqSchema = {
   </section>
   <JsonLd schema={faqSchema} />
 </Base>
+
+<style>
+  .firm-section { grid-template-columns: 1fr; }
+</style>

@@ -115,43 +115,156 @@ export type Lawyer = {
   slug: string;
   name: string;
   role: string;
+  specialty: string;
   colegio: string;
   colegiado: string;
-  photo?: string;
-  bio: string;
+  photoScale?: number;
+  photoPosition?: string;
+  formation?: string[];
+  memberships?: string[];
+  card: { slug: string; givenName: string; familyName: string; nameLines: string[]; specialties: string[]; portraitScale: number; portraitPosition: string; artworkNameLines: string[]; artworkSpecialty: string };
+  photo: string; // ruta en /public
+  bio: string; // un párrafo por elemento
   education?: string;
-  languages?: string;
   clients?: string;
+  languages?: string;
   areas: string[];
   email?: string;
 };
 
-// Datos profesionales facilitados por el despacho. Sin foto, no se muestra imagen.
+// Socios en orden alfabético por nombre.
 export const team: Lawyer[] = [
   {
-    slug: "belen-de-santaolalla",
-    name: "Belén de Santa Olalla de la Puerta",
-    role: "Socia / Abogada especialista en Derecho Civil, Sucesiones, Donaciones y Planificación Patrimonial",
-    colegio: "Ilustre Colegio de la Abogacía de Madrid",
-    colegiado: "Colegiada en el Ilustre Colegio de la Abogacía de Madrid, número 144.627",
-    photo: "/equipo/belen-retrato.webp",
-    bio: "Belén de Santa Olalla de la Puerta es abogada especializada en derecho civil, sucesiones, donaciones y planificación patrimonial. Su experiencia se centra en el asesoramiento integral a personas físicas y familias en materia hereditaria, organización patrimonial, tramitación de escrituras públicas, redacción contractual y liquidación de impuestos y obligaciones fiscales.\n\nHa desarrollado su carrera en despachos, entidades financieras y el sector inmobiliario, con experiencia en Pons-Novit Legal, Haya Real Estate, Banco Santander y Martínez-Echevarría abogados. Cuenta además con experiencia en gestión de activos, transmisiones inmobiliarias, fiscalidad de no residentes, due diligence y coordinación con notarías, registros, ayuntamientos y otros organismos oficiales.",
-    education: "Graduada en Derecho por la Universidad de Granada; Máster Universitario en Práctica de la Abogacía por CEF; Prueba de Aptitud Profesional para el ejercicio de la abogacía; Curso Superior de Tributación por CEF.",
-    languages: "Español e inglés.",
-    clients: "Principalmente personas físicas, familias y patrimonios privados que requieren asesoramiento en sucesiones, donaciones, planificación hereditaria y organización patrimonial. También cuenta con experiencia en operaciones inmobiliarias para clientes extranjeros y sociedades, tributación de no residentes, recuperación de impuestos (tax reclaim) y coordinación con registros, notarías y administraciones.",
-    areas: ["planificacion-fiscal"],
-    email: "info@lerucklegal.com",
+    "slug": "alfonso-montero-sanz",
+    "name": "Alfonso Mª Montero Sanz",
+    "role": "Socio",
+    "specialty": "Derecho tributario e inmobiliario",
+    "colegio": "Ilustre Colegio de la Abogacía de Madrid (ICAM)",
+    "colegiado": "ICAM nº 91.247",
+    "photo": "/equipo/alfonso-retrato.jpeg",
+    "card": {
+      "slug": "alfonso",
+      "portraitScale": 2,
+      "portraitPosition": "center 14%",
+      "artworkNameLines": [
+        "Alfonso Mª",
+        "Montero Sanz"
+      ],
+      "artworkSpecialty": "Derecho tributario · Inmobiliario",
+      "givenName": "Alfonso Mª",
+      "familyName": "Montero Sanz",
+      "nameLines": [
+        "Alfonso Mª",
+        "Montero Sanz"
+      ],
+      "specialties": [
+        "Derecho tributario",
+        "Derecho inmobiliario y patrimonio"
+      ]
+    },
+    "bio": "Alfonso Mª Montero Sanz es abogado especializado en Derecho Tributario y Derecho Inmobiliario. Asesora a personas físicas en la organización de patrimonios familiares, fiscalidad inmobiliaria y procedimientos de comprobación, inspección y litigación tributaria.\n\nCuenta con amplia experiencia en la redacción y preparación de escrituras de compraventa, préstamos, declaraciones de obra nueva, división horizontal, donaciones, herencias y escrituras mercantiles, así como otros documentos de naturaleza pública.\n\nHa desarrollado su carrera en despachos de abogados y entidades del IBEX 35, y ha sido responsable del área fiscal de una de las mayores entidades inmobiliarias residenciales de ámbito nacional. Ha compatibilizado su actividad profesional con la docencia como profesor honorario del departamento de Derecho Tributario de la Universidad de Valladolid.",
+    "formation": [
+      "Licenciado en Derecho por la Universidad de Valladolid",
+      "Máster en Asesoría Fiscal por el Instituto de Empresas",
+      "Máster en Dirección Económico-Financiera por el CEF",
+      "Máster en Corporate Finance y Banca de Inversión por el IEB",
+      "Programa de Especialización en Derecho de los Mercados Financieros por el IEB",
+      "Programa de Fusiones y Adquisiciones (M&A) y Private Equity por el IEB",
+      "Programa de Experto en Fiscalidad Internacional por ESADE"
+    ],
+    "memberships": [
+      "Abogado del Ilustre Colegio de la Abogacía de Madrid, nº 91.247",
+      "Colaborador Asociado de la Real Academia de la Jurisprudencia y Legislación"
+    ],
+    "languages": "Español e inglés",
+    "areas": [
+      "inspecciones-fiscales",
+      "recursos-administrativos",
+      "contencioso-administrativo",
+      "planificacion-fiscal"
+    ],
+    "email": "info@lerucklegal.com"
   },
   {
-    slug: "juan-jose-blanco-rial",
-    name: "Juan José Blanco Rial",
-    role: "Socio / Especialista en Derecho Financiero y Procedimiento Tributario",
-    colegio: "Ilustre Colegio de Abogados de Pontevedra",
-    colegiado: "Colegiado en el Ilustre Colegio de Abogados de Pontevedra (ICAPo), número 3894",
-    bio: "Juan José Blanco Rial es socio de Le Ruck Legal y especialista en derecho financiero, con un enfoque particular en procedimiento tributario. Posee amplia experiencia en comprobaciones de valores y en asuntos relacionados con impuestos a nivel nacional, autonómico y local, prestando asesoramiento tanto a empresas como a contribuyentes individuales en procesos de inspección, recursos y procedimientos sancionadores.\n\nAsesora habitualmente en planificación y defensa tributaria en operaciones financieras complejas, reestructuraciones y compraventas, así como en el tratamiento fiscal de instrumentos de deuda y activos financieros. Su práctica integra el conocimiento técnico tributario con la visión del mercado financiero, buscando soluciones eficaces y estrategias de mitigación de riesgo fiscal.\n\nHa intervenido en procedimientos tributarios ante las distintas administraciones y colabora con asesores fiscales y equipos jurídicos multidisciplinares para ofrecer un servicio integral. En Le Ruck Legal lidera el área de procedimiento tributario dentro de la práctica de derecho financiero.",
-    areas: ["inspecciones-fiscales", "recursos-administrativos"],
-    email: "info@lerucklegal.com",
+    "slug": "belen-de-santaolalla",
+    "name": "Belén de Santa Olalla de la Puerta",
+    "role": "Socia",
+    "specialty": "Derecho civil, sucesiones y patrimonio",
+    "colegio": "Ilustre Colegio de la Abogacía de Madrid",
+    "card": {
+      "slug": "belen",
+      "portraitScale": 1.7,
+      "portraitPosition": "center 25%",
+      "artworkNameLines": [
+        "Belén de",
+        "Santa Olalla",
+        "de la Puerta"
+      ],
+      "artworkSpecialty": "Derecho civil · Sucesiones · Patrimonio",
+      "givenName": "Belén",
+      "familyName": "de Santa Olalla de la Puerta",
+      "nameLines": [
+        "Belén de Santa Olalla",
+        "de la Puerta"
+      ],
+      "specialties": [
+        "Derecho civil y sucesiones",
+        "Donaciones y planificación patrimonial"
+      ]
+    },
+    "colegiado": "Colegiada en el Ilustre Colegio de la Abogacía de Madrid, número 144.627",
+    "photo": "/equipo/belen-retrato.webp",
+    "bio": "Belén de Santa Olalla de la Puerta es abogada especializada en derecho civil, sucesiones, donaciones y planificación patrimonial. Su experiencia se centra en el asesoramiento integral a personas físicas y familias en materia hereditaria, organización patrimonial, tramitación de escrituras públicas, redacción contractual y liquidación de impuestos y obligaciones fiscales.\n\nHa desarrollado su carrera en despachos, entidades financieras y el sector inmobiliario, con experiencia en Pons-Novit Legal, Haya Real Estate, Banco Santander y Martínez-Echevarría abogados. Cuenta además con experiencia en gestión de activos, transmisiones inmobiliarias, fiscalidad de no residentes, due diligence y coordinación con notarías, registros, ayuntamientos y otros organismos oficiales.",
+    "languages": "Español e inglés.",
+    "areas": [
+      "planificacion-fiscal"
+    ],
+    "email": "info@lerucklegal.com",
+    "education": "Graduada en Derecho por la Universidad de Granada; Máster Universitario en Práctica de la Abogacía por CEF; Prueba de Aptitud Profesional para el ejercicio de la abogacía; Curso Superior de Tributación por CEF.",
+    "clients": "Principalmente personas físicas, familias y patrimonios privados que requieren asesoramiento en sucesiones, donaciones, planificación hereditaria y organización patrimonial. También cuenta con experiencia en operaciones inmobiliarias para clientes extranjeros y sociedades, tributación de no residentes, recuperación de impuestos (tax reclaim) y coordinación con registros, notarías y administraciones."
   },
+  {
+    "slug": "juan-jose-blanco-rial",
+    "name": "Juan José Blanco Rial",
+    "role": "Socio",
+    "specialty": "Derecho tributario y procedimientos tributarios",
+    "colegio": "Colegio de la Abogacía de Pontevedra",
+    "colegiado": "Colegio de la Abogacía de Pontevedra nº 3894",
+    "photo": "/equipo/juan-retrato.jpeg",
+    "photoScale": 1.3,
+    "photoPosition": "center 80%",
+    "card": {
+      "slug": "juan",
+      "portraitScale": 2.4,
+      "portraitPosition": "center 36%",
+      "artworkNameLines": [
+        "Juan José",
+        "Blanco Rial"
+      ],
+      "artworkSpecialty": "Derecho tributario · Procedimientos",
+      "givenName": "Juan José",
+      "familyName": "Blanco Rial",
+      "nameLines": [
+        "Juan José",
+        "Blanco Rial"
+      ],
+      "specialties": [
+        "Derecho tributario",
+        "Procedimientos tributarios"
+      ]
+    },
+    "bio": "Juan José Blanco Rial es abogado especializado en Derecho Tributario y, en particular, en procedimiento tributario. Su actividad profesional se centra en la defensa de los intereses de particulares, autónomos y empresas frente a la Administración Tributaria.\n\nAcompaña a sus clientes en todas las fases del procedimiento tributario, con un asesoramiento cercano, personalizado y técnicamente sólido ante inspecciones, comprobaciones, recursos y reclamaciones.\n\nSu compromiso es ofrecer soluciones claras, eficaces y adaptadas a cada situación, aportando seguridad jurídica y protegiendo los derechos de quienes confían en Le Ruck Legal.",
+    "formation": [
+      "Máster en Asesoría Fiscal por la Universidad a Distancia de Madrid (UDIMA)",
+      "Curso de Contabilidad Fiscal del CEF",
+      "Formación en Competencias Digitales"
+    ],
+    "areas": [
+      "inspecciones-fiscales",
+      "recursos-administrativos"
+    ],
+    "email": "info@lerucklegal.com"
+  }
 ];
 
 export const faqs = [

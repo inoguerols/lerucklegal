@@ -1,0 +1,17 @@
+---
+import type { Lawyer } from '../data/site';
+interface Props { lawyer: Lawyer; showMembership?: boolean }
+const { lawyer, showMembership = false } = Astro.props;
+---
+<a href={`/equipo/${lawyer.slug}`} class="group flex flex-col focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sage-600">
+  <div class="overflow-hidden aspect-[4/5] bg-sage-100">
+    <img src={lawyer.photo} alt={`Retrato de ${lawyer.name}`} width="600" height="750" loading="lazy" decoding="async" class="w-full h-full object-cover" style={`transform: scale(${lawyer.photoScale ?? 1}); transform-origin: ${lawyer.photoPosition ?? 'center'};`} />
+  </div>
+  <div class="flex flex-col flex-1 pt-6">
+    <h3 class="font-serif text-xl text-navy-900 md:min-h-[3.5rem]">{lawyer.name}</h3>
+    <p class="text-sage-600 font-semibold text-sm mt-2">{lawyer.role}</p>
+    <p class="text-navy-800 text-sm mt-2">{lawyer.specialty}</p>
+    {showMembership && <p class="text-navy-800 text-xs mt-3">{lawyer.colegiado}</p>}
+    <span class="pt-5 mt-auto inline-block text-sage-600 font-medium group-hover:text-navy-900">Ver perfil <span aria-hidden="true">↗</span></span>
+  </div>
+</a>

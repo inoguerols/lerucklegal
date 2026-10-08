@@ -8,7 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "node checks/build.mjs && node checks/contact.mjs && node checks/belen.mjs"
+    "test": "node checks/build.mjs && node checks/contact.mjs && node checks/belen.mjs && node checks/team.mjs && node checks/cards.mjs && node checks/vcard.mjs"
   },
   "engines": {
     "node": ">=22.12.0"

@@ -78,22 +78,23 @@ fallos, límite de frecuencia y conservación del mensaje sin enviar correo real
 
 ## Contenido
 
-La tarjeta digital de Belén está en `/belen`, con fotografía, botones de contacto,
-descarga de vCard en `/belen.vcf` e imagen Open Graph en `/tarjeta-belen.png`.
-Utiliza los datos de contacto del despacho de `src/data/site.ts`.
-Si cambian el contacto o la foto, regenerar la imagen con
-`node scripts/render-belen-card.mjs` (Node 24). `npm test` comprueba también la
-tarjeta y su imagen. El formato real de la vista previa de WhatsApp debe verificarse
-compartiendo la URL pública; las simulaciones locales no forman parte del despliegue.
+Las tarjetas digitales de los socios están en `/alfonso`, `/belen` y `/juan`.
+Cada tarjeta incluye fotografía, colegiación, botones de contacto, descarga de
+vCard (`/<nombre>.vcf`) e imagen para compartir (`/tarjeta-<nombre>.png`).
+Usan el contacto general del despacho y enlazan al perfil individual.
+
+El equipo y las tarjetas comparten datos en `src/data/site.ts`. Tras cambiar
+los datos o retratos, regenerar las tres imágenes con
+`node scripts/render-belen-card.mjs` (Node 24). `npm test` comprueba las fichas,
+los enlaces, la colegiación, las imágenes y las vCards, incluido el plegado UTF-8.
+La vista previa real de WhatsApp debe verificarse con la URL pública tras publicar.
 
 - `src/data/site.ts`: datos del despacho y profesionales, servicios y FAQ.
 - `src/content/actualidad/`: guías Markdown. `draft: true` excluye un texto de
   páginas, listados y sitemap. Los dos artículos iniciales sin autor aprobado
   permanecen como borradores, no publicados.
 - `src/pages/`: páginas informativas, equipo, guías y legales.
-- Equipo: Belén destacada con foto; Juan y Alfonso mencionados en un nivel visual
-  secundario sin placeholders. Juan tiene biografía; de Alfonso solo se publica
-  la información confirmada. Fotografías adicionales son opcionales.
+- Equipo: Alfonso, Belén y Juan José tienen el mismo protagonismo en Inicio y Equipo, con retratos y perfiles completos. Se conserva la URL publicada de Belén.
 - Portada: salvia de marca con texto marino, énfasis en herencias, donaciones y
   patrimonio, junto al retrato en B/N suave. Las fotografías interiores conservan
   el color. En móvil, las áreas son filas claras con miniaturas separadas del texto,
