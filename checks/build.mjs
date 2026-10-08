@@ -4,7 +4,7 @@ import { join } from 'node:path';
 
 const files = await readdir('dist', { recursive: true });
 const pages = files.filter((file) => file.endsWith('.html'));
-assert.equal(pages.length, 23, 'Unexpected published pages');
+assert.equal(pages.length, 24, 'Unexpected published pages');
 for (const page of pages) {
   const html = await readFile(join('dist', page), 'utf8');
   assert(!/Versión (de|para) revisión|pendiente de validación|TODO:/i.test(html), `Unfinished page: ${page}`);

@@ -9,6 +9,7 @@ const posts = (await getCollection("actualidad", ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3);
 const photos: Record<string, string> = {
   "planificacion-fiscal": "patrimonio",
+  "derecho-inmobiliario": "architecture",
   "inspecciones-fiscales": "documentacion",
   "recursos-administrativos": "workspace",
   "contencioso-administrativo": "biblioteca",

@@ -30,7 +30,7 @@ try {
   });
   for (const width of [320, 375, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
-    for (const route of ['/', '/equipo/', '/equipo/belen-de-santaolalla/', '/equipo/juan-jose-blanco-rial/', '/contacto/', '/despacho/', '/actualidad/', '/areas/', '/areas/planificacion-fiscal/', '/aviso-legal/', '/privacidad/', '/cookies/', ...guides.map((slug) => `/actualidad/${slug}/`)]) {
+    for (const route of ['/', '/equipo/', '/equipo/belen-de-santaolalla/', '/equipo/alfonso-montero-sanz/', '/equipo/juan-jose-blanco-rial/', '/contacto/', '/despacho/', '/actualidad/', '/areas/', '/areas/planificacion-fiscal/', '/areas/derecho-inmobiliario/', '/aviso-legal/', '/privacidad/', '/cookies/', ...guides.map((slug) => `/actualidad/${slug}/`)]) {
       const response = await page.goto(base + route);
       assert(response.ok(), route);
       await page.evaluate(() => document.fonts.ready);
@@ -116,7 +116,7 @@ try {
     await page.locator('summary').first().click();
     await page.evaluate(() => scrollTo(0, 0));
     if (process.env.SCREENSHOT_DIR) await page.screenshot({ path: `${process.env.SCREENSHOT_DIR}/leruck-${width}.png`, fullPage: true });
-    console.log(`PASS: ${width}px, 15 routes, portraits, guides, menu, contact, canonical and no cookies`);
+    console.log(`PASS: ${width}px, 17 routes, portraits, guides, menu, contact, canonical and no cookies`);
   }
   const links = await page.locator('a[href^="/"]').evaluateAll((anchors) => [...new Set(anchors.map((a) => a.getAttribute('href')))]);
   for (const link of links) assert((await page.request.get(base + link)).ok(), `Broken link: ${link}`);
@@ -131,9 +131,15 @@ try {
   for (const [i, expected] of ['sucesiones y donaciones', 'obligaciones fiscales', 'no residentes', 'escrituras públicas', 'registro ante los organismos públicos', 'Constitución de sociedades mercantiles'].entries()) {
     assert(services[i].includes(expected), `Missing fiscal service: ${expected}`);
   }
+  await page.goto(base + '/areas/derecho-inmobiliario/');
+  assert.equal(await page.locator('h1').textContent(), 'Derecho inmobiliario');
+  await page.goto(base + '/equipo/alfonso-montero-sanz/');
+  for (const [slug, label] of [['planificacion-fiscal', 'Derecho fiscal'], ['derecho-inmobiliario', 'Derecho inmobiliario']]) {
+    assert.equal(await page.locator(`main a[href="/areas/${slug}"]`).textContent(), label);
+  }
   await page.goto(base + '/equipo/belen-de-santaolalla/');
   const bio = await page.locator('main').innerText();
-  for (const expected of ['Belén de Santa Olalla de la Puerta', 'Socia / Abogada especialista', '144.627', 'Universidad de Granada', 'Práctica de la Abogacía por CEF', 'Pons-Novit Legal', 'Español e inglés', 'patrimonios privados']) assert(bio.includes(expected), `Missing biography detail: ${expected}`);
+  for (const expected of ['Belén de Santa Olalla de la Puerta', 'Socia', '144.627', 'Universidad de Granada', 'Práctica de la Abogacía por CEF', 'Pons-Novit Legal', 'Español e inglés', 'patrimonios privados']) assert(bio.includes(expected), `Missing biography detail: ${expected}`);
   assert(!bio.includes('TODO:'), 'Confirmed biography must not contain placeholder copy');
   assert.equal(await page.locator('main img').getAttribute('src'), '/equipo/belen-retrato.webp');
   for (const slug of guides) {
@@ -152,9 +158,9 @@ try {
   }
   await page.goto(base + '/equipo/juan-jose-blanco-rial/');
   const juan = await page.locator('main').innerText();
-  for (const expected of ['Juan José Blanco Rial', '3894', 'ICAPo', 'procedimiento tributario', 'activos financieros']) assert(juan.includes(expected), `Missing Juan detail: ${expected}`);
+  for (const expected of ['Juan José Blanco Rial', '3894', 'ICAPo', 'procedimiento tributario', 'UDIMA', 'CEF']) assert(juan.includes(expected), `Missing Juan detail: ${expected}`);
   assert(!juan.includes('TODO:'), 'Juan must replace the placeholder lawyer');
-  assert.equal(await page.locator('main img').count(), 0, 'Juan must not have a placeholder or an empty portrait');
+  assert.equal(await page.locator('main img').count(), 1, 'Juan has his supplied portrait');
   const person = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) => scripts.map((script) => JSON.parse(script.textContent)).find((schema) => schema['@type'] === 'Person'));
   assert.equal(person.memberOf.name, 'Ilustre Colegio de Abogados de Pontevedra');
   await page.goto(base + '/contacto/');
@@ -204,11 +210,11 @@ try {
   await page.goto(base + '/aviso-legal/');
   for (const partner of ['Juan José Blanco Rial', 'Belén de Santa Olalla de la Puerta', 'Alfonso Mª Montero Sanz']) assert((await page.locator('main').innerText()).includes(partner));
   await page.goto(base + '/equipo/');
-  assert.equal(await page.locator('main a[href^="/equipo/"]').count(), 2, 'Do not invent an Alfonso profile');
-  assert.equal(await page.locator('main img').count(), 1, 'Only Belen has a portrait');
+  assert.equal(await page.locator('main a[href^="/equipo/"]').count(), 3, 'All three partner profiles are linked');
+  assert.equal(await page.locator('main img').count(), 3, 'Each partner has a portrait');
   assert((await page.locator('section[aria-labelledby="partners-title"]').innerText()).includes('Juan José Blanco Rial'));
   assert((await page.locator('section[aria-labelledby="partners-title"]').innerText()).includes('Alfonso Mª Montero Sanz'));
-  assert((await page.locator('#featured-name').boundingBox()).y < (await page.locator('#partners-title').boundingBox()).y, 'Belen is featured above the other partners');
+  assert.deepEqual(await page.locator('section[aria-labelledby="partners-title"] h3').allTextContents(), ['Alfonso Mª Montero Sanz', 'Belén de Santa Olalla de la Puerta', 'Juan José Blanco Rial'], 'Equal prominence in alphabetical order');
   assert.deepEqual(externalRequests, [], 'No automatically loaded third-party services');
   assert.deepEqual(errors, [], 'Browser errors');
   const nojs = await browser.newPage({ javaScriptEnabled: false, reducedMotion: 'reduce' });

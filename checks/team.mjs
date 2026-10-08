@@ -40,6 +40,16 @@ for (const partner of partners) {
 }
 const alfonso = await read('equipo/alfonso-montero-sanz/index.html');
 assert.match(alfonso, /Formación/);
+assert.match(alfonso, /href="\/areas\/planificacion-fiscal"[^>]*>Derecho fiscal<\/a>/);
+assert.match(alfonso, /href="\/areas\/derecho-inmobiliario"[^>]*>Derecho inmobiliario<\/a>/);
+assert.ok(sitemap.includes('/areas/derecho-inmobiliario'), 'Real estate area is indexed');
+const inmobiliario = await read('areas/derecho-inmobiliario/index.html');
+for (const service of ['compraventa', 'préstamos', 'obra nueva', 'división horizontal', 'Fiscalidad inmobiliaria']) {
+  assert.ok(inmobiliario.includes(service), `Real estate service: ${service}`);
+}
+for (const page of ['index.html', 'areas/index.html']) {
+  assert.ok((await read(page)).includes('href="/areas/derecho-inmobiliario"'), `${page}: discoverable real estate area`);
+}
 assert.match(alfonso, /Membresías|Asociaciones/);
 const juan = await read('equipo/juan-jose-blanco-rial/index.html');
 assert.match(juan, /UDIMA/);

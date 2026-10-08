@@ -71,6 +71,20 @@ export const areas: Area[] = [
     ],
   },
   {
+    slug: "derecho-inmobiliario",
+    title: "Derecho inmobiliario",
+    short: "Compraventas, escrituras y fiscalidad inmobiliaria. Asesoramiento para organizar y transmitir tu patrimonio.",
+    summary:
+      "Asesoramos en operaciones inmobiliarias y en la organización del patrimonio familiar. Acompañamos la preparación de escrituras públicas y analizamos la fiscalidad de cada operación, coordinando su tramitación con notarías y registros.",
+    bullets: [
+      "Preparación de escrituras de compraventa y préstamos.",
+      "Declaraciones de obra nueva y división horizontal.",
+      "Donaciones y herencias de inmuebles.",
+      "Fiscalidad inmobiliaria y organización del patrimonio familiar.",
+      "Coordinación de la documentación con notarías y registros.",
+    ],
+  },
+  {
     slug: "inspecciones-fiscales",
     title: "Inspecciones fiscales",
     short: "Defensa durante todo el procedimiento de inspección de Hacienda.",
@@ -178,10 +192,11 @@ export const team: Lawyer[] = [
     ],
     "languages": "Español e inglés",
     "areas": [
+      "planificacion-fiscal",
+      "derecho-inmobiliario",
       "inspecciones-fiscales",
       "recursos-administrativos",
-      "contencioso-administrativo",
-      "planificacion-fiscal"
+      "contencioso-administrativo"
     ],
     "email": "info@lerucklegal.com"
   },

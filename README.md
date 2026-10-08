@@ -37,7 +37,7 @@ BASE_URL=https://www.lerucklegal.com node checks/browser.mjs
 
 `PLAYWRIGHT_MODULE` permite indicar una instalación externa de Playwright.
 Sin `BASE_URL`, el check arranca la preview local del build. `SCREENSHOT_DIR`
-habilita capturas en un directorio existente. Cubre 15 rutas a 320, 375, 768, 1024 y
+habilita capturas en un directorio existente. Cubre 17 rutas a 320, 375, 768, 1024 y
 1440 px, imágenes, guías, menú, contacto, datos estructurados, ausencia de cookies,
 enlaces, redirecciones antiguas y contenido sin JavaScript.
 Los casos de formulario en el navegador interceptan la petición: comprueban éxito,
@@ -94,6 +94,7 @@ La vista previa real de WhatsApp debe verificarse con la URL pública tras publi
   páginas, listados y sitemap. Los dos artículos iniciales sin autor aprobado
   permanecen como borradores, no publicados.
 - `src/pages/`: páginas informativas, equipo, guías y legales.
+- Áreas: Alfonso enlaza Derecho fiscal (URL publicada `/areas/planificacion-fiscal`) y Derecho inmobiliario (`/areas/derecho-inmobiliario`), además de sus áreas de defensa tributaria.
 - Equipo: Alfonso, Belén y Juan José tienen el mismo protagonismo en Inicio y Equipo, con retratos y perfiles completos. Se conserva la URL publicada de Belén.
 - Portada: salvia de marca con texto marino, énfasis en herencias, donaciones y
   patrimonio, junto al retrato en B/N suave. Las fotografías interiores conservan
