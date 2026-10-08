@@ -139,7 +139,7 @@ export const team: Lawyer[] = [
     "name": "Alfonso Mª Montero Sanz",
     "role": "Socio",
     "specialty": "Derecho tributario e inmobiliario",
-    "colegio": "Ilustre Colegio de la Abogacía de Madrid (ICAM)",
+    "colegio": "Ilustre Colegio de la Abogacía de Madrid",
     "colegiado": "ICAM nº 91.247",
     "photo": "/equipo/alfonso-retrato.jpeg",
     "card": {
@@ -173,7 +173,7 @@ export const team: Lawyer[] = [
       "Programa de Experto en Fiscalidad Internacional por ESADE"
     ],
     "memberships": [
-      "Abogado del Ilustre Colegio de la Abogacía de Madrid, nº 91.247",
+      "ICAM nº 91.247",
       "Colaborador Asociado de la Real Academia de la Jurisprudencia y Legislación"
     ],
     "languages": "Español e inglés",
@@ -212,7 +212,7 @@ export const team: Lawyer[] = [
         "Donaciones y planificación patrimonial"
       ]
     },
-    "colegiado": "Colegiada en el Ilustre Colegio de la Abogacía de Madrid, número 144.627",
+    "colegiado": "ICAM nº 144.627",
     "photo": "/equipo/belen-retrato.webp",
     "bio": "Belén de Santa Olalla de la Puerta es abogada especializada en derecho civil, sucesiones, donaciones y planificación patrimonial. Su experiencia se centra en el asesoramiento integral a personas físicas y familias en materia hereditaria, organización patrimonial, tramitación de escrituras públicas, redacción contractual y liquidación de impuestos y obligaciones fiscales.\n\nHa desarrollado su carrera en despachos, entidades financieras y el sector inmobiliario, con experiencia en Pons-Novit Legal, Haya Real Estate, Banco Santander y Martínez-Echevarría abogados. Cuenta además con experiencia en gestión de activos, transmisiones inmobiliarias, fiscalidad de no residentes, due diligence y coordinación con notarías, registros, ayuntamientos y otros organismos oficiales.",
     "languages": "Español e inglés.",
@@ -228,8 +228,8 @@ export const team: Lawyer[] = [
     "name": "Juan José Blanco Rial",
     "role": "Socio",
     "specialty": "Derecho tributario y procedimientos tributarios",
-    "colegio": "Colegio de la Abogacía de Pontevedra",
-    "colegiado": "Colegio de la Abogacía de Pontevedra nº 3894",
+    "colegio": "Ilustre Colegio de Abogados de Pontevedra",
+    "colegiado": "ICAPo nº 3894",
     "photo": "/equipo/juan-retrato.jpeg",
     "photoScale": 1.3,
     "photoPosition": "center 80%",
