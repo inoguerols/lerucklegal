@@ -5,9 +5,9 @@ import sharp from 'sharp';
 // Run after npm run build. These checks also protect the existing Belén card.
 const read = path => readFile(new URL(`../dist/${path}`, import.meta.url));
 const partners = [
-  { card: 'alfonso', name: 'Alfonso Mª Montero Sanz', surname: 'Montero Sanz', given: 'Alfonso Mª', slug: 'alfonso-montero-sanz', number: '91.247' },
-  { card: 'belen', name: 'Belén de Santa Olalla de la Puerta', surname: 'de Santa Olalla de la Puerta', given: 'Belén', slug: 'belen-de-santaolalla', number: '144.627' },
-  { card: 'juan', name: 'Juan José Blanco Rial', surname: 'Blanco Rial', given: 'Juan José', slug: 'juan-jose-blanco-rial', number: '3894' },
+  { card: 'alfonso', name: 'Alfonso Mª Montero Sanz', surname: 'Montero Sanz', given: 'Alfonso Mª', slug: 'alfonso-montero-sanz', number: '91.247', phone: '+34605651720', email: 'a.monterosanz@lerucklegal.com' },
+  { card: 'belen', name: 'Belén de Santa Olalla de la Puerta', surname: 'de Santa Olalla de la Puerta', given: 'Belén', slug: 'belen-de-santaolalla', number: '144.627', phone: '+34686805223', email: 'info@lerucklegal.com' },
+  { card: 'juan', name: 'Juan José Blanco Rial', surname: 'Blanco Rial', given: 'Juan José', slug: 'juan-jose-blanco-rial', number: '3894', phone: '+34663214729', email: 'j.blancorial@lerucklegal.com' },
 ];
 const sitemap = (await read('sitemap-0.xml')).toString();
 for (const partner of partners) {
@@ -21,16 +21,24 @@ for (const partner of partners) {
   assert.ok(html.includes(name), `${card}: full name`);
   assert.ok(html.includes(partner.number), `${card}: registration`);
   assert.match(html, /property="og:image:alt" content="[^"]+"/);
-  for (const href of [`/${card}.vcf`, `/tarjeta-${card}.png`, `/equipo/${partner.slug}`, 'tel:+34686805223', 'mailto:info@lerucklegal.com']) {
+  for (const href of [`/${card}.vcf`, `/tarjeta-${card}.png`, `/equipo/${partner.slug}`, `tel:${partner.phone}`, `mailto:${partner.email}`]) {
     assert.ok(html.includes(`href="${href}"`), `${card}: ${href}`);
   }
-  assert.match(html, /https:\/\/wa\.me\/34686805223\?text=/);
+  assert.ok(html.includes(`https://wa.me/${partner.phone.slice(1)}?text=`), `${card}: individual WhatsApp`);
   assert.ok(html.includes(encodeURIComponent(`https://www.lerucklegal.com/${card}`)), `${card}: share its own URL`);
-  const contact = html.match(/href="(https:\/\/wa\.me\/34686805223\?text=[^"]+)"/);
+  const contact = html.match(/href="(https:\/\/wa\.me\/\d+\?text=[^"]+)"/);
   assert.ok(decodeURIComponent(contact[1]).includes(partner.given.split(' ')[0]), `${card}: WhatsApp contact names this partner`);
   assert.doesNotMatch(html, /noindex|localhost|placeholder\.svg/);
   for (const other of partners.filter(value => value.card !== card)) {
     assert.ok(!html.includes(`href="/${other.card}.vcf"`), `${card}: no other partner's contact download`);
+  }
+  if (card !== 'belen') {
+    assert.ok(!html.includes('Contacto del despacho'), `${card}: label identifies direct contact`);
+    const profile = (await read(`equipo/${partner.slug}/index.html`)).toString();
+    assert.ok(profile.includes(`href="tel:${partner.phone}"`), `${card}: profile mobile`);
+    assert.ok(profile.includes(`href="mailto:${partner.email}"`), `${card}: profile email link`);
+    assert.ok(profile.includes(`>${partner.email}</a>`), `${card}: profile email visible`);
+    assert.ok(profile.includes(`https://wa.me/${partner.phone.slice(1)}?text=`), `${card}: profile WhatsApp`);
   }
   const png = await read(`tarjeta-${card}.png`);
   const metadata = await sharp(png).metadata();
@@ -47,7 +55,7 @@ for (const partner of partners) {
   assert.doesNotMatch(vcard.replaceAll('\r\n', ''), /[\r\n]/, `${card}: CRLF line endings`);
   assert.ok(vcard.split('\r\n').every(line => Buffer.byteLength(line) <= 75), `${card}: folding within 75 octets`);
   const unfolded = vcard.replace(/\r\n[ \t]/g, '');
-  for (const line of [`FN:${name}`, `N:${partner.surname};${partner.given};;;`, 'TEL;TYPE=WORK,VOICE:+34686805223', 'EMAIL;TYPE=WORK:info@lerucklegal.com', `URL:https://www.lerucklegal.com/${card}`]) {
+  for (const line of [`FN:${name}`, `N:${partner.surname};${partner.given};;;`, `TEL;TYPE=WORK,VOICE:${partner.phone}`, `EMAIL;TYPE=WORK:${partner.email}`, `URL:https://www.lerucklegal.com/${card}`]) {
     assert.ok(unfolded.includes(`${line}\r\n`), `${card}: vCard ${line}`);
   }
   assert.ok(sitemap.includes(`https://www.lerucklegal.com/${card}`), `${card}: sitemap`);

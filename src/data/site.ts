@@ -144,6 +144,8 @@ export type Lawyer = {
   languages?: string;
   areas: string[];
   email?: string;
+  phone?: string;
+  phoneHref?: string;
 };
 
 // Socios en orden alfabético por nombre.
@@ -198,7 +200,9 @@ export const team: Lawyer[] = [
       "recursos-administrativos",
       "contencioso-administrativo"
     ],
-    "email": "info@lerucklegal.com"
+    "email": "a.monterosanz@lerucklegal.com",
+    "phone": "+34 605 65 17 20",
+    "phoneHref": "+34605651720"
   },
   {
     "slug": "belen-de-santaolalla",
@@ -278,7 +282,9 @@ export const team: Lawyer[] = [
       "inspecciones-fiscales",
       "recursos-administrativos"
     ],
-    "email": "info@lerucklegal.com"
+    "email": "j.blancorial@lerucklegal.com",
+    "phone": "+34 663 21 47 29",
+    "phoneHref": "+34663214729"
   }
 ];
 

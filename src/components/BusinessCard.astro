@@ -8,12 +8,15 @@ const card = person.card;
 const profession = person.role === 'Socia' ? 'Abogada' : 'Abogado';
 
 const email = person.email ?? site.email;
+const phone = person.phone ?? site.phone;
+const phoneHref = person.phoneHref ?? site.phoneHref;
+const whatsappNumber = person.phoneHref?.replace(/^\+/, "") ?? site.whatsapp;
 const canonical = new URL(`/${card.slug}`, site.url).href;
 const title = `${person.name} · ${profession} | ${site.name}`;
 const description = `${person.specialty}. Contacta con ${card.givenName} y guarda su tarjeta en tu móvil.`;
 const image = new URL(`/tarjeta-${card.slug}.png`, site.url).href;
 const imageAlt = `${person.name}, ${profession.toLowerCase()} y ${person.role.toLowerCase()} de ${site.name}. ${person.specialty}.`;
-const whatsapp = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Hola, me gustaría contactar con ${person.name} para una consulta.`)}`;
+const whatsapp = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hola, me gustaría contactar con ${person.name} para una consulta.`)}`;
 const share = `https://wa.me/?text=${encodeURIComponent(`${person.name} · ${site.name}\n${canonical}`)}`;
 ---
 <!doctype html>
@@ -69,13 +72,13 @@ const share = `https://wa.me/?text=${encodeURIComponent(`${person.name} · ${sit
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.5 7.8L3 21l1.7-4.5A9 9 0 1 1 21 11.5Z" /></svg>
               WhatsApp
             </a>
-            <a class="button" href={`tel:${site.phoneHref}`}>
+            <a class="button" href={`tel:${phoneHref}`}>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 3 3 5-3 2a14 14 0 0 0 7 7l2-3 5 3-1 4C10 22 2 14 3 4Z" /></svg>
               Llamar
             </a>
           </div>
           <a class="email" href={`mailto:${email}`}>{email}<span aria-hidden="true">↗</span></a>
-          <p class="office">Contacto del despacho · {site.phone}</p>
+          <p class="office">{person.phoneHref ? "Contacto directo" : "Contacto del despacho"} · <a href={`tel:${phoneHref}`}>{phone}</a></p>
           <a class="profile" href={`/equipo/${person.slug}`}>Conoce mi trayectoria <span aria-hidden="true">→</span></a>
         </div>
         <footer class="card-footer">

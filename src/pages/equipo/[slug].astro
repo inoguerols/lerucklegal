@@ -9,6 +9,11 @@ export function getStaticPaths() {
 const { lawyer } = Astro.props;
 const areaTitle = (slug) => slug === "planificacion-fiscal" ? "Derecho fiscal" : areas.find((a) => a.slug === slug)?.title ?? slug;
 const title = `${lawyer.name} — ${site.name}`;
+const email = lawyer.email ?? site.email;
+const phone = lawyer.phone ?? site.phone;
+const phoneHref = lawyer.phoneHref ?? site.phoneHref;
+const whatsappNumber = lawyer.phoneHref?.replace(/^\+/, "") ?? site.whatsapp;
+const whatsapp = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hola, me gustaría contactar con ${lawyer.name} para una consulta.`)}`;
 const schema = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -16,7 +21,8 @@ const schema = {
   image: lawyer.photo ? new URL(lawyer.photo, site.url).href : undefined,
   jobTitle: lawyer.role,
   url: new URL(`/equipo/${lawyer.slug}`, site.url).href,
-  email: lawyer.email,
+  email,
+  telephone: phoneHref,
   knowsLanguage: lawyer.languages,
   worksFor: { "@type": "LegalService", name: site.name, url: site.url },
   memberOf: { "@type": "Organization", name: lawyer.colegio },
@@ -65,9 +71,14 @@ const schema = {
           </ul>
         </div>
         <a href={`/${lawyer.card.slug}`} class="inline-block mt-8 mr-5 text-sage-600 underline underline-offset-4">Tarjeta de visita · Guardar contacto</a>
-        {lawyer.email && (
-          <a href={`mailto:${lawyer.email}`} class="inline-block mt-8 bg-navy-900 text-white font-semibold px-6 py-3 rounded-full hover:bg-navy-800 transition">Contactar</a>
-        )}
+        <section class="mt-8" aria-label="Datos de contacto">
+          <h2 class="font-serif text-2xl text-navy-900">{lawyer.phoneHref ? "Contacto directo" : "Contacto del despacho"}</h2>
+          <div class="mt-3 flex flex-col items-start gap-3 text-navy-800">
+            <a href={`tel:${phoneHref}`} class="underline underline-offset-4">{phone}</a>
+            <a href={`mailto:${email}`} class="break-all underline underline-offset-4">{email}</a>
+            <a href={whatsapp} class="inline-block bg-navy-900 text-white font-semibold px-6 py-3 rounded-full hover:bg-navy-800 transition">Escribir por WhatsApp</a>
+          </div>
+        </section>
       </div>
     </div>
   </section>

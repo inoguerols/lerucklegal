@@ -50,12 +50,13 @@ try {
       assert.equal(await page.locator('img[src*="placeholder"]').count(), 0, `No placeholder portraits: ${route}`);
       assert.equal(await page.locator('a[href*="mnprogram"], a[href*="nmprogram"]').count(), 0, 'MN Program is outside the launch scope');
       assert(!/Acceso clientes|Acceder al portal de clientes/.test(await page.content()), `Unexpected client portal: ${route}`);
+      const directPhone = route.includes('/equipo/alfonso-montero-sanz/') ? '+34605651720' : route.includes('/equipo/juan-jose-blanco-rial/') ? '+34663214729' : null;
+      const allowedPhones = ['+34686805223', ...(directPhone ? [directPhone] : [])];
       const phones = await page.locator('a[href^="tel:"]').evaluateAll((links) => links.map((link) => link.href));
-      assert(phones.length > 0 && phones.every((href) => href === 'tel:+34686805223'), `Incorrect phone link: ${route}`);
+      assert(phones.length > 0 && phones.every((href) => allowedPhones.some(phone => href === `tel:${phone}`)), `Incorrect phone link: ${route}`);
       const whatsappLinks = await page.locator('a[href*="wa.me"]').evaluateAll((links) => links.map((link) => link.href));
-      assert(whatsappLinks.length > 0 && whatsappLinks.every((href) => new URL(href).pathname === '/34686805223'), `Incorrect WhatsApp: ${route}`);
+      assert(whatsappLinks.length > 0 && whatsappLinks.every((href) => allowedPhones.some(phone => new URL(href).pathname === `/${phone.slice(1)}`)), `Incorrect WhatsApp: ${route}`);
       assert((await page.locator('footer').innerText()).includes('9:00–19:00'), `Incorrect hours: ${route}`);
-      assert(!/605\s*65\s*17\s*20/.test(await page.content()), `Incorrect phone: ${route}`);
       const business = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) => scripts.map((script) => JSON.parse(script.textContent)).find((schema) => schema['@type'] === 'LegalService'));
       assert.equal(business.telephone, '+34 686 80 52 23');
       assert.equal(business.address.streetAddress, 'Avda. Pablo VI, nº 7, portal 4, 3º Izq.');
@@ -99,6 +100,13 @@ try {
       })), 'Mobile services must separate text and images without gradient overlays');
     } else {
       assert(await page.locator('.practice-tile').first().evaluate((tile) => getComputedStyle(tile, '::after').backgroundImage.includes('linear-gradient')), 'Preserve the desktop service presentation');
+    }
+    if (width >= 768) {
+      const edge = await page.locator('.practice-grid').evaluate(grid => ({
+        grid: grid.getBoundingClientRect().right,
+        last: grid.lastElementChild.getBoundingClientRect().right,
+      }));
+      assert(Math.abs(edge.grid - edge.last) < 1, 'Last service row must fill its width');
     }
     assert.equal(await page.locator('.hero-portrait img').getAttribute('src'), '/equipo/belen-despacho.webp');
     assert.equal(await page.locator('.hero-portrait img').evaluate((el) => getComputedStyle(el).filter), 'grayscale(1) contrast(0.96)');

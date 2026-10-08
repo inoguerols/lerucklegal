@@ -81,7 +81,9 @@ fallos, límite de frecuencia y conservación del mensaje sin enviar correo real
 Las tarjetas digitales de los socios están en `/alfonso`, `/belen` y `/juan`.
 Cada tarjeta incluye fotografía, colegiación, botones de contacto, descarga de
 vCard (`/<nombre>.vcf`) e imagen para compartir (`/tarjeta-<nombre>.png`).
-Usan el contacto general del despacho y enlazan al perfil individual.
+Alfonso y Juan José usan su móvil y email personales en perfiles, tarjetas,
+vCards e imágenes. Belén conserva el contacto general del despacho. Los enlaces
+de WhatsApp usan el móvil de cada socio cuando está disponible.
 
 El equipo y las tarjetas comparten datos en `src/data/site.ts`. Tras cambiar
 los datos o retratos, regenerar las tres imágenes con

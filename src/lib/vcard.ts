@@ -27,7 +27,7 @@ export function createVCard(person: Lawyer): string {
     `FN:${escape(person.name)}`,
     `ORG:${escape(site.name)}`,
     `TITLE:${profession} - ${escape(person.role)}`,
-    `TEL;TYPE=WORK,VOICE:${site.phoneHref}`,
+    `TEL;TYPE=WORK,VOICE:${person.phoneHref ?? site.phoneHref}`,
     `EMAIL;TYPE=WORK:${escape(person.email ?? site.email)}`,
     `URL:${site.url}/${person.card.slug}`,
     'END:VCARD',

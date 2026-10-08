@@ -22,6 +22,10 @@ for (const person of team) {
     const size = nameLines.length === 3 && index === 2 ? 49 : 61;
     return `<text x="810" y="${y}" font-size="${size}">${escape(line)}</text>`;
   }).join('');
+  const contactMarkup = person.phoneHref
+    ? `<text x="810" y="579" font-size="21">${escape(person.phone ?? person.phoneHref)}</text>
+       <text x="810" y="608" font-size="21">${escape(person.email ?? site.email)}</text>`
+    : `<text x="810" y="581" font-size="21">${escape(site.phone)}   ·   ${escape(person.email ?? site.email)}</text>`;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
     <rect width="1200" height="630" fill="#f7f6f1"/>
     <image href="data:image/png;base64,${portrait.toString('base64')}" x="0" y="0" width="420" height="630" preserveAspectRatio="xMidYMid slice"/>
@@ -35,7 +39,7 @@ for (const person of team) {
       <text x="810" y="470" font-size="25">${escape(card.artworkSpecialty)}</text>
       <text x="810" y="517" font-size="21" fill="#646a4d">${escape(new URL(site.url).hostname)}/${card.slug}</text>
       <text x="810" y="549" font-size="16" fill="#646a4d">${escape(person.colegiado)}</text>
-      <text x="810" y="581" font-size="21">${escape(site.phone)}   ·   ${escape(person.email ?? site.email)}</text>
+      ${contactMarkup}
     </g>
   </svg>`;
   const png = await sharp(Buffer.from(svg)).png({ palette: true, colours: 256 }).toBuffer();

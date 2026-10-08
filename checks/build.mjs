@@ -11,7 +11,7 @@ for (const page of pages) {
   assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1, `One H1 required: ${page}`);
   assert.equal(/<meta name="robots" content="noindex,nofollow"\s*\/?\s*>/.test(html), page === '404.html', `Incorrect indexing: ${page}`);
   assert(html.includes('href="https://www.lerucklegal.com/'), `Missing canonical: ${page}`);
-  assert(!/605\s*65\s*17\s*20|placeholder\.svg|mnprogramweb\.net/.test(html), `Obsolete content: ${page}`);
+  assert(!/placeholder\.svg|mnprogramweb\.net/.test(html), `Obsolete content: ${page}`);
   for (const [, src] of html.matchAll(/<img\b[^>]*src="(\/[^"?]+)"/g)) {
     assert((await stat(join('dist', src))).size > 0, `Missing image ${src} on ${page}`);
   }
