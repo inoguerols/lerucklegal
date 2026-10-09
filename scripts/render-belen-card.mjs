@@ -8,7 +8,6 @@ const logo = await readFile(new URL('../public/logo-monograma-navy.png', import.
 const escape = value => value.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' })[char]);
 const portraitCrops = {
   alfonso: { left: 160, top: 130, width: 1100, height: 1466 },
-  juan: { left: 200, top: 430, width: 960, height: 1280 },
 };
 
 for (const person of team) {

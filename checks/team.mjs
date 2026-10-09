@@ -52,6 +52,10 @@ for (const page of ['index.html', 'areas/index.html']) {
 }
 assert.match(alfonso, /Membresías|Asociaciones/);
 const juan = await read('equipo/juan-jose-blanco-rial/index.html');
+for (const page of ['index.html', 'equipo/index.html', 'equipo/juan-jose-blanco-rial/index.html', 'juan/index.html']) {
+  assert.ok((await read(page)).includes('src="/equipo/juan-retrato.webp"'), `${page}: updated Juan portrait`);
+}
+assert.match(await read('index.html'), /src="\/equipo\/socios-portada.webp"/);
 assert.match(juan, /UDIMA/);
 assert.match(juan, /CEF/);
 assert.doesNotMatch(juan, /Idiomas:/);

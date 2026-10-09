@@ -108,7 +108,11 @@ try {
       }));
       assert(Math.abs(edge.grid - edge.last) < 1, 'Last service row must fill its width');
     }
-    assert.equal(await page.locator('.hero-portrait img').getAttribute('src'), '/equipo/belen-despacho.webp');
+    assert.equal(await page.locator('.hero-portrait img').getAttribute('src'), '/equipo/socios-portada.webp');
+    assert(await page.locator('.hero-portrait img').evaluate((img) => {
+      const bounds = img.getBoundingClientRect();
+      return Math.abs(bounds.width / bounds.height - img.naturalWidth / img.naturalHeight) < .01;
+    }), 'Show all three partners without cropping the group portrait');
     assert.equal(await page.locator('.hero-portrait img').evaluate((el) => getComputedStyle(el).filter), 'grayscale(1) contrast(0.96)');
     assert.equal(await page.locator('.news-grid article').count(), 3);
     for (const slug of guides) assert(await page.locator(`.news-grid a[href="/actualidad/${slug}"]`).first().isVisible());

@@ -249,13 +249,11 @@ export const team: Lawyer[] = [
     "specialty": "Derecho tributario y procedimientos tributarios",
     "colegio": "Ilustre Colegio de Abogados de Pontevedra",
     "colegiado": "ICAPo nº 3894",
-    "photo": "/equipo/juan-retrato.jpeg",
-    "photoScale": 1.3,
-    "photoPosition": "center 80%",
+    "photo": "/equipo/juan-retrato.webp",
     "card": {
       "slug": "juan",
-      "portraitScale": 2.4,
-      "portraitPosition": "center 36%",
+      "portraitScale": 1.6,
+      "portraitPosition": "center top",
       "artworkNameLines": [
         "Juan José",
         "Blanco Rial"
